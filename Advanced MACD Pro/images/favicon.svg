@@ -1,0 +1,51 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Золотой градиент (как на баннере) -->
+    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F9D976" />
+      <stop offset="40%" stop-color="#E2B63E" />
+      <stop offset="100%" stop-color="#AA7700" />
+    </linearGradient>
+
+    <!-- Золотой градиент для столбцов -->
+    <linearGradient id="goldBarGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFDF73" />
+      <stop offset="50%" stop-color="#D4AF37" />
+      <stop offset="100%" stop-color="#8A5A00" />
+    </linearGradient>
+
+    <!-- Легкое свечение для премиум-эффекта -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Темный фон (скругленный квадрат) -->
+  <rect width="512" height="512" rx="80" fill="#0d0d0e" />
+  
+  <!-- Тонкая золотая рамка по краю -->
+  <rect x="12" y="12" width="488" height="488" rx="68" fill="none" stroke="url(#goldGradient)" stroke-width="4" opacity="0.6" />
+
+  <!-- ГРАФИКА (Центрированная) -->
+  <g transform="translate(0, 20)">
+    <!-- Базовая линия -->
+    <rect x="116" y="380" width="280" height="8" rx="4" fill="url(#goldGradient)" />
+
+    <!-- Столбцы -->
+    <rect x="126" y="300" width="40" height="80" rx="4" fill="url(#goldBarGradient)" />
+    <rect x="180" y="240" width="40" height="140" rx="4" fill="url(#goldBarGradient)" />
+    <rect x="234" y="170" width="40" height="210" rx="4" fill="url(#goldBarGradient)" />
+    <rect x="288" y="210" width="40" height="170" rx="4" fill="url(#goldBarGradient)" />
+    <rect x="342" y="120" width="40" height="260" rx="4" fill="url(#goldBarGradient)" />
+
+    <!-- Восходящая линия тренда -->
+    <path d="M 126 340 C 200 280 280 200 370 110" fill="none" stroke="url(#goldGradient)" stroke-width="16" stroke-linecap="round" filter="url(#glow)" />
+    
+    <!-- Точка на конце линии -->
+    <circle cx="370" cy="110" r="18" fill="url(#goldGradient)" filter="url(#glow)" />
+  </g>
+</svg>

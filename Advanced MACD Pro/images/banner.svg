@@ -1,0 +1,81 @@
+<svg width="1200" height="400" viewBox="0 0 1200 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Фоновый градиент -->
+    <radialGradient id="bgGlow" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#1c1c1e" />
+      <stop offset="100%" stop-color="#0a0a0b" />
+    </radialGradient>
+    
+    <!-- Золотой градиент для текста и рамок -->
+    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F9D976" />
+      <stop offset="30%" stop-color="#E2B63E" />
+      <stop offset="70%" stop-color="#D4AF37" />
+      <stop offset="100%" stop-color="#AA7700" />
+    </linearGradient>
+
+    <!-- Золотой градиент для столбцов -->
+    <linearGradient id="goldBarGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFDF73" />
+      <stop offset="50%" stop-color="#D4AF37" />
+      <stop offset="100%" stop-color="#996515" />
+    </linearGradient>
+
+    <!-- Свечение для золотых элементов -->
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Фон -->
+  <rect width="100%" height="100%" fill="url(#bgGlow)" />
+
+  <!-- Внешняя рамка -->
+  <rect x="20" y="20" width="1160" height="360" rx="30" fill="none" stroke="url(#goldGradient)" stroke-width="1.5" opacity="0.4" />
+  <!-- Внутренняя рамка -->
+  <rect x="30" y="30" width="1140" height="340" rx="20" fill="none" stroke="url(#goldGradient)" stroke-width="1" opacity="0.6" />
+
+  <!-- ЛЕВАЯ ЧАСТЬ: ТЕКСТ -->
+  <g font-family="Arial, sans-serif">
+    <!-- Верхний текст -->
+    <text x="70" y="100" fill="#FFFFFF" font-size="14" font-weight="bold" letter-spacing="4" opacity="0.8">PRO TRADING INDICATOR</text>
+    
+    <!-- Главный заголовок -->
+    <text x="70" y="180" fill="url(#goldGradient)" font-size="52" font-weight="bold" letter-spacing="2">ADVANCED MACD PRO</text>
+    
+    <!-- Подзаголовок -->
+    <text x="70" y="225" fill="#E0E0E0" font-size="18" letter-spacing="3" opacity="0.9">MOVING AVERAGE CONVERGENCE DIVERGENCE</text>
+    
+    <!-- Буллеты -->
+    <g fill="url(#goldGradient)" font-size="14" letter-spacing="2" font-weight="bold" opacity="0.9">
+      <text x="70" y="300">ZERO REPAINT</text>
+      <circle cx="215" cy="295" r="4" fill="url(#goldGradient)" />
+      <text x="240" y="300">BUILT IN ALERTS</text>
+      <circle cx="385" cy="295" r="4" fill="url(#goldGradient)" />
+      <text x="410" y="300">ALL TIMEFRAMES</text>
+    </g>
+
+    <!-- Нижний колонтитул -->
+    <text x="70" y="350" fill="#FFFFFF" font-size="12" letter-spacing="2" opacity="0.5">PREMIUM ALGO INDICATOR • v1.0</text>
+  </g>
+
+  <!-- ПРАВАЯ ЧАСТЬ: ГРАФИКА (Стилизованная иконка) -->
+  <g transform="translate(100, 0)">
+    <!-- Базовая линия -->
+    <rect x="600" y="310" width="400" height="4" fill="url(#goldGradient)" rx="2" />
+    
+    <!-- Столбцы (Бар чарт) -->
+    <rect x="640" y="250" width="45" height="60" fill="url(#goldBarGradient)" rx="3" />
+    <rect x="700" y="210" width="45" height="100" fill="url(#goldBarGradient)" rx="3" />
+    <rect x="760" y="150" width="45" height="160" fill="url(#goldBarGradient)" rx="3" />
+    <rect x="820" y="180" width="45" height="130" fill="url(#goldBarGradient)" rx="3" />
+    <rect x="880" y="110" width="45" height="200" fill="url(#goldBarGradient)" rx="3" />
+
+    <!-- Восходящая линия тренда -->
+    <path d="M 630 280 Q 750 180 940 80" fill="none" stroke="url(#goldGradient)" stroke-width="8" stroke-linecap="round" filter="url(#glow)" />
+    
+    <!-- Точка на конце линии -->
+    <circle cx="940" cy="80" r="12" fill="url(#goldGradient)" filter="url(#glow)" />
+  </g>
+</svg>
