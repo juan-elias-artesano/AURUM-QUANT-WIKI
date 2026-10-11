@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AURUM QUANT — Product Wiki</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23111823'/%3E%3Cpath d='M4,30 C14,18 22,26 30,40 C38,54 48,44 60,24' fill='none' stroke='%234FA3FF' stroke-width='5' stroke-linecap='round'/%3E%3Cpath d='M4,34 C16,26 26,32 34,42 C42,52 50,42 60,30' fill='none' stroke='%23FFB74D' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
+<style>
+:root{
+  --accent:#1f6feb; --accent-dark:#17549c; --accent-light:#4FA3FF;
+  --bg:#0d1420; --card:#111823; --border:#2C3A4D;
+  --text:#E6EDF3; --text-soft:#8FA3B8; --ok:#00E676; --warn:#FFB74D;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0; min-height:100vh; color:var(--text); background:
+    radial-gradient(1100px 500px at 80% -10%, rgba(79,163,255,.14), transparent 60%),
+    radial-gradient(900px 420px at 10% 110%, rgba(31,111,235,.10), transparent 60%),
+    var(--bg);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  line-height:1.6;
+}
+.wrap{max-width:1060px; margin:0 auto; padding:64px 24px 80px;}
+header{margin-bottom:48px;}
+.brand{display:flex; align-items:center; gap:16px; margin-bottom:14px;}
+.brand .logo{width:52px; height:52px; flex-shrink:0;}
+.brand h1{font-size:30px; margin:0; letter-spacing:.4px;}
+.brand h1 span{color:var(--accent-light);}
+.subtitle{color:var(--text-soft); font-size:17px; max-width:720px;}
+.cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(340px,1fr)); gap:24px; margin:40px 0 28px;}
+.card{
+  background:var(--card); border:1px solid var(--border); border-radius:14px;
+  padding:28px 26px 24px; display:flex; flex-direction:column; gap:14px;
+  box-shadow:0 12px 34px rgba(0,0,0,.35); transition:transform .15s ease, border-color .15s ease;
+}
+.card:hover{transform:translateY(-3px); border-color:#3d5573;}
+.card .head{display:flex; align-items:center; gap:14px;}
+.card .icon{width:46px; height:46px; flex-shrink:0;}
+.card h2{font-size:20px; margin:0;}
+.card .ver{color:var(--text-soft); font-size:13px; margin-top:2px;}
+.card p{color:var(--text-soft); font-size:14.5px; margin:0; flex-grow:1;}
+.tags{display:flex; flex-wrap:wrap; gap:8px;}
+.tag{font-size:11.5px; letter-spacing:.4px; text-transform:uppercase; color:var(--text-soft);
+  border:1px solid var(--border); border-radius:999px; padding:2px 10px;}
+.actions{display:flex; flex-wrap:wrap; gap:10px; margin-top:6px;}
+a.btn{
+  display:inline-flex; align-items:center; gap:8px; text-decoration:none;
+  font-size:14px; font-weight:600; padding:10px 18px; border-radius:8px;
+}
+a.btn.read{background:var(--accent); color:#fff;}
+a.btn.read:hover{background:#2b7cf5;}
+a.btn.dl{background:transparent; color:var(--text); border:1px solid var(--border);}
+a.btn.dl:hover{border-color:var(--accent-light); color:var(--accent-light);}
+.panel{
+  background:var(--card); border:1px solid var(--border); border-radius:14px;
+  padding:24px 26px; margin-top:12px;
+}
+.panel h3{margin:0 0 10px; font-size:16px;}
+.panel ul{margin:0; padding-left:20px; color:var(--text-soft); font-size:14.5px;}
+.panel li{margin:6px 0;}
+.panel a{color:var(--accent-light);}
+footer{margin-top:56px; color:var(--text-soft); font-size:13px; text-align:center;}
+footer a{color:var(--text-soft);}
+.note{font-size:12.5px; color:var(--text-soft); margin-top:10px;}
+@media (max-width:520px){ .wrap{padding:40px 16px 60px;} .brand h1{font-size:24px;} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="brand">
+      <svg class="logo" viewBox="0 0 64 64" aria-hidden="true">
+        <rect width="64" height="64" rx="12" fill="#111823" stroke="#2C3A4D"/>
+        <path d="M4,30 C14,18 22,26 30,40 C38,54 48,44 60,24" fill="none" stroke="#4FA3FF" stroke-width="5" stroke-linecap="round"/>
+        <path d="M4,34 C16,26 26,32 34,42 C42,52 50,42 60,30" fill="none" stroke="#FFB74D" stroke-width="4" stroke-linecap="round"/>
+      </svg>
+      <div>
+        <h1>AURUM&nbsp;QUANT <span>· Product Wiki</span></h1>
+      </div>
+    </div>
+    <p class="subtitle">
+      Official user manuals for AURUM&nbsp;QUANT cTrader indicators. Read any manual online,
+      or download the complete offline wiki (HTML + screenshots) as a ZIP archive.
+    </p>
+  </header>
+
+  <div class="cards">
+
+    <div class="card">
+      <div class="head">
+        <svg class="icon" viewBox="0 0 64 64" aria-hidden="true">
+          <rect width="64" height="64" rx="12" fill="#0e1a2b" stroke="#2C3A4D"/>
+          <rect x="8"  y="30" width="6" height="12" fill="#00E676"/>
+          <rect x="17" y="24" width="6" height="18" fill="#00E676"/>
+          <rect x="26" y="34" width="6" height="8"  fill="#3E7D55"/>
+          <rect x="35" y="22" width="6" height="20" fill="#FF1744"/>
+          <rect x="44" y="30" width="6" height="12" fill="#FF1744"/>
+          <line x1="6" y1="42" x2="58" y2="42" stroke="#3A4A5E" stroke-width="1.5" stroke-dasharray="2 4"/>
+          <path d="M6,28 C16,16 26,24 34,38 C42,50 50,42 58,26" fill="none" stroke="#4FA3FF" stroke-width="3.5" stroke-linecap="round"/>
+        </svg>
+        <div>
+          <h2>Advanced MACD Pro</h2>
+          <div class="ver">User Manual v1.0 · cTrader Algo Indicator</div>
+        </div>
+      </div>
+      <p>
+        Adaptive multi-timeframe MACD &amp; divergence engine: 10 moving-average kernels,
+        a regime-adaptive filter bank, A/B/C-graded divergences with a 13-component quality
+        score, MTF confluence ladder, adaptive learning and a live info panel. 133 parameters,
+        11 output series, AccessRights.None.
+      </p>
+      <div class="tags">
+        <span class="tag">MACD</span><span class="tag">Divergences</span>
+        <span class="tag">Multi-timeframe</span><span class="tag">Adaptive</span>
+      </div>
+      <div class="actions">
+        <a class="btn read" href="Advanced MACD Pro/manual.html">📖 Read online</a>
+        <a class="btn dl" href="downloads/AURUM-QUANT-Advanced-MACD-Pro-WIKI.zip" download>⬇ Download ZIP</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="head">
+        <svg class="icon" viewBox="0 0 64 64" aria-hidden="true">
+          <rect width="64" height="64" rx="12" fill="#0e1a2b" stroke="#2C3A4D"/>
+          <rect x="8"  y="26" width="48" height="12" fill="#4FA3FF" opacity="0.25"/>
+          <line x1="8" y1="26" x2="56" y2="26" stroke="#4FA3FF" stroke-width="2" stroke-dasharray="3 3"/>
+          <line x1="8" y1="38" x2="56" y2="38" stroke="#4FA3FF" stroke-width="2" stroke-dasharray="3 3"/>
+          <rect x="14" y="44" width="5" height="12" fill="#00E676"/>
+          <rect x="23" y="40" width="5" height="16" fill="#00E676"/>
+          <rect x="32" y="46" width="5" height="10" fill="#8E4450"/>
+          <rect x="41" y="42" width="5" height="14" fill="#FF1744"/>
+          <path d="M10,20 C20,10 28,18 36,14 C44,10 50,16 56,12" fill="none" stroke="#FFB74D" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+        <div>
+          <h2>Liquidity &amp; Volume Nexus</h2>
+          <div class="ver">User Manual v2.4.2 · cTrader Algo Indicator</div>
+        </div>
+      </div>
+      <p>
+        Professional chart overlay that unifies three institutional disciplines — market
+        structure (BOS/CHoCH), liquidity sweeps and volume analysis — into one system that
+        measures its own signals and shows you the verdict: zones, watch board, session strip,
+        result cards and a built-in signal journal.
+      </p>
+      <div class="tags">
+        <span class="tag">Overlay</span><span class="tag">Liquidity</span>
+        <span class="tag">Structure</span><span class="tag">Volume</span>
+      </div>
+      <div class="actions">
+        <a class="btn read" href="Liquidity and Volume Nexus/manual.html">📖 Read online</a>
+        <a class="btn dl" href="downloads/AURUM-QUANT-Liquidity-and-Volume-Nexus-WIKI.zip" download>⬇ Download ZIP</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="panel">
+    <h3>Prefer everything at once?</h3>
+    <ul>
+      <li>
+        <b>Full wiki (all products):</b>
+        <a href="https://github.com/juan-elias-artesano/AURUM-QUANT-WIKI/archive/refs/heads/main.zip">download the whole repository as ZIP</a>
+        — every manual with its <code>images/</code> folder; unpack and open <code>manual.html</code> in any browser.
+      </li>
+      <li>
+        <b>Source &amp; updates:</b>
+        <a href="https://github.com/juan-elias-artesano/AURUM-QUANT-WIKI">github.com/juan-elias-artesano/AURUM-QUANT-WIKI</a>
+      </li>
+    </ul>
+    <p class="note">
+      Offline archives are fully self-contained: no internet connection is needed to read them.
+      After unpacking, keep <code>manual.html</code> next to its <code>images/</code> folder.
+    </p>
+  </div>
+
+  <footer>
+    AURUM QUANT · Product Wiki · © 2026 — Trading involves substantial risk of loss.
+    Documentation describes tooling, not investment advice.
+  </footer>
+
+</div>
+</body>
+</html>
