@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300" role="img" aria-label="Advanced MACD Pro">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0d1420"/>
+      <stop offset="1" stop-color="#111823"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#4FA3FF" stop-opacity="0.0"/>
+      <stop offset="0.5" stop-color="#4FA3FF" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#4FA3FF" stop-opacity="0.0"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="300" fill="url(#bg)"/>
+  <rect x="0" y="196" width="1200" height="2" fill="#2C3A4D"/>
+  <!-- histogram buckets -->
+  <g>
+    <rect x="60"  y="150" width="14" height="46" fill="#00E676"/>
+    <rect x="90"  y="140" width="14" height="56" fill="#00E676"/>
+    <rect x="120" y="160" width="14" height="36" fill="#3E7D55"/>
+    <rect x="150" y="170" width="14" height="26" fill="#3E7D55"/>
+    <rect x="180" y="198" width="14" height="30" fill="#8E4450"/>
+    <rect x="210" y="198" width="14" height="52" fill="#FF1744"/>
+    <rect x="240" y="198" width="14" height="70" fill="#FF1744"/>
+    <rect x="270" y="198" width="14" height="44" fill="#FF1744"/>
+    <rect x="300" y="198" width="14" height="20" fill="#8E4450"/>
+    <rect x="330" y="178" width="14" height="18" fill="#3E7D55"/>
+    <rect x="360" y="158" width="14" height="38" fill="#00E676"/>
+    <rect x="390" y="146" width="14" height="50" fill="#00E676"/>
+    <rect x="420" y="162" width="14" height="34" fill="#3E7D55"/>
+    <rect x="450" y="198" width="14" height="26" fill="#8E4450"/>
+    <rect x="480" y="198" width="14" height="58" fill="#FF1744"/>
+    <rect x="510" y="198" width="14" height="34" fill="#FF1744"/>
+    <rect x="540" y="186" width="14" height="10" fill="#8E4450"/>
+    <rect x="570" y="172" width="14" height="24" fill="#00E676"/>
+    <rect x="600" y="150" width="14" height="46" fill="#00E676"/>
+    <rect x="630" y="138" width="14" height="58" fill="#00E676"/>
+    <rect x="660" y="156" width="14" height="40" fill="#3E7D55"/>
+    <rect x="690" y="198" width="14" height="22" fill="#8E4450"/>
+    <rect x="720" y="198" width="14" height="48" fill="#FF1744"/>
+    <rect x="750" y="198" width="14" height="66" fill="#FF1744"/>
+    <rect x="780" y="198" width="14" height="40" fill="#FF1744"/>
+    <rect x="810" y="198" width="14" height="18" fill="#8E4450"/>
+    <rect x="840" y="180" width="14" height="16" fill="#3E7D55"/>
+    <rect x="870" y="160" width="14" height="36" fill="#00E676"/>
+    <rect x="900" y="148" width="14" height="48" fill="#00E676"/>
+    <rect x="930" y="166" width="14" height="30" fill="#3E7D55"/>
+    <rect x="960" y="198" width="14" height="24" fill="#8E4450"/>
+    <rect x="990" y="198" width="14" height="50" fill="#FF1744"/>
+    <rect x="1020" y="198" width="14" height="28" fill="#FF1744"/>
+    <rect x="1050" y="188" width="14" height="8"  fill="#8E4450"/>
+    <rect x="1080" y="174" width="14" height="22" fill="#00E676"/>
+    <rect x="1110" y="158" width="14" height="38" fill="#00E676"/>
+  </g>
+  <!-- zero line -->
+  <line x1="40" y1="197" x2="1160" y2="197" stroke="#3A4A5E" stroke-width="1.5" stroke-dasharray="2 5"/>
+  <!-- MACD line -->
+  <path d="M40,150 C120,120 180,150 240,235 C300,300 340,268 400,180 C450,110 500,150 540,230 C580,300 640,250 700,160 C750,90 800,120 850,220 C900,300 960,260 1010,180 C1060,110 1110,130 1160,160"
+        fill="none" stroke="#4FA3FF" stroke-width="4" stroke-linecap="round"/>
+  <!-- Signal line -->
+  <path d="M40,160 C130,140 200,170 260,225 C320,280 370,250 420,190 C470,135 520,170 560,225 C600,280 660,235 720,175 C770,120 830,150 880,215 C930,275 990,240 1040,190 C1090,145 1130,150 1160,158"
+        fill="none" stroke="#FFB74D" stroke-width="3" stroke-linecap="round"/>
+  <!-- crossover markers -->
+  <g font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="17" font-weight="700">
+    <path d="M392,168 l9,-16 l9,16 z" fill="#00E676"/>
+    <text x="380" y="146" fill="#00E676">BUY</text>
+    <path d="M742,238 l9,16 l9,-16 z" fill="#FF1744"/>
+    <text x="730" y="272" fill="#FF1744">SELL</text>
+    <path d="M1032,178 l9,-16 l9,16 z" fill="#00E676"/>
+    <text x="1020" y="156" fill="#00E676">BUY</text>
+  </g>
+  <!-- divergence line -->
+  <g>
+    <line x1="240" y1="235" x2="540" y2="230" stroke="#FFAB40" stroke-width="2.5"/>
+    <circle cx="240" cy="235" r="4.5" fill="#FFAB40"/>
+    <circle cx="540" cy="230" r="4.5" fill="#FFAB40"/>
+    <text x="330" y="258" fill="#FFAB40" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="15" font-weight="600">HIDDEN BEAR DIV 92%</text>
+  </g>
+  <rect x="0" y="0" width="1200" height="86" fill="url(#glow)" opacity="0.25"/>
+  <g font-family="Segoe UI, Helvetica, Arial, sans-serif">
+    <text x="48" y="52" fill="#E6EDF3" font-size="34" font-weight="700" letter-spacing="0.5">Advanced MACD Pro</text>
+    <text x="48" y="76" fill="#8FA3B8" font-size="15" letter-spacing="2.4">ADAPTIVE MULTI-TIMEFRAME MACD &amp; DIVERGENCE ENGINE</text>
+  </g>
+</svg>
