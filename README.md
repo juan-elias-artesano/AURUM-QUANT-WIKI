@@ -11,6 +11,7 @@ Every manual is a self-contained HTML page with screenshots — read it online o
 
 | Product | What it is | Read online | Download (ZIP) |
 |---|---|---|---|
+| **Advanced RSI Pro** | Adaptive multi-timeframe RSI, divergence & trade-management engine — Wilder core with six price inputs and volatility-breathing OB/OS bands, prominence-filtered non-repainting pivots, regular & hidden (Brown/Cardwell) divergences with A/B/C grades and a 12-component quality score, MTF confluence ladder, adaptive learning with per-family win rates, Entry/SL/TP1/TP2 plans with a managed lifecycle (RUNNING → TP1 HIT → TP2 HIT \| STOPPED \| STALE), RSI momentum trendlines, session markers and a CSV signal journal. **164 parameters, 12 outputs, `AccessRights.None`.** | [manual.html](https://juan-elias-artesano.github.io/AURUM-QUANT-WIKI/Advanced%20RSI%20Pro/manual.html) | [⬇ Advanced-RSI-Pro-WIKI.zip](https://github.com/juan-elias-artesano/AURUM-QUANT-WIKI/raw/main/downloads/AURUM-QUANT-Advanced-RSI-Pro-WIKI.zip) |
 | **Advanced MACD Pro** | Adaptive multi-timeframe MACD & divergence engine — 10 MA kernels, regime-adaptive filter bank, A/B/C-graded divergences with a 13-component quality score, MTF confluence ladder, adaptive learning, info panel. **v2.0** adds the trade lifecycle: Entry/SL/TP1/TP2 plans with a managed lifecycle (RUNNING → TP1 HIT → TP2 HIT \| STOPPED \| STALE), momentum trendlines, session markers and a CSV signal journal. 162 parameters, 12 outputs, `AccessRights.None`. | [manual.html](https://juan-elias-artesano.github.io/AURUM-QUANT-WIKI/Advanced%20MACD%20Pro/manual.html) | [⬇ Advanced-MACD-Pro-WIKI.zip](https://github.com/juan-elias-artesano/AURUM-QUANT-WIKI/raw/main/downloads/AURUM-QUANT-Advanced-MACD-Pro-WIKI.zip) |
 | **Liquidity & Volume Nexus** | Professional chart overlay unifying market structure (BOS/CHoCH), liquidity sweeps and volume analysis — zones, watch board, session strip, result cards, signal journal. | [manual.html](https://juan-elias-artesano.github.io/AURUM-QUANT-WIKI/Liquidity%20and%20Volume%20Nexus/manual.html) | [⬇ Liquidity-and-Volume-Nexus-WIKI.zip](https://github.com/juan-elias-artesano/AURUM-QUANT-WIKI/raw/main/downloads/AURUM-QUANT-Liquidity-and-Volume-Nexus-WIKI.zip) |
 
@@ -30,8 +31,12 @@ AURUM-QUANT-WIKI/
 ├── index.html                        ← wiki hub (served by GitHub Pages)
 ├── README.md
 ├── downloads/                        ← ready-to-share offline archives
+│   ├── AURUM-QUANT-Advanced-RSI-Pro-WIKI.zip
 │   ├── AURUM-QUANT-Advanced-MACD-Pro-WIKI.zip
 │   └── AURUM-QUANT-Liquidity-and-Volume-Nexus-WIKI.zip
+├── Advanced RSI Pro/
+│   ├── manual.html
+│   └── images/
 ├── Advanced MACD Pro/
 │   ├── manual.html
 │   └── images/
