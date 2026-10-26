@@ -1,0 +1,2318 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advanced RSI Pro — Official User Manual v3.24.7</title>
+<link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+<link rel="apple-touch-icon" href="images/favicon.svg">
+<style>
+:root {
+  --accent:       #d4af37;
+  --accent-dark:  #a9822a;
+  --accent-light: #f6efdc;
+  --text:         #222;
+  --text-soft:    #555;
+  --border:       #d8dee3;
+  --bg-soft:      #f6f8fa;
+  --code-bg:      #eef2f5;
+  --warn:         #b76e00;
+  --warn-bg:      #fff8e6;
+  --info:         #1f6feb;
+  --info-bg:      #e8f1fd;
+  --ok:           #2b8a3e;
+  --ok-bg:        #e6f4ea;
+  --danger:       #c92a2a;
+  --danger-bg:    #ffe8e8;
+  --sidebar-w:    280px;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--text);
+  background: #fff;
+}
+a { color: #8a6a1f; text-decoration: none; }
+a:hover { text-decoration: underline; }
+.layout { display: flex; min-height: 100vh; }
+.sidebar {
+  width: var(--sidebar-w);
+  flex-shrink: 0;
+  background: var(--bg-soft);
+  border-right: 1px solid var(--border);
+  padding: 24px 20px 60px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  font-size: 14px;
+}
+.sidebar h2 {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-soft);
+  margin: 24px 0 8px;
+}
+.sidebar h2:first-of-type { margin-top: 0; }
+.sidebar ul { list-style: none; padding: 0; margin: 0; }
+.sidebar li { margin: 4px 0; }
+.sidebar li a { color: var(--text); display: block; padding: 4px 8px; border-radius: 4px; }
+.sidebar li a:hover { background: var(--accent-light); text-decoration: none; }
+.content {
+  flex: 1;
+  max-width: 1100px;
+  padding: 48px 56px 96px;
+  min-width: 0;
+}
+
+/* ---------- Hero banner ---------- */
+figure.hero {
+  margin: 0 0 32px 0;
+  padding: 0;
+  text-align: center;
+}
+figure.hero img {
+  width: 100%;
+  max-width: 1200px;
+  height: auto;
+  border: none;
+  border-radius: 14px;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.22);
+}
+.cover-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  padding: 20px 24px;
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  margin-bottom: 56px;
+  font-size: 14px;
+}
+.cover-meta strong {
+  display: block;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-soft);
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+
+/* ---------- Headings ---------- */
+h1 { font-size: 32px; margin: 56px 0 16px; letter-spacing: -0.01em; }
+h2 { font-size: 24px; margin: 48px 0 12px; padding-top: 8px; border-top: 1px solid var(--border); }
+h2:first-of-type { border-top: none; }
+h3 { font-size: 19px; margin: 32px 0 10px; color: var(--accent-dark); }
+h4 { font-size: 16px; margin: 24px 0 8px; color: var(--text); }
+p { margin: 12px 0; }
+ul, ol { margin: 12px 0; padding-left: 24px; }
+li { margin: 4px 0; }
+
+/* ---------- Tables ---------- */
+table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; font-size: 14px; }
+th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { background: var(--bg-soft); font-weight: 600; }
+tr:hover td { background: #fafcfd; }
+
+/* ---------- Code ---------- */
+code {
+  font-family: "Consolas", "Monaco", "Courier New", monospace;
+  font-size: 0.92em;
+  background: var(--code-bg);
+  padding: 2px 6px;
+  border-radius: 3px;
+  color: #333;
+}
+pre {
+  background: var(--code-bg);
+  padding: 16px;
+  border-radius: 6px;
+  overflow-x: auto;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* ---------- Callouts ---------- */
+.callout {
+  border-left: 4px solid var(--accent);
+  background: var(--info-bg);
+  padding: 14px 18px;
+  border-radius: 4px;
+  margin: 20px 0;
+  font-size: 15px;
+}
+.callout.tip    { border-color: var(--ok);     background: var(--ok-bg); }
+.callout.warn   { border-color: var(--warn);   background: var(--warn-bg); }
+.callout.note   { border-color: var(--accent); background: var(--accent-light); }
+.callout.danger { border-color: var(--danger); background: var(--danger-bg); }
+.callout.info   { border-color: var(--info);   background: var(--info-bg); }
+.callout strong { display: block; margin-bottom: 4px; text-transform: uppercase; font-size: 11px; letter-spacing: 0.08em; opacity: 0.75; }
+.callout.tip strong    { color: var(--ok); }
+.callout.warn strong   { color: var(--warn); }
+.callout.note strong   { color: var(--accent-dark); }
+.callout.danger strong { color: var(--danger); }
+.callout.info strong   { color: var(--info); }
+
+/* ---------- Images ---------- */
+figure { margin: 24px 0; text-align: center; }
+figure img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+figcaption { font-size: 13px; color: var(--text-soft); margin-top: 10px; font-style: italic; }
+
+/* ---------- Steps list ---------- */
+ol.steps { counter-reset: step; list-style: none; padding-left: 0; }
+ol.steps > li {
+  counter-increment: step;
+  position: relative;
+  padding: 12px 12px 12px 56px;
+  margin: 8px 0;
+  background: var(--bg-soft);
+  border-radius: 6px;
+  border-left: 3px solid var(--accent);
+}
+ol.steps > li::before {
+  content: counter(step);
+  position: absolute;
+  left: 14px;
+  top: 12px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+/* ---------- Badges ---------- */
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+.badge.long    { background: var(--ok-bg);     color: var(--ok); }
+.badge.short   { background: var(--danger-bg); color: var(--danger); }
+.badge.wait    { background: var(--warn-bg);   color: var(--warn); }
+.badge.neutral { background: var(--bg-soft);   color: var(--text-soft); }
+
+/* ---------- Anchor offset ---------- */
+h2, h3, h4 { scroll-margin-top: 20px; }
+
+/* ---------- Print ---------- */
+@media print {
+  body { font-size: 11pt; }
+  .sidebar { display: none; }
+  .layout { display: block; }
+  .content { max-width: 100%; padding: 0; }
+  h1, h2 { page-break-after: avoid; }
+  figure { page-break-inside: avoid; }
+  figure.hero { margin-bottom: 20px; }
+  figure.hero img { box-shadow: none; border-radius: 0; }
+  .cover-meta { background: #fff; border-color: #999; }
+  a { color: var(--text); text-decoration: none; }
+  a[href^="#"]::after { content: ""; }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .layout { flex-direction: column; }
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    max-height: 40vh;
+  }
+  .content { padding: 24px; }
+  .cover-meta { gap: 16px; padding: 16px; }
+}
+
+/* ---------- Advanced RSI Pro additions ---------- */
+.kbd { font-family:"Consolas","Monaco",monospace; font-size:0.9em; background:var(--code-bg);
+       border:1px solid var(--border); border-bottom-width:2px; border-radius:4px; padding:1px 6px; }
+.formula { background:var(--bg-soft); border:1px solid var(--border); border-left:4px solid var(--accent);
+           border-radius:6px; padding:14px 18px; margin:18px 0; font-family:"Consolas","Monaco",monospace;
+           font-size:14px; line-height:1.7; overflow-x:auto; white-space:pre; }
+.grid2 { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+@media (max-width:900px){ .grid2 { grid-template-columns:1fr; } }
+figure.tight img { max-height:520px; object-fit:contain; }
+.swatch { display:inline-block; width:12px; height:12px; border-radius:3px; vertical-align:-1px;
+          margin-right:6px; border:1px solid rgba(0,0,0,0.25); }
+table.compact td, table.compact th { padding:7px 10px; font-size:13.5px; }
+.toc-note { font-size:13px; color:var(--text-soft); }
+</style>
+</head>
+<body>
+<div class="layout">
+
+<nav class="sidebar">
+  <div style="font-weight:700;font-size:15px;color:var(--accent-dark);margin-bottom:4px;">Advanced RSI Pro</div>
+  <div style="font-size:12px;color:var(--text-soft);margin-bottom:24px;">User Manual &middot; v3.24.7 &ldquo;Premium&rdquo;</div>
+
+  <h2>Section 1 &mdash; Features</h2>
+  <ul>
+    <li><a href="#s1-intro">1. Introduction &amp; Philosophy</a></li>
+    <li><a href="#s1-arch">2. Architecture &amp; Guarantees</a></li>
+    <li><a href="#s1-adaptive">3. Timeframe &amp; the Adaptive Engine</a></li>
+    <li><a href="#s1-style">4. Trading Styles</a></li>
+    <li><a href="#s1-core">5. The RSI Core</a></li>
+    <li><a href="#s1-div">6. The Divergence Engine</a></li>
+    <li><a href="#s1-learning">7. Outcomes &amp; Adaptive Learning</a></li>
+    <li><a href="#s1-cross">8. Crossover Signals &amp; Markers</a></li>
+    <li><a href="#s1-mtf">9. MTF Confluence Ladder</a></li>
+    <li><a href="#s1-panel">10. The Info Panel</a></li>
+    <li><a href="#s1-alerts">11. Alerts</a></li>
+    <li><a href="#s1-outputs">12. Outputs &amp; Programmatic Use</a></li>
+    <li><a href="#s1-trade">13. Trade Management &mdash; Projection Engine</a></li>
+    <li><a href="#s1-trendlines">14. RSI Momentum Trendlines</a></li>
+    <li><a href="#s1-sessions">15. Session Markers</a></li>
+    <li><a href="#s1-journal">16. The CSV Signal Journal</a></li>
+    <li><a href="#s1-params">17. Parameter Reference (164)</a></li>
+    <li><a href="#s1-diagnostics">18. Diagnostics &amp; the Log</a></li>
+  </ul>
+
+  <h2>Section 2 &mdash; How to Use</h2>
+  <ul>
+    <li><a href="#s2-install">19. Installation &amp; First Launch</a></li>
+    <li><a href="#s2-glyphs">20. Reading the Pane: Every Glyph</a></li>
+    <li><a href="#s2-panel">21. The Info Panel, Line by Line</a></li>
+    <li><a href="#s2-dialog">22. The Parameter Dialog &amp; Presets</a></li>
+    <li><a href="#s2-inputs">23. Price-Input Gallery (6 screenshots)</a></li>
+    <li><a href="#s2-divergences">24. Trading Divergences</a></li>
+    <li><a href="#s2-crossovers">25. Trading Crossovers</a></li>
+    <li><a href="#s2-mtf">26. Multi-Timeframe Workflow</a></li>
+    <li><a href="#s2-gates">27. Gates in Practice</a></li>
+    <li><a href="#s2-alerts">28. Alerts Workflow</a></li>
+    <li><a href="#s2-stats">29. Reading Your Own Statistics</a></li>
+    <li><a href="#s2-instruments">30. Timeframes &amp; Instruments</a></li>
+  </ul>
+
+  <h2>Section 3 &mdash; Tips</h2>
+  <ul>
+    <li><a href="#s3-golden">31. The Golden Rules</a></li>
+    <li><a href="#s3-presets">32. Presets by Trading Style</a></li>
+    <li><a href="#s3-avoid">33. What NOT to Do</a></li>
+    <li><a href="#s3-perf">34. Performance &amp; Chart Hygiene</a></li>
+    <li><a href="#s3-verify">35. Verifying Non-Repaint Yourself</a></li>
+    <li><a href="#s3-faq">36. FAQ</a></li>
+    <li><a href="#s3-trouble">37. Troubleshooting</a></li>
+    <li><a href="#s3-glossary">38. Glossary</a></li>
+  </ul>
+
+  <h2>Appendices</h2>
+  <ul>
+    <li><a href="#appx-images">A. Screenshot Index &amp; Naming</a></li>
+    <li><a href="#appx-audit">B. Source-Code Audit (v3.24.5)</a></li>
+  </ul>
+</nav>
+
+<main class="content">
+
+<figure class="hero">
+  <img src="images/banner.svg" alt="Advanced RSI Pro">
+</figure>
+<section class="cover-meta">
+  <div><strong>Product</strong>cTrader Algo Indicator (oscillator pane)</div>
+  <div><strong>Version</strong>3.24.7 &ldquo;Premium&rdquo;</div>
+  <div><strong>Platform</strong>cTrader Desktop / Web</div>
+  <div><strong>Permissions</strong>AccessRights.None</div>
+  <div><strong>Parameters</strong>164 in 15 groups</div>
+  <div><strong>Outputs</strong>12 data series</div>
+  <div><strong>Manual revision</strong>2026-10 (v3.24.7)</div>
+</section>
+
+<div class="callout note">
+  <strong>What this product is, in one paragraph</strong>
+  <b>Advanced RSI Pro</b> is an oscillator-pane indicator that rebuilds the classic Wilder RSI as an
+  <b>adaptive, timeframe-aware instrument</b>: every period, window and threshold is derived from the
+  resolved bar duration through a documented scaling law, so the same configuration means the same thing
+  on M1 and on W1. On top of that oscillator sit six engines &mdash; a <b>divergence detector</b> with
+  prominence-filtered non-repainting RSI pivots, regular &amp; hidden (Brown/Cardwell) classes, A/B/C grading
+  and a 12-component quality score; a <b>crossover latch</b> with an optional lambda hysteresis band around the
+  OB/OS zones; a <b>higher-timeframe confluence ladder</b> where each rung is parameterised as if you had opened
+  that chart yourself; and an <b>adaptive learner</b> that measures the outcome of every signal it ever emitted,
+  per signal family, on your broker&rsquo;s feed, and feeds the measured win rate back into the quality score.
+  Around that oscillator the Premium line also closes the trade lifecycle: a <b>projection engine</b> turns every
+  registered divergence into an explicit Entry / SL / TP1 / TP2 plan and manages it bar by bar
+  (<code>RUNNING &rarr; TP1 HIT &rarr; TP2 HIT | STOPPED | STALE</code>); <b>RSI momentum trendlines</b> are drawn
+  through the oscillator&rsquo;s own confirmed pivots and announce their breaks before price does; thin
+  <b>session markers</b> put UTC context on the price chart; and a <b>CSV signal journal</b> writes every live
+  signal, plan event and measured verdict to the log (&sect;13&ndash;&sect;16). It places no orders, reads no
+  account data and asks for no permissions.
+</div>
+
+<div class="callout info">
+  <strong>What this revision of the engine contains</strong>
+  The manual documents <b>version 3.24.7</b> &mdash; the complete Premium engine (3.0) plus the plan-lifecycle
+  release (3.1), the plan-geometry release (3.2) and thirteen further audit-hardening rounds. The changes a user
+  can actually observe, relative to the classic 2.x RSI:
+  <ul style="margin:8px 0 0 0;padding-left:20px;">
+    <li><b>Correct OB/OS polarity.</b> Exiting the <i>oversold</i> zone now produces the bullish trigger and exiting
+        <i>overbought</i> the bearish one &mdash; markers, trigger outputs and alerts all follow (&sect;8).</li>
+    <li><b>Fully implemented dynamic levels.</b> The OB/OS bands breathe with volatility (ATR% versus its own
+        long-run baseline) and every zone-dependent feature reads the same live bands (&sect;5.6).</li>
+    <li><b>Trade management (group 12).</b> A projection engine turns every registered divergence into an explicit
+        plan &mdash; <code>Entry / SL / TP1 / TP2</code> drawn as labelled levels on the price chart &mdash; with a
+        managed lifecycle on closed source bars only, break-even and chandelier-trailing hints, plan-level alerts
+        and an <code>ARP-PLAN</code> journal line per event (&sect;13).</li>
+    <li><b>RSI momentum trendlines (group 13).</b> Automatic support / resistance lines through the confirmed RSI
+        pivots&rsquo; own readings, slope cap and break threshold in RSI points per bar, strictly non-repainting
+        break detection, break markers, an alert family and two panel rows (&sect;14).</li>
+    <li><b>Session markers (group 14).</b> Thin UTC verticals on the price chart &mdash; occurrence-complete even
+        inside Weekly and Monthly bars, rolling window, hard object cap, zero interaction with signal logic (&sect;15).</li>
+    <li><b>The CSV signal journal.</b> Three id-keyed streams in the platform log &mdash; <code>ARP-JOURNAL</code>,
+        <code>ARP-PLAN</code>, <code>ARP-OUTCOME</code> &mdash; history-gated, invariant-culture, Excel-ready (&sect;16).</li>
+    <li><b>Professional statistics.</b> The panel shows expectancy (R), profit factor, average MFE/MAE in ATR units
+        and per-family win rates &mdash; real trading metrics measured on your own feed (&sect;7, &sect;29).</li>
+    <li><b>Four trading styles.</b> Universal, Scalping, Swing and Position; each preset pins the complete surface
+        it consumes &mdash; 134 of the 164 parameters &mdash; so one style resolves identically whatever template it
+        was saved into (&sect;4, &sect;32).</li>
+    <li><b>Six price inputs.</b> Close, Typical, Weighted, Median, Heikin-Ashi and Volume-Price-Adjusted feeds for
+        the RSI engine, each documented with its own screenshot (&sect;5.2, &sect;23).</li>
+    <li><b>v3.24.6 / v3.24.7 history catch-up gate.</b> The start-up rescan stays silent even when the platform
+        streams the history in incrementally: the first pass now completes only once the source series has actually
+        caught up to the clock, so a deep-chart attach can no longer leak a month of alerts, journal lines and sounds
+        into the log (&sect;11.3, &sect;16.1).</li>
+    <li><b>v3.24.5 marker placement.</b> Closed-bar cross markers and trendline-break markers now sit on the
+        <i>last chart bar overlapping the confirmed source bar</i> (the bar that was live at the knowledge point). On
+        charts finer than the source (e.g. a custom H8 source on H4) they no longer pop up hours in the past at the
+        open edge of the signal bar; identity and finer-source charts are bit-identical (&sect;8.2, &sect;26.1).</li>
+    <li><b>Fourteen independent audit rounds.</b> Every kernel, mapping, gate, score and lifecycle routine has been
+        re-verified against independently written oracles, including a whole-file compile against the published
+        <code>cAlgo.API</code> surface (Appendix B).</li>
+  </ul>
+</div>
+
+<div class="callout info">
+  <strong>How this manual is organised</strong>
+  Three sections. <b>Section 1 &mdash; Features</b> is the reference: every module, every formula, every guarantee
+  and all 164 parameters, in the order the code computes them. <b>Section 2 &mdash; How to Use</b> is the working
+  guide: every glyph in the pane, every line of the panel, how to read a divergence, when a crossover is worth
+  acting on, and how to drive the multi-timeframe ladder. <b>Section 3 &mdash; Tips</b> collects the habits that
+  make the tool pay for itself, the mistakes that make people abandon it, a step-by-step procedure for verifying
+  the non-repaint claim yourself, FAQ, troubleshooting and a glossary.
+  If you read nothing else, read <b>2.2 (the guarantees)</b>, <b>6.6 (the quality score)</b>,
+  <b>13.4 (the plan lifecycle)</b> and <b>31 (the golden rules)</b>.
+</div>
+
+<div class="callout warn">
+  <strong>Read this before you change a single parameter</strong>
+  Most parameters whose name ends in <b>&ldquo;(reference / manual)&rdquo;</b> or <b>&ldquo;(reference)&rdquo;</b> are
+  <i>scaling references</i>, not direct settings. In <code>Adaptation Mode = Automatic</code> (the default, and the
+  mode every style preset forces) the engine feeds them into the scaling law of &sect;3 and uses the <b>resolved</b>
+  value &mdash; which is what the panel, the log and every gate actually work with. Editing a reference parameter
+  therefore shifts the whole resolved profile rather than setting one number; in <code>Manual</code> mode the same
+  field is used verbatim (clamped to its declared range). The resolved values are printed at start-up when
+  <code>Log Resolved Profile On Start</code> is on (&sect;18) and shown live in the panel&rsquo;s configuration
+  section (&sect;10). When in doubt: pick a style (&sect;4), leave the references alone, and tune only the
+  <i>user-owned</i> parameters listed in &sect;32.7.
+</div>
+
+<h1 id="s1-head">SECTION 1 &mdash; FEATURES</h1>
+
+<h2 id="s1-intro">1. Introduction &amp; Philosophy</h2>
+
+<h3>1.1 The problem with a naked RSI</h3>
+<p>
+Wilder&rsquo;s Relative Strength Index is one of the most studied oscillators in existence, and one of the most
+misused. Out of the box it has three failure modes that every trader eventually meets:
+</p>
+<ul>
+  <li><b>It is timeframe-blind.</b> A 14-period RSI on M1 averages 14 minutes of flow; on D1 it averages three
+      trading weeks. The same number on the dial means two completely different markets, yet every textbook rule
+      (&ldquo;fade 70/30&rdquo;) is written as if the dial meant one thing.</li>
+  <li><b>Its zones are static.</b> 70/30 was calibrated on 1970s daily commodities. In a volatile regime the
+      oscillator parks above 70 for days (a trending market, not an &ldquo;overbought&rdquo; one); in a quiet
+      regime it never reaches the zones at all, so the rules never fire.</li>
+  <li><b>Its signals are unmeasured.</b> A divergence either &ldquo;looks good&rdquo; or it does not. Nothing tells
+      you, after a hundred of them on <i>your</i> instrument and <i>your</i> broker&rsquo;s feed, whether they have
+      been worth acting on &mdash; so confidence is a matter of mood.</li>
+</ul>
+<p>
+Advanced RSI Pro attacks all three. The first with a <b>scaling law</b> that resolves every window from the actual
+bar duration (&sect;3); the second with <b>volatility-adaptive zones</b> that breathe with the market&rsquo;s own
+ATR% (&sect;5.6); the third with a <b>quality score</b> for every divergence (&sect;6.6) and an <b>adaptive learner</b>
+that keeps score of every signal after the fact (&sect;7).
+</p>
+
+<h3>1.2 Design philosophy</h3>
+<ol>
+  <li><b>The classic reading stays available.</b> With <code>Adaptation Mode = Manual</code>, <code>Dynamic Levels</code>
+      off, <code>Regime-Adaptive Filter Bank</code> off and <code>Signal Sensitivity Lambda = 1.00</code>, the main
+      line is textbook Wilder RSI, computed on the raw close, with a simple-moving-average signal line. Nothing is
+      hidden behind the adaptive machinery &mdash; you can always get back to the oscillator you already know.</li>
+  <li><b>One truth per number.</b> Every zone-dependent feature &mdash; cross markers, divergence zone checks, MTF
+      state scoring, the panel &mdash; reads the <i>same</i> live band buffers that are drawn on the pane. There is
+      no second, private 70/30 anywhere in the engine.</li>
+  <li><b>Non-repainting by construction.</b> Pivots are confirmed only after <code>Pivot Lookback</code> further bars
+      have closed; divergences, plans, trendline breaks and (by default) cross markers are all resolved from
+      <i>closed</i> source bars. A glyph that appears on your chart never moves, never disappears and never changes
+      its meaning afterwards (&sect;2.2, &sect;35).</li>
+  <li><b>Missing data never blocks and never invents.</b> Every gate family treats an unavailable reading (warm-up,
+      a missing volume feed, a corrupt quote) as <i>unknown</i>: the term is excluded from scores instead of being
+      replaced by a constant, and a non-finite quote is skipped rather than allowed to fabricate a signal
+      (Appendix B).</li>
+  <li><b>Measure yourself.</b> The learning engine and the CSV journal exist so that the tool&rsquo;s own claims can
+      be audited on your feed, in your session, with your settings &mdash; not taken on faith (&sect;7, &sect;16, &sect;29).</li>
+</ol>
+
+<h3>1.3 What the indicator is &mdash; and is not</h3>
+<div class="callout tip">
+  <strong>It is</strong>
+  A decision-support instrument: an adaptive oscillator, a divergence detector with graded quality, a
+  multi-timeframe confluence read, explicit trade plans with managed lifecycles, and a statistics panel that
+  reports how its own signals have performed.
+</div>
+<div class="callout danger">
+  <strong>It is not</strong>
+  An auto-trader. It places no orders, modifies none, reads no account or position data, and requests
+  <code>AccessRights.None</code>. A &ldquo;BUY&rdquo; marker is an annotation of a measured condition, not an
+  instruction. Trading involves substantial risk of loss; nothing in this manual is investment advice.
+</div>
+
+<h2 id="s1-arch">2. Architecture &amp; Guarantees</h2>
+
+<h3>2.1 Module map</h3>
+<p>
+The indicator is a single cAlgo <code>Indicator</code> (oscillator, non-overlay, UTC timezone) composed of thirteen
+source parts. Conceptually it is a pipeline of independent engines, each with one job:
+</p>
+<table class="compact">
+  <tr><th style="width:26%">Engine</th><th>Responsibility</th><th style="width:12%">Section</th></tr>
+  <tr><td>Adaptive profile builder</td><td>Resolves every window / threshold from the bar duration and the style preset (the &ldquo;scaling law&rdquo;).</td><td>&sect;3</td></tr>
+  <tr><td>RSI pipeline</td><td>Price input &rarr; gains/losses &rarr; Wilder fast (and optional slow) legs &rarr; regime blend &rarr; SuperSmoother &rarr; signal SMA &rarr; StochRSI &rarr; ATR% &rarr; dynamic bands &rarr; zone / midline / signal-line state machines. One instance per timeframe (primary + each confluence rung).</td><td>&sect;5</td></tr>
+  <tr><td>Pivot scanner</td><td>Strict-extremum fractal pivots on the RSI line with a prominence gate; watermark-driven, exactly-once confirmation.</td><td>&sect;6.2</td></tr>
+  <tr><td>Divergence detector</td><td>Pairs pivots into regular / hidden divergences, grades them A/B/C, ranks candidates, runs the hard gates, computes the quality score, registers records.</td><td>&sect;6</td></tr>
+  <tr><td>Outcome &amp; learning engine</td><td>Resolves every registered signal as WIN / LOSS / EXPIRED against the ATR ruler, tracks MFE/MAE, maintains four decayed learning buckets, persists them to LocalStorage.</td><td>&sect;7</td></tr>
+  <tr><td>Crossover engine</td><td>OB/OS-exit, midline and signal-line crosses with lambda hysteresis; markers, trigger outputs, per-bar de-duplication.</td><td>&sect;8</td></tr>
+  <tr><td>MTF confluence ladder</td><td>Builds 1&ndash;3 higher-timeframe rungs, each with its own resolved profile and pipeline; weighted state score in [&minus;100..100].</td><td>&sect;9</td></tr>
+  <tr><td>Projection engine</td><td>Entry / SL / TP1 / TP2 plans per divergence, lifecycle state machine, break-even and chandelier hints, visible-plan budget.</td><td>&sect;13</td></tr>
+  <tr><td>Trendline engine</td><td>Support / resistance lines through confirmed RSI pivots, slope cap, non-repainting break detection and markers.</td><td>&sect;14</td></tr>
+  <tr><td>Session markers</td><td>UTC verticals on the price chart; pure context.</td><td>&sect;15</td></tr>
+  <tr><td>Alert engine</td><td>Six alert families, watermark scans, ratio-scaled freshness, per-direction cooldown, sounds / popups / log.</td><td>&sect;11</td></tr>
+  <tr><td>Info panel</td><td>Five sections (config, market, MTF, signals, statistics) in four layouts, native controls or static text.</td><td>&sect;10</td></tr>
+  <tr><td>Journal</td><td>Three CSV streams to the platform log: <code>ARP-JOURNAL</code>, <code>ARP-PLAN</code>, <code>ARP-OUTCOME</code>.</td><td>&sect;16</td></tr>
+</table>
+
+<h3>2.2 The guarantees</h3>
+<p>These are the properties the engine is built to hold. Each is testable; &sect;35 shows how to test the first one yourself.</p>
+<table class="compact">
+  <tr><th style="width:30%">Guarantee</th><th>Meaning</th></tr>
+  <tr><td><b>Non-repainting signals</b></td><td>A divergence, plan, trendline break or (closed-bar) cross marker is resolved from closed source bars only and is never modified afterwards. Pivots confirm <code>Pivot Lookback</code> bars after the extreme, so the <i>earliest</i> a divergence can appear is that confirmation bar &mdash; it will not appear &ldquo;earlier&rdquo; in hindsight.</td></tr>
+  <tr><td><b>No look-ahead in MTF reads</b></td><td>Higher-timeframe rungs are read as of the source bar&rsquo;s close, capped by the successor bar&rsquo;s open on irregular calendars (hybrid closure). A Monthly rung never leaks March data into a February decision.</td></tr>
+  <tr><td><b>One evaluation per event</b></td><td>Watermark-driven scanners evaluate each closed source bar exactly once per side, even across disconnects, restarts and reloads; triggers, markers, alerts and journal lines cannot duplicate an event.</td></tr>
+  <tr><td><b>Missing data is neutral</b></td><td>Warm-up or absent readings (StochRSI, volume, market hours) are excluded from scores rather than substituted; a gate with no reading never blocks a signal.</td></tr>
+  <tr><td><b>Corrupt quotes cannot fabricate</b></td><td>Non-finite quotes (NaN / &plusmn;Infinity) are sanitised at ingestion and skipped in every decision-sensitive scan: they can neither create a signal, an outcome, a plan event nor an alert, nor silently invert one.</td></tr>
+  <tr><td><b>No permissions</b></td><td><code>AccessRights.None</code>: no file system, no network, no account data. The only persistence is the learning state in cTrader LocalStorage (scope: indicator type), and only if you leave <code>Persist Learning</code> on.</td></tr>
+  <tr><td><b>Deterministic presets</b></td><td>Selecting a Trading Style pins all 134 parameters the style consumes, on their declared step grids &mdash; two charts on the same style resolve identically regardless of the template they were saved into.</td></tr>
+</table>
+
+<h3>2.3 Timeframe mapping: the four families</h3>
+<p>
+Whenever the engine translates between the chart&rsquo;s bars and the source (or a rung&rsquo;s) bars it uses one of
+four mapping families, all built on the same <b>hybrid-closure</b> rule: a bar counts as closed at time
+<code>asOf</code> iff <code>min(nominal close, successor open) &le; asOf</code>. On regular calendars this is exactly
+the nominal close; on irregular ones (Monthly bars, holiday-shortened days, weekend gaps) the successor&rsquo;s open
+proves the bar closed earlier than its nominal span claims, which is what kills look-ahead.
+</p>
+<ul>
+  <li><code>MapChartToSource</code> &mdash; chart bar &rarr; the source bar that contains it (used for marker placement and trigger outputs).</li>
+  <li><code>MapByCloseTime</code> &mdash; used when the source is finer than the chart, so several source bars close inside one chart bar.</li>
+  <li><code>SourceToChartIndex</code> &mdash; source bar &rarr; the chart bar to draw on.</li>
+  <li><code>MapToClosedIndex</code> &mdash; the highest <i>closed</i> index of a rung as of a source bar&rsquo;s close; honours <code>Strict Non-Repaint MTF Mapping</code> (never returns the still-forming last bar).</li>
+</ul>
+<div class="callout note">
+  <strong>Strict vs non-strict</strong>
+  With <code>Strict Non-Repaint MTF Mapping = Yes</code> (default) a rung&rsquo;s in-progress bar is never read: the
+  ladder sees each higher timeframe exactly as it stood when your source bar closed. Switching it off lets the last
+  (still forming) rung bar contribute, which is one tick fresher and one tick less honest &mdash; the panel will show
+  it, but the recorded, journaled and alerted values stay closed-bar based.
+</div>
+
+<h2 id="s1-adaptive">3. Timeframe Resolution &amp; the Adaptive Engine</h2>
+
+<h3>3.1 What gets resolved, and when</h3>
+<p>
+At start-up (and whenever history length changes materially) the engine measures the source timeframe&rsquo;s real
+bar span &mdash; exactly, from the timeframe name for named periods; as the sampled median of recent bar deltas for
+name-less ones (Tick / Renko / Range) &mdash; and builds an <b>AdaptiveProfile</b>: the complete set of effective
+windows and thresholds. Every confluence rung gets its own profile, resolved from its own bar span, which is why a
+Weekly rung behaves like a Weekly indicator even though you never configured one.
+</p>
+
+<h3>3.2 The scaling law</h3>
+<p>With <code>d</code> = bar minutes, <code>&epsilon;</code> = <code>Microstructure Noise Horizon (min)</code> and
+<code>e</code> = the scaling exponent of <code>Timeframe Scaling</code>:</p>
+<div class="formula">noiseRatio   = (1 + &epsilon;/d) / (1 + &epsilon;/60)
+horizonRatio = 60 / d
+scale        = noiseRatio^0.5 &middot; horizonRatio^e        (clamped to [floor .. Max Period Multiplier])
+floor        = 1.00  (High Timeframe Policy = Canonical)
+floor        = 0.35  (High Timeframe Policy = HorizonMatched)
+
+exponent e   = 0.00  BarCount      (windows stay in bars)
+             = 0.15  Balanced      (default: gentle compromise)
+             = 1.00  TimeHorizon   (windows track real time)</div>
+<p>
+Each window then scales as <code>round(reference &middot; scale^k &middot; gain)</code> with its own exponent
+<code>k</code> and clamp range, and <code>gain = 1 / Global Sensitivity</code> (a higher sensitivity shortens the
+RSI-family windows). The exponents are deliberately unequal:
+</p>
+<table class="compact">
+  <tr><th>Resolved quantity</th><th>Exponent k</th><th>Clamp range</th><th>Why</th></tr>
+  <tr><td>RSI Period, Signal Period, Stoch Period, SuperSmoother</td><td>0.30</td><td>5&ndash;200 / 3&ndash;100 / 5&ndash;100 / 3&ndash;100</td><td>Wilder&rsquo;s 14 is already robust across timeframes; aggressive rescaling would betray the classic reading.</td></tr>
+  <tr><td>Pivot Lookback</td><td>0.60</td><td>2&ndash;30</td><td>Fractal confirmation needs proportionally more bars on fine timeframes.</td></tr>
+  <tr><td>Min / Max Pivot Distance, Trendline Min Gap</td><td>0.50</td><td>3&ndash;200 / 20&ndash;2000 / 3&ndash;300</td><td>Pattern length scales with the square root of the time compression.</td></tr>
+  <tr><td>ATR Period, Efficiency Ratio Period</td><td>0.40</td><td>4&ndash;60 / 4&ndash;40</td><td>Volatility and efficiency estimates need a stable sample.</td></tr>
+  <tr><td>Trend EMA Period</td><td>0.80</td><td>10&ndash;400</td><td>The trend filter must describe the same <i>span of time</i> on every timeframe.</td></tr>
+  <tr><td>Trend Slope Bars, Outcome Horizon, Level Baseline, Stats Window, Draw Window</td><td>0.50</td><td>2&ndash;40 / 10&ndash;1000 / 20&ndash;1000 / 25&ndash;2000 / 100&ndash;100000</td><td>Half-life compromise between bar-count and clock-time.</td></tr>
+  <tr><td>Min ATR % (fixed gate)</td><td>value &times; (d/60)^0.5</td><td>0&ndash;5</td><td>A volatility floor quoted in % of price shrinks on finer bars.</td></tr>
+</table>
+<p>After scaling, calendar ceilings bound the coarse end: Trend EMA &le; 730 days of bars, Max Pivot Distance &le; 730 d,
+Min Pivot Distance and Trendline Min Gap &le; 180 d, Outcome Horizon &le; 120 d, Stats Window &le; 365 d,
+Draw Window &le; 1095 d. Final normalisations keep the profile self-consistent: band width &ge; 15 points,
+<code>MinPivotDistance &ge; 2 &times; PivotLookback</code>, <code>MaxPivotDistance &gt; MinPivotDistance</code>,
+<code>WeakQuality &ge; MinQuality</code>, <code>AlertQuality &ge; MinQuality</code>,
+<code>ErSmoothing = 2 &times; ErPeriod</code> (clamped 5&ndash;100), and a 10-day volatility window in
+[150&ndash;3000] bars.
+</p>
+
+<h3>3.3 Zone bias and quality bias</h3>
+<p>Two small logarithmic biases keep the zones and the gates honest across timeframes:</p>
+<div class="formula">zoneBias = clamp( 0.5 &middot; log2(60 / d), -0.05, +0.05 )
+OB      += zoneBias &middot; 10      OS -= zoneBias &middot; 10     (fine bars: slightly wider zones)
+
+qualBias = clamp( 0.2 &middot; log2(60 / d), -0.10, +0.10 )
+MinQuality, WeakQuality, AlertQuality &times;= (1 + qualBias)</div>
+<p>
+On H1 both biases are exactly zero &mdash; the reference timeframe is untouched. On M1 the zones widen by at most
+&plusmn;0.5 points and the quality floor rises by at most 10&nbsp;%, which is the engine&rsquo;s way of saying
+&ldquo;fine-timeframe noise needs a slightly higher bar to be called a signal&rdquo;.
+</p>
+
+<h3>3.4 Manual mode</h3>
+<p>
+<code>Adaptation Mode = Manual</code> bypasses the scaling law entirely: every reference parameter is used verbatim
+(clamped to its declared min/max), on every timeframe. Use it when you want the literal textbook configuration
+(RSI 14 / signal 9 / 70-30) on one specific timeframe and accept that the same numbers mean something different if
+you switch the chart period. The panel&rsquo;s <code>TF</code> cell shows &ldquo;manual&rdquo; in that case.
+</p>
+
+<h3>3.5 The noise horizon</h3>
+<p>
+<code>Microstructure Noise Horizon (min)</code> (&epsilon;) models the idea that each bar carries a fixed slice of
+pure microstructure noise (spreads, auction gaps, quote granularity). With &epsilon; = 0 the scale reduces to the pure
+horizon ratio; raising &epsilon; increases the scale on fine timeframes (longer windows there) because a larger share
+of each M1 bar is noise. The default 1.0 minute is a conservative FX/crypto value; leave it unless you know your
+instrument&rsquo;s noise floor.
+</p>
+
+<h2 id="s1-style">4. Trading Styles</h2>
+
+<h3>4.1 The four styles at a glance</h3>
+<p>
+The <code>Trading Style</code> parameter (group 0) is the only parameter that is never scaled: it selects a preset
+that pins 134 of the 164 parameters. <code>Universal</code> is the neutral default &mdash; it changes nothing and
+leaves every field as saved. The other three are complete, reproducible configurations:
+</p>
+<table class="compact">
+  <tr><th>Style</th><th>Scaling / HTF policy</th><th>Character</th><th>Typical home</th></tr>
+  <tr><td><b>Universal</b></td><td>as saved (default Balanced / Canonical)</td><td>Neutral baseline; everything user-owned.</td><td>Any</td></tr>
+  <tr><td><b>Scalping</b></td><td>BarCount / HorizonMatched, sensitivity 1.3</td><td>Fast, tight zones (68/32), live-bar markers, both cross families, session filter on, short plans (0.8R / 1.5R), 200-outcome memory.</td><td>M1&ndash;M5</td></tr>
+  <tr><td><b>Swing</b></td><td>Balanced / Canonical, sensitivity 1.0</td><td>The classic reading (14/9/70/30) with closed-bar confirmation everywhere; 1R / 2R plans; 3-bar alert cooldown.</td><td>M30&ndash;H4</td></tr>
+  <tr><td><b>Position</b></td><td>TimeHorizon / HorizonMatched, sensitivity 0.85</td><td>Slow and strict: regular divergences only, hard MTF gate, 3-rung ladder, wide zones (75/25), 1.5R / 3R plans, no cross markers, no session markers.</td><td>D1&ndash;W1</td></tr>
+</table>
+
+<h3>4.2 What the presets pin (and what stays yours)</h3>
+<p>
+Each preset writes the identical 135-assignment set (134 parameters plus the internal style name): the adaptation and
+scaling policy, the MTF ladder shape and gate, the price input and display toggles, the divergence gates and
+confirmations, every signal filter, the learning configuration, the cross-marker policy, the trade-plan geometry, the
+trendline and session-marker policy, the panel layout and the alert toggles &mdash; and, since v3.16, also all
+scaling references (RSI / signal / stoch / smoother periods, bands, pivot windows, ATR / trend / outcome windows,
+draw and stats windows&hellip;) so the resolved profile is reproducible.
+</p>
+<p>The residue &mdash; 29 parameters plus the style itself &mdash; stays user-owned in every style: the source
+timeframe choice, every colour (signals, divergences, panel palette, plan levels, trendlines, session markers),
+marker font, icons, line style and z-index, the two alert sounds, the two diagnostic toggles and the session-marker
+times / window. The full list is in &sect;32.7.
+</p>
+<div class="callout warn">
+  <strong>Style changes are one-way by design</strong>
+  Selecting a style overwrites the pinned fields immediately (the platform applies the preset at initialisation).
+  If you later switch back to <code>Universal</code>, the fields keep the last style&rsquo;s values &mdash; Universal
+  does not restore your old numbers. Note your configuration (or keep a cTrader template per style) before
+  experimenting.
+</div>
+
+<h2 id="s1-core">5. The RSI Core</h2>
+
+<h3>5.1 Pipeline overview</h3>
+<div class="formula">price[i]        = f(O,H,L,C,Volume)              &larr; RSI Price Input (&sect;5.2)
+gain / loss     = max(&plusmn;(price[i]-price[i-1]), 0)
+rsiFast         = Wilder(gain,loss; P)           &larr; P = resolved RSI Period
+rsiSlow         = Wilder(gain,loss; P&middot;(1+spread))   &larr; only with Regime-Adaptive Filter Bank
+blend           = w&middot;rsiFast + (1-w)&middot;rsiSlow,  w = EMA(Kaufman ER; ErSmoothing)
+rsi             = SuperSmoother(blend) clamped [0..100]   &larr; if Use SuperSmoother
+signal          = SMA(rsi; Signal Period)
+stochRSI        = (rsi - min(rsi,n)) / (max(rsi,n) - min(rsi,n)) &middot; 100
+ATR%            = WilderATR(TR; ATR Period)/close &middot; 100 ;  baseline = SMA(ATR%; Level Baseline)
+OB/OS bands     = static profile levels, stretched by ATR%/baseline (&sect;5.6)</div>
+
+<h3>5.2 The six price inputs</h3>
+<p>
+<code>RSI Price Input</code> chooses the series the engine measures momentum on. All six are sanitised bar-by-bar
+(a non-finite component falls back to the close, and an infinite close reads as NaN &mdash; never as a number):
+</p>
+<table class="compact">
+  <tr><th>Input</th><th>Formula</th><th>Character</th></tr>
+  <tr><td><b>Close</b> (default)</td><td><code>C</code></td><td>The classic. Every textbook RSI reading, every audit oracle and the learning statistics assume this unless you say otherwise.</td></tr>
+  <tr><td><b>Typical</b></td><td><code>(H+L+C)/3</code></td><td>Includes the intrabar range; slightly less whippy on spike-and-reject bars.</td></tr>
+  <tr><td><b>Weighted</b></td><td><code>(H+L+2C)/4</code></td><td>Typical with double weight on the close &mdash; between Close and Typical.</td></tr>
+  <tr><td><b>Median</b></td><td><code>(H+L)/2</code></td><td>Ignore the close entirely; the pure mid-of-range read. Most sensitive to intrabar extremes.</td></tr>
+  <tr><td><b>Heikin-Ashi</b></td><td><code>(O+H+L+C)/4</code> (the HA close); if the source series is already a Heikin-Ashi timeframe, its close is used as-is</td><td>Averaged candles: trends read cleaner, reversals arrive later.</td></tr>
+  <tr><td><b>Volume-Price-Adjusted</b></td><td>volume-&times;-volatility weighted mean of closes over the stats window</td><td>Each bar&rsquo;s close enters with weight <code>volume &middot; clamp(&sigma;<sub>k</sub>/&sigma;&#772;, 0.25, 4)</code> where &sigma; = range/close. High-volume, wide-range bars dominate the reference price &mdash; an institutional-footprint flavour of RSI.</td></tr>
+</table>
+<figure>
+  <img src="images/10_input_typical.png" alt="Typical price input">
+  <figcaption>Fig. 5.1 &mdash; The same EURUSD M30 chart with <code>RSI Price Input = Typical</code>: the dialog shows the
+  selected input and the oscillator re-resolves around the (H+L+C)/3 series. Compare Figs. 23.1&ndash;23.5.</figcaption>
+</figure>
+
+<h3>5.3 Wilder legs and the regime-adaptive filter bank</h3>
+<p>
+The gain/loss averages use Wilder&rsquo;s recursion (seed = the first full-window SMA, then
+<code>avg += (x - avg)/P</code>). With <code>Regime-Adaptive Filter Bank = No</code> (default, and default in every
+preset) there is a single leg at the resolved RSI Period &mdash; the classic computation.
+</p>
+<p>
+With the bank <b>on</b>, a second, slower leg (period &times; (1+spread)) and a faster leg (period &times; (1&minus;spread))
+are blended by the smoothed Kaufman Efficiency Ratio of the raw close: trending bars (ER&rarr;1) trust the fast leg,
+choppy bars (ER&rarr;0) the slow one. <code>Filter Bank Spread</code> sets the leg separation (0.35 &rarr; fast = 0.65P,
+slow = 1.35P). An unavailable ER reads as w = 0.5 (neutral), never as a fabricated regime.
+</p>
+<div class="callout warn">
+  <strong>The bank is off by default for a reason</strong>
+  It changes the meaning of the main line (it is no longer Wilder&rsquo;s RSI) and therefore of every zone, divergence
+  and statistic built on it. Turn it on deliberately, on one chart, and compare &mdash; do not enable it because a
+  parameter exists.
+</div>
+
+<h3>5.4 SuperSmoother</h3>
+<p>
+<code>Use SuperSmoother</code> (default on) passes the blended RSI through Ehlers&rsquo; two-pole super smoother at
+<code>SuperSmoother Period</code>, clamped to [0..100]. It removes most of the one-bar grit of fine timeframes while
+keeping far less lag than an SMA of the same period. With it off, the main line is exactly the (blended) Wilder RSI.
+During warm-up, before the smoother has two bars of history, the unsmoothed value is passed through, so the line
+never starts empty.
+</p>
+
+<h3>5.5 Signal line and StochRSI</h3>
+<ul>
+  <li><b>Signal</b> = simple moving average of the final RSI over the resolved Signal Period. It is the
+      &ldquo;trigger line&rdquo; of the MACD-style cross family (&sect;8) and a momentum vote in the MTF state score
+      (&sect;9.3). Display toggle: <code>Show Signal Line</code>.</li>
+  <li><b>StochRSI</b> = the position of the current RSI inside its own high/low range over the resolved Stoch Period,
+      in 0&ndash;100. A flat range (width &lt; 1e-9) resolves to 50 rather than dividing by zero. It serves as a
+      divergence confirmation vote (&sect;6.5) and a fast early-warning line. Display toggle:
+      <code>Show Stoch RSI Line</code>.</li>
+</ul>
+
+<h3>5.6 Dynamic OB/OS levels (ATR)</h3>
+<p>
+With <code>Dynamic Levels (ATR)</code> on (default), the overbought / oversold bands are not constants: they breathe
+with realised volatility. The engine compares the bar&rsquo;s ATR% of price with its own long-run baseline
+(<code>Volatility Baseline (bars)</code>):
+</p>
+<div class="formula">ratio    = ATR%[i] / baseline[i]
+stretch  = clamp( Level Adjustment Factor &middot; (ratio - 1),  -4, +4 )
+shift    = clamp( stretch &middot; (OB - OS) &middot; 0.10,  &plusmn;((OB-OS)/2 - 10) )
+OB[i]    = clamp( OB + shift,  min(55, OB), 95 )
+OS[i]    = clamp( OS - shift,  5, max(45, OS) )
+width    = OB[i] - OS[i]  &ge; 15  (else re-centred at &plusmn;7.5)</div>
+<p>
+Hot regimes push the bands outward (a trending, volatile market must reach further to be called &ldquo;over&rdquo;);
+quiet regimes pull them inward so the zones remain reachable. At zero stretch the dynamic bands are bit-identical to
+the static ones for every configuration, and the dotted <code>Overbought</code> / <code>Oversold</code> output series
+show exactly the bands every consumer reads. The panel reports them live (e.g. <code>68.8/31.2 dyn</code>).
+<code>Level Adjustment Factor</code> scales the breathing (0 = static behaviour with dynamic plumbing; the presets use
+1.5&ndash;3.0).
+</p>
+
+<figure>
+  <img src="images/22_bands_closeup.png" alt="Dynamic bands close-up">
+  <figcaption>Fig. 5.2 &mdash; The oscillator&rsquo;s dotted horizontal layers up close: the dynamic Overbought /
+  Oversold bands and the midline. The bands are the very buffers every gate, vote and panel cell reads
+  (&sect;5.6) &mdash; what you see is what the engine measures.</figcaption>
+</figure>
+
+<h3>5.7 Zone, midline and signal-line state machines</h3>
+<p>
+Three binary state buffers underlie every cross in the engine, all computed per closed bar:
+</p>
+<ul>
+  <li><b>In-OB / In-OS</b> with lambda hysteresis: the zone is entered at the band itself and left only
+      <code>band = (1 - lambda) &middot; (OB - OS) &middot; 0.10</code> points <i>through</i> the band.
+      <code>Signal Sensitivity Lambda = 1.00</code> is the classic exact-level cross; 0.92 (Scalping) demands a
+      0.32-point confirmed exit on 70/30 bands &mdash; enough to discard most border whipsaws at the cost of a
+      slightly later trigger.</li>
+  <li><b>Signal-line side</b>: sign(RSI &minus; signal), sticky at exact equality.</li>
+  <li><b>Midline side</b>: sign(RSI &minus; 50), sticky at exact equality.</li>
+</ul>
+
+<h3>5.8 Output scale</h3>
+<p>
+<code>Output Scale = Raw</code> plots the oscillator in classic 0&ndash;100. <code>Centered</code> subtracts 50, so the
+pane reads &minus;50..+50 with the midline at zero &mdash; convenient when you stack it under other centred
+oscillators. Every drawn object, tooltip and trigger output follows the chosen scale (the panel and alert messages
+deliberately keep quoting raw 0&ndash;100 readings as event records). The higher-TF RSI line is plotted in the primary
+line&rsquo;s display units in both modes.
+</p>
+
+<h3>5.9 The higher-TF RSI line and the trend-bias line</h3>
+<ul>
+  <li><b>RSI Higher TF</b> (dotted orange): the first confluence rung&rsquo;s RSI, strict-mapped to closed rung bars
+      and plotted in the primary display units &mdash; a permanent window into &ldquo;what would the RSI say one
+      timeframe up?&rdquo; Toggle: <code>Show Higher-TF RSI Line</code>.</li>
+  <li><b>Trend Bias</b> (dotted cyan): <code>50 + clamp(trend slope, &plusmn;1) &middot;50</code> &mdash; the trend
+      filter&rsquo;s slope (&sect;27.2) mapped onto the oscillator scale, so you can <i>see</i> the gate that accepts or
+      rejects counter-trend divergences. Toggle: <code>Show Trend Bias Line</code>.</li>
+</ul>
+
+<h2 id="s1-div">6. The Divergence Engine</h2>
+
+<h3>6.1 What a divergence is, in this engine</h3>
+<p>
+A divergence is a disagreement between the <i>price</i> extreme and the <i>RSI</i> extreme of two confirmed pivots of
+the same side. Four classes are recognised (Brown/Cardwell family):
+</p>
+<table class="compact">
+  <tr><th>Class</th><th>Price</th><th>RSI</th><th>Reads as</th><th>Default colour</th></tr>
+  <tr><td><b>Regular bullish</b></td><td>lower low</td><td>higher low</td><td>downward momentum exhausting &mdash; reversal up</td><td><span class="swatch" style="background:#00E676"></span>#00E676</td></tr>
+  <tr><td><b>Regular bearish</b></td><td>higher high</td><td>lower high</td><td>upward momentum exhausting &mdash; reversal down</td><td><span class="swatch" style="background:#FF1744"></span>#FF1744</td></tr>
+  <tr><td><b>Hidden bullish</b></td><td>higher low</td><td>lower low</td><td>pullback in an up-flow &mdash; continuation up</td><td><span class="swatch" style="background:#00BFA5"></span>#00BFA5</td></tr>
+  <tr><td><b>Hidden bearish</b></td><td>lower high</td><td>higher high</td><td>retracement in a down-flow &mdash; continuation down</td><td><span class="swatch" style="background:#FF6E40"></span>#FF6E40</td></tr>
+</table>
+<p><code>Divergence Kinds</code> selects which families the detector considers (Regular only / Hidden only / both).</p>
+
+<figure>
+  <img src="images/23_hidden_bear_closeup.png" alt="Hidden bear divergence close-up">
+  <figcaption>Fig. 6.1 &mdash; A hidden bearish divergence in the oscillator pane: price made a lower high while the
+  RSI printed a higher high &mdash; the continuation class, drawn in the hidden-bear colour with its label
+  (&sect;6.1, &sect;6.7).</figcaption>
+</figure>
+
+<h3>6.2 Pivots: the atoms of every pattern</h3>
+<p>
+A pivot is a strict fractal extremum of the <b>RSI line itself</b> (not of price): bar <code>c</code> is a high pivot
+if its RSI is strictly greater than the RSI of the <code>Pivot Lookback</code> bars on each side (ties tolerated on
+one side only &mdash; at least one strictly lower neighbour per side is required). A pivot <i>confirms</i> at bar
+<code>c + Pivot Lookback</code>: that is the first bar at which the fractal condition can be known, and the first bar
+at which the engine is allowed to act on it. Nothing is ever drawn or registered earlier.
+</p>
+<p>
+Each pivot carries a <b>prominence</b>: how far its RSI stands out from the stronger of its two neighbours&rsquo;
+extremes, converted to ATR units of price (<code>(prominence/100) / (ATR/close)</code>). Pivots below
+<code>Pivot Prominence (x ATR)</code> are noise and never enter a pool. The pools keep the most recent
+<code>MaxPivotDistance + 2&middot;lookback + 16</code> (minimum 400) pivots per side.
+</p>
+
+<h3>6.3 Pairing, legs and zones</h3>
+<p>
+When a new pivot confirms, the detector walks the same-side pool from newest to oldest, keeping pairs whose distance
+lies in <code>[Min Pivot Distance .. Max Pivot Distance]</code> bars, evaluating at most <code>Max Pivot Candidates</code>
+pairs and keeping the best-ranked one. A pair survives only if:
+</p>
+<ul>
+  <li>the price leg is at least <code>Min Price Leg (x ATR)</code> ATR long &mdash; a divergence on a flat price leg is a rounding artefact;</li>
+  <li>the RSI leg is at least <code>Min RSI Leg (points)</code> points long;</li>
+  <li>with <code>Require Extreme Zone</code> on: for <b>regular</b> classes at least one of the two pivots reached
+      beyond the live band (with a &plusmn;5-point tolerance); for <b>hidden</b> classes the pair must <i>not</i> sit
+      entirely in the opposite extreme zone (a &ldquo;hidden bull&rdquo; with both pivots above the overbought band is
+      a contradiction).</li>
+</ul>
+
+<h3>6.4 Grading (A / B / C)</h3>
+<p>
+The grade measures how &ldquo;complete&rdquo; the swing between the pivots was, using the intermediate RSI extreme
+between them:
+</p>
+<table class="compact">
+  <tr><th>Grade</th><th>Bullish (intermediate RSI high)</th><th>Bearish (intermediate RSI low)</th><th>Meaning</th></tr>
+  <tr><td><b>A</b></td><td>&ge; 50</td><td>&le; 50</td><td>The counter-swing crossed the midline &mdash; a full impulse between the pivots.</td></tr>
+  <tr><td><b>B</b></td><td>&ge; 40</td><td>&le; 60</td><td>The counter-swing approached the midline.</td></tr>
+  <tr><td><b>C</b></td><td>&lt; 40</td><td>&gt; 60</td><td>The two pivots sit in one continuous excursion &mdash; weakest structure.</td></tr>
+</table>
+<p>Grades feed both the ranking score and the quality score, and can be shown in the label
+(<code>Show Grade (A/B/C) In Label</code>) and in the journal.</p>
+
+<h3>6.5 Confirmations (three independent votes)</h3>
+<table class="compact">
+  <tr><th>Vote</th><th>Parameter</th><th>Agrees when&hellip;</th><th>Unknown when&hellip;</th></tr>
+  <tr><td>Higher-TF RSI</td><td><code>Confirm With HTF RSI</code></td><td>bull: first-rung RSI in [35..70] (ideal 45); bear: in [30..65] (ideal 55) &mdash; i.e. the higher timeframe is not already exhausted in the trade&rsquo;s direction</td><td>ladder off / rung warming up</td></tr>
+  <tr><td>StochRSI</td><td><code>Confirm With Stoch RSI</code></td><td>bull: pivot StochRSI &lt; 30; bear: &gt; 70 &mdash; the fast oscillator is stretched the same way</td><td>StochRSI in warm-up (kept NaN, never defaulted)</td></tr>
+  <tr><td>Volume</td><td><code>Confirm With Volume</code></td><td>bull: newer pivot&rsquo;s bar volume &gt; older&rsquo;s; bear: &lt; &mdash; effort confirms (or denies) the result</td><td>no volume feed / non-finite print</td></tr>
+</table>
+<p>An unknown vote is <i>excluded</i> from the score rather than scored as disagreement &mdash; a warm-up never punishes a pattern.</p>
+
+<h3>6.6 The quality score (0&ndash;100)</h3>
+<p>
+Every surviving candidate receives a weighted 0&ndash;100 score &mdash; a weighted mean of twelve components, unknown
+components dropping out with their weight (so the total always renormalises):
+</p>
+<table class="compact">
+  <tr><th style="width:8%">Weight</th><th style="width:26%">Component</th><th>Full mark when&hellip;</th></tr>
+  <tr><td>0.20</td><td>RSI leg</td><td>leg &ge; 30 points</td></tr>
+  <tr><td>0.10</td><td>Price leg</td><td>leg &ge; 4 ATR</td></tr>
+  <tr><td>0.10</td><td>Pivot prominence</td><td>mean prominence &ge; 2 ATR</td></tr>
+  <tr><td>0.08</td><td>Distance fit</td><td>pivot distance in the 10&ndash;60&nbsp;% band of [Min..Max Pivot Distance]</td></tr>
+  <tr><td>0.08</td><td>Zone depth</td><td>deepest pivot &ge; 15 points beyond its band</td></tr>
+  <tr><td>0.12</td><td>Grade</td><td>A = 1.0, B = 0.60, C = 0.30</td></tr>
+  <tr><td>0.10</td><td>Trend alignment</td><td>slope aligned with the signal direction (hidden patterns use a 2&times; tighter ruler than regular ones)</td></tr>
+  <tr><td>0.08</td><td>HTF RSI vote</td><td>known &amp; agreeing with full strength (agreeing-but-weak scores half)</td></tr>
+  <tr><td>0.06</td><td>StochRSI vote</td><td>known &amp; agreeing (disagreeing scores 0.25)</td></tr>
+  <tr><td>0.03</td><td>Volume vote</td><td>known &amp; agreeing (disagreeing scores 0.30)</td></tr>
+  <tr><td>0.03</td><td>MTF confluence</td><td>aligned ladder score well above the gate threshold (only when the gate is not Off)</td></tr>
+  <tr><td>0.02</td><td>Learned win rate</td><td>the family&rsquo;s own measured win rate on your feed (&sect;7)</td></tr>
+</table>
+<p>
+The score is compared with three thresholds, all resolved per timeframe: below <code>Min Quality Score</code> the
+candidate is dropped (and, with <code>Debug Log</code>, the skip reason is printed); below
+<code>Weak Signal Threshold</code> it is registered but drawn in the <code>Weak Signal Color</code>;
+<code>Alert Min Quality</code> gates the divergence alert family (&sect;11).
+</p>
+<div class="callout tip">
+  <strong>How to read a quality number</strong>
+  On the default Swing-shaped configuration, live regular divergences on liquid FX majors typically land in
+  50&ndash;75. Treat 50&ndash;65 as &ldquo;context&rdquo;, 65&ndash;75 as &ldquo;actionable with confluence&rdquo; and
+  75+ as rare and strong. Your own feed&rsquo;s distribution is shown live in the panel&rsquo;s statistics
+  (<code>Avg qual</code>, &sect;29) &mdash; calibrate against <i>that</i>, not against this paragraph.
+</div>
+
+<h3>6.7 Registration, drawing and deduplication</h3>
+<p>
+A registered record stores everything: both pivots&rsquo; indices, times, prices and RSI readings, the confirmation
+bar, quality, confluence snapshot, legs, entry price and ATR, and (from v3.0) the trade plan and its lifecycle.
+Records are drawn as a line between the two pivots plus optional markers, drop lines and labels
+(<code>Draw Style</code>, <code>Show Drop Lines</code>, <code>Show Labels</code>, wording and grade/quality toggles in
+group 8), optionally mirrored onto the price chart (<code>Mirror Divergences On Price Chart</code>).
+</p>
+<p>
+Two caps keep the pane readable: at most <code>Max Drawn Divergences</code> drawn records (newest win), and only
+records whose end pivot lies within <code>Draw Only Most Recent N Bars</code> source bars (the window is re-enforced
+continuously, not just at registration). A four-slot dedup watermark (side &times; class) prevents the same end pivot
+from registering twice.
+</p>
+
+<h2 id="s1-learning">7. Outcomes &amp; Adaptive Learning</h2>
+
+<h3>7.1 The measurement contract</h3>
+<p>
+Every registered divergence is a forecast, and the engine grades every forecast afterwards on the <b>ATR ruler</b>:
+entry = the close of the confirmation bar; then, bar by bar over <code>Outcome Horizon (reference)</code> source bars,
+the excursion is tracked in units of the entry bar&rsquo;s ATR:
+</p>
+<ul>
+  <li><b>WIN</b> &mdash; the favourable excursion reaches <code>Outcome Target (x ATR)</code> first;</li>
+  <li><b>LOSS</b> &mdash; the adverse excursion reaches <code>Outcome Stop (x ATR)</code> first; if one bar touches
+      both, the stop is assumed to fill first (the conservative same-bar rule, identical to the plan engine&rsquo;s);</li>
+  <li><b>EXPIRED</b> &mdash; neither level was touched within the horizon.</li>
+</ul>
+<p>
+Along the way the engine records <b>MFE</b> (best favourable excursion) and <b>MAE</b> (worst adverse excursion) in ATR
+units &mdash; the raw material of the panel&rsquo;s <code>Path</code> and <code>MFE/MAE</code> cells.
+</p>
+<div class="callout note">
+  <strong>Two rulers, two names &mdash; zero confusion</strong>
+  The ATR ruler (<code>Outcome Target / Stop</code>) grades <i>outcomes</i> and feeds the statistics. The trade-plan
+  ruler (&sect;13) draws <i>levels</i> as R-multiples of the plan&rsquo;s own risk. They are independent by design
+  since v3.2; the panel labels the ATR ruler explicitly as <code>Out (ATR)</code>.
+</div>
+
+<h3>7.2 The four learning buckets</h3>
+<p>
+Resolved outcomes accumulate in four buckets &mdash; regular-bull, hidden-bull, regular-bear, hidden-bear &mdash; so a
+family that works on your feed lifts its own future quality scores (the 0.02 weight) and shows its own win rate in the
+panel. Each bucket keeps <code>Learning Memory (outcomes)</code> resolved samples: when the cap is exceeded the win /
+loss / expired counters are scaled down proportionally (exact double arithmetic &mdash; the v3.7 fix that removed the
+rounding ratchet which used to drag saturated buckets to 50/50).
+</p>
+<p>
+With <code>Persist Learning (LocalStorage)</code> on, the buckets survive restarts (saved at most every 5 seconds and
+on shutdown, scope = indicator type). Corrupt or hand-edited storage is rejected field by field: non-finite literals,
+negatives and oversized counters are discarded without poisoning the session. A restored state counts as
+&ldquo;seeded&rdquo; only if it contains at least one win or loss &mdash; an all-expired file must not suppress the
+new session&rsquo;s own learning.
+</p>
+<p>
+<code>Min Learning Samples</code> is the number of resolved outcomes a bucket needs before its win rate is allowed to
+influence quality at all; below it the term is simply absent. Switching <code>Adaptive Learning</code> off freezes and
+hides the whole layer (the panel shows <code>collecting</code> / <code>off</code>).
+</p>
+
+<h2 id="s1-cross">8. Crossover Signals &amp; Markers</h2>
+
+<h3>8.1 The three cross families and four modes</h3>
+<table class="compact">
+  <tr><th>Family</th><th>Trigger (bullish / bearish)</th><th>Classic meaning</th></tr>
+  <tr><td><b>OB/OS exit</b></td><td>RSI rises back out of the oversold zone / falls back out of the overbought zone (with lambda hysteresis)</td><td>&ldquo;The turn is confirmed&rdquo; &mdash; the reversal entry of the classic RSI playbook</td></tr>
+  <tr><td><b>Midline</b></td><td>RSI crosses 50 upward / downward</td><td>Regime flip: bulls take / lose the average</td></tr>
+  <tr><td><b>Signal line</b></td><td>RSI crosses its own SMA upward / downward</td><td>Momentum turn, MACD-style</td></tr>
+</table>
+<p>
+<code>Cross Mode</code> chooses which families the <b>markers and trigger outputs</b> watch:
+<code>OB/OS</code>, <code>Midline</code>, <code>SignalLine</code> or <code>OB/OS and Midline</code>. Within one bar the
+priority is OB/OS &rarr; midline &rarr; signal. The <b>alert toggles</b> are independent of the marker mode
+(&sect;11.2): &ldquo;Alert: OB/OS or Midline Cross&rdquo; always owns the first two families, &ldquo;Alert: Signal-Line
+Cross&rdquo; the third.
+</p>
+
+<h3>8.2 Markers, triggers and the closed-bar rule</h3>
+<ul>
+  <li><code>Marker Style</code>: text + arrow / text only / arrow only / none. <code>Marker Wording</code> chooses
+      BUY/SELL, LONG/SHORT, TURN UP/DOWN or BULLISH/BEARISH (midline crosses always read ABOVE 50 / BELOW 50).</li>
+  <li><code>Mark Only Closed Bars</code> (default on): a marker is drawn only after its source bar has
+      closed &mdash; non-repainting. It sits on the <i>last chart bar overlapping that closed source bar</i>: on an
+      identity chart this is the signal bar itself (the classic convention); with a source <b>coarser</b> than the
+      chart (e.g. a custom H8 source on H4) it is the sub-bar that was live at the moment of confirmation &mdash;
+      never hours in the past at the source bar&rsquo;s open (the v3.24.5 placement fix, case study in &sect;26.1).
+      The Scalping preset turns the closed-bar rule off for speed and accepts the intra-bar churn.</li>
+  <li>The <b>Bull Trigger / Bear Trigger</b> output series carry the trigger point at the RSI value of the cross bar in
+      display units &mdash; these are the series to consume from a cBot or from cTrader&rsquo;s alert-on-output
+      facilities; they honour the same closed-bar rule and are de-duplicated per closed chart bar (first observer
+      wins, so a finer source inside one chart bar cannot double-print).</li>
+  <li><code>Max Cross Markers</code> caps the drawn set; the trim window follows the divergence draw window.</li>
+  <li>Every marker carries a tooltip: direction, cross family, the bar&rsquo;s MTF confluence score <i>as of its own
+      bar</i>, RSI / signal / StochRSI in display units and the UTC bar time.</li>
+</ul>
+
+<h2 id="s1-mtf">9. Multi-Timeframe Confluence Ladder</h2>
+
+<h3>9.1 Building the ladder</h3>
+<p>
+With <code>Enable MTF Confluence</code> on, the engine stacks the primary source timeframe plus
+<code>Confluence Levels</code> (1&ndash;3) higher rungs. Auto mode walks the standard ladder (M1, M2, M3, M5, M10, M15,
+M30, H1, H2, H3, H4, H6, H12, D1, D2, D3, W1, MN) and picks the next timeframe at least <b>3.2&times;</b> the current
+bar span &mdash; a separation wide enough that rungs are genuinely independent votes. A rung that cannot be
+materialised (unsupported period, no server data) consumes no slot: the ladder silently steps further up and the panel
+shows only the rungs that exist. <code>Confluence Timeframes</code> accepts an explicit list
+(e.g. <code>H4, D1</code>; comma / semicolon / space / pipe separated; M/H/D/W/MN shorthands, full words and Heikin
+names accepted) and overrides the auto walk.
+</p>
+<p>
+Each rung is a <b>full pipeline of its own</b>: its own resolved adaptive profile (its own bar span!), its own price
+input (yours), its own dynamic bands &mdash; exactly as if you had opened that chart and dropped the indicator on it.
+Rungs load enough history for their own windows (weekly trend EMAs included), which is why
+<code>Auto Load History</code> / <code>Min Source Bars</code> matter.
+</p>
+
+<h3>9.2 The weighted score</h3>
+<div class="formula">score = ( 2.0&middot;state(primary) + 1.0&middot;state(rung1) + 0.6&middot;state(rung2) + 0.4&middot;state(rung3) )
+        / (sum of weights of the rungs that produced a reading)      &isin; [-100 .. +100]</div>
+<p>
+The primary source always carries weight 2.0 &mdash; confluence informs, it does not overrule your chart. The panel
+shows the score and a three-state verdict: <code>&ge; +33 BULL</code>, <code>&le; -33 BEAR</code>, else
+<code>NEUTRAL</code>, plus one cell per rung (e.g. <code>H4 +51 BULL</code>).
+</p>
+
+<h3>9.3 How one timeframe votes: the state score</h3>
+<p>Each rung&rsquo;s state is a &plusmn;100 score built from four additive votes, computed against the rung&rsquo;s <i>own</i> live bands:</p>
+<div class="formula">position   : (rsi-50)&middot;2 inside the bands;
+             above OB: (OB-50)&middot;2 - (rsi-OB)&middot;0.5      (rising into OB still bullish, but saturating)
+             below OS: (OS-50)&middot;2 + (OS-rsi)&middot;0.5      (falling into OS still bearish, but saturating)
+momentum   : +25 if rsi rose last bar, -25 if it fell
+signal     : +20 if rsi &gt; its signal line, -20 if below
+exhaustion : -15 if rsi &ge; OB+10 (overextended up), +15 if rsi &le; OS-10 (overextended down)
+&rarr; clamped to [-100 .. +100]</div>
+<p>
+The curve is continuous at every band border for any band placement, and at the classic 70/30 it reproduces the
+original anchors exactly (RSI 50 &rarr; 0, 70 rising &rarr; +65, 80 exhausted &rarr; +45&hellip;). The exhaustion vote
+is what makes the ladder useful in trends: a Weekly RSI parked at 78 votes <i>less</i> bullish than one at 65, because
+that is what &ldquo;overbought&rdquo; should mean in a confluence vote.
+</p>
+
+<h3>9.4 The three gate modes</h3>
+<table class="compact">
+  <tr><th><code>Confluence Gate</code></th><th>Effect on divergences</th></tr>
+  <tr><td><b>Off</b></td><td>The ladder is computed and displayed (panel, higher-TF line) but injects nothing: no quality term, no filter. &ldquo;Off&rdquo; means off.</td></tr>
+  <tr><td><b>SoftPenalty</b> (default)</td><td>The aligned ladder score (&plusmn;score by signal direction) enters the quality score as a small 3&nbsp;% term around the <code>Min Confluence Score</code> threshold &mdash; opposing flow dents quality, supporting flow lifts it; nothing is hard-rejected.</td></tr>
+  <tr><td><b>HardGate</b></td><td>Additionally rejects any divergence whose aligned score is below <code>2&middot;MinConfluenceScore - 100</code> (e.g. Min 45 &rarr; aligned &lt; &minus;10 rejected). The Position style uses this.</td></tr>
+</table>
+<p>
+Independently, <code>Hidden: MTF Alignment Gate</code> always rejects <i>hidden</i> (continuation) divergences when the
+aligned ladder score is &le; &minus;33 &mdash; the classic &ldquo;hidden bear printed into a higher-timeframe
+melt-up&rdquo; trap.
+</p>
+
+<h3>9.5 The confluence-flip alert</h3>
+<p>
+The ladder&rsquo;s three-state verdict (BULL / NEUTRAL / BEAR) is a first-class event: when it flips between bullish
+and bearish states the engine can alert (&sect;11), evaluated on <b>closed</b> source bars only &mdash; a flip that
+exists only inside an in-progress bar never rings.
+</p>
+
+<h2 id="s1-panel">10. The Info Panel</h2>
+
+<h3>10.1 Purpose and placement</h3>
+<p>
+The panel is the indicator&rsquo;s instrument cluster: everything the engines currently believe, in one card on the
+oscillator pane. It refreshes at <code>Panel Refresh (ms)</code> (only when something actually changed &mdash; the
+engine dirties the panel on events, not on every tick) and can be built either from native cTrader chart controls
+(<code>Use Native Controls</code>, crisp and themeable) or from a single static text block (lighter, and survives
+platforms where controls misbehave).
+</p>
+<ul>
+  <li><code>Panel Layout</code>: <b>MergedCard</b> (one card, all sections &mdash; default), <b>SplitTopBottom</b>
+      (status card on top, signals card below), <b>StatusCardOnly</b>, <b>SignalsCardOnly</b>.</li>
+  <li><code>Panel Side</code> &times; <code>Vertical Edge</code>: any of Left / Center / Right &times; Top / Bottom;
+      <code>Panel Margin (px)</code> insets it from the pane edge.</li>
+  <li>Colours and type: <code>Panel Background</code>, <code>Panel Border</code>, <code>Panel Text</code>,
+      <code>Panel Label Text</code>, <code>Panel Font Size</code>, <code>Panel Opacity</code>.</li>
+  <li>Sections: <code>Show Configuration / Market / MTF Confluence / Signals / Statistics Section</code> &mdash; five
+      independent toggles; the row allocator reflows the card for whatever remains, and a fully-empty selection hides
+      the card body rather than drawing an empty frame.</li>
+</ul>
+
+<h3>10.2 Section anatomy</h3>
+<table class="compact">
+  <tr><th style="width:20%">Section</th><th>Cells (label &rarr; meaning)</th></tr>
+  <tr><td><b>Configuration</b></td><td><code>TF</code> (resolved source + auto/manual), <code>RSI</code> (resolved period/signal/stoch), <code>OB/OS</code> (live bands, <code>dyn</code> suffix when dynamic), <code>Input</code> (price input), <code>Scale</code> (&times;period scale), <code>Pivots</code> (lookback and distance range), <code>Q&ge;</code> (resolved min quality), <code>Smooth</code> (SuperSmoother period), <code>Ver</code> (engine version).</td></tr>
+  <tr><td><b>Market</b></td><td><code>State</code> (BULLISH / BEARISH / FLAT from the primary state score), <code>RSI</code> / <code>Signal</code> / <code>StochRSI</code> live readings (display scale), <code>Trend</code> (slope direction + bias value), <code>vs Sig</code> (ABOVE / BELOW), <code>ATR</code> (ATR% with LOW / HIGH tag vs its baseline), <code>ER (blend)</code> (regime weight when the filter bank is on, else <code>off</code>), <code>Session</code> (OPEN / CLOSED vs the session filter), <code>Price live</code>, <code>Bar</code> (source bar open time), <code>Close in</code> (countdown to the source bar&rsquo;s close).</td></tr>
+  <tr><td><b>MTF</b></td><td><code>MTF</code> (signed score + BULL / BEAR / NEUTRAL), one cell per rung (label + signed score + state), <code>TL Sup</code> / <code>TL Res</code> (trendline value and up/down/broken state).</td></tr>
+  <tr><td><b>Signals</b></td><td><code>Bias</code> (trend-filter vote with reason, e.g. &ldquo;Bear (above 50)&rdquo;), <code>Consensus</code> (momentum / trend / MTF vote tally, e.g. <code>BEAR 1/1</code>), <code>Last</code> (newest divergence in the draw window: class, grade, quality), <code>Age</code> (bars since its confirmation), <code>Legs</code> (price leg ATR / RSI leg points), <code>Out (ATR)</code> (its measured outcome on the ATR ruler), <code>Plan</code> / <code>SL</code> / <code>TP1</code> / <code>TP2</code> / <code>R:R</code> (the newest plan&rsquo;s levels), <code>PState</code> (plan lifecycle state), <code>Path</code> (MFE / MAE in plan-R units).</td></tr>
+  <tr><td><b>Statistics</b></td><td><code>Regular</code> / <code>Hidden</code> (bull/bear counts in the stats window), <code>Pending</code> (unresolved), <code>Drawn</code> (drawn records / window bars), <code>Win rate</code> (resolved wins, sample in brackets), <code>Expect</code> (expectancy in R), <code>PF</code> (profit factor), <code>Avg qual</code> (mean quality of the window), <code>MFE/MAE</code> (mean excursions in ATR), and one row per learning bucket (<code>Reg Bull</code>, <code>Hid Bull</code>, <code>Reg Bear</code>, <code>Hid Bear</code> win rates with samples).</td></tr>
+</table>
+<figure class="tight">
+  <img src="images/03_info_panel_closeup.png" alt="Info panel close-up">
+  <figcaption>Fig. 10.1 &mdash; The merged card on a live EURUSD M30 chart: configuration (m30 auto, 14/9/14, dynamic
+  68.8/31.2 bands), market state (BULLISH, RSI 55.7), MTF (&minus;14 NEUTRAL with per-rung cells), the newest signal
+  (BULL DIV A 65&nbsp;%, plan LONG @1.1208, RUNNING, path +0.46R/&minus;0.34R) and the measured statistics
+  (62&nbsp;% win rate on 37 resolved outcomes, PF 1.10). Every cell is explained line by line in &sect;21.</figcaption>
+</figure>
+
+<h2 id="s1-alerts">11. Alerts</h2>
+
+<h3>11.1 Delivery channels</h3>
+<p>
+One engine, four channels, all optional: platform popup (<code>Show Alert Popup</code>), sound
+(<code>Play Sound</code> with separate <code>Bullish Sound</code> / <code>Bearish Sound</code>), platform log
+(<code>Write Alerts To Log</code>) and the indicator&rsquo;s own journal-adjacent log lines. <code>Enable Alerts</code>
+is the master switch.
+</p>
+
+<h3>11.2 The six families</h3>
+<table class="compact">
+  <tr><th>Family</th><th>Parameter</th><th>Default</th><th>Fires when&hellip;</th></tr>
+  <tr><td>OB/OS or midline cross</td><td><code>Alert: OB/OS or Midline Cross</code></td><td>on</td><td>either zone-exit or midline cross confirms (OB/OS wins inside a bar) &mdash; independent of <code>Cross Mode</code></td></tr>
+  <tr><td>Signal-line cross</td><td><code>Alert: Signal-Line Cross</code></td><td>off</td><td>RSI crosses its SMA</td></tr>
+  <tr><td>Divergence</td><td><code>Alert: Divergence</code></td><td>on</td><td>a divergence registers with quality &ge; <code>Alert Min Quality</code></td></tr>
+  <tr><td>MTF confluence flip</td><td><code>Alert: MTF Confluence Flip</code></td><td>off</td><td>the ladder&rsquo;s BULL/BEAR verdict flips (closed bars only)</td></tr>
+  <tr><td>RSI trendline break</td><td><code>Alert: RSI Trendline Break</code></td><td>on</td><td>a confirmed close breaks a momentum trendline (&sect;14)</td></tr>
+  <tr><td>Plan level reached</td><td><code>Alert: Plan Level Reached (TP/SL)</code></td><td>on</td><td>price touches TP1 / TP2 / SL of a live plan (TP1_HIT / TP2_HIT / STOP_HIT)</td></tr>
+</table>
+
+<h3>11.3 Timing rules (why alerts never double-fire or vanish)</h3>
+<ul>
+  <li><b>Closed-bar gate.</b> <code>Only On Closed Source Bar</code> (default on) evaluates the cross families at
+      <code>s-1</code>; divergence, plan-level and trendline alerts are closed-bar by construction. The Scalping
+      preset relaxes this for crosses and alerts together with its live markers.</li>
+  <li><b>Watermark scans.</b> Every elapsed closed source bar since the last evaluation is scanned (most recent win),
+      so a source finer than the chart cannot hide a cross inside an hour.</li>
+  <li><b>Ratio-scaled freshness.</b> An event older than the freshness window &mdash;
+      <code>max(8, 2 &times; source bars per chart bar)</code> for cross alerts and
+      <code>max(2, ratio)</code> for record-keyed alerts (divergence, plan level, trendline break) &mdash; is treated
+      as stale history and not announced (its marker and journal line still exist). After a weekend or a disconnect
+      you get the state, not a flood of ancient rings.</li>
+  <li><b>Cooldown.</b> <code>Alert Cooldown (source bars, 0 = off)</code> spaces repeats <i>per direction</i>: a
+      cooldown of 3 silences a second bullish cross within 3 source bars while a bearish one can still ring.</li>
+  <li><b>History gate.</b> Nothing alerts during the start-up / reload history rescan &mdash; only live events ring.
+      Since v3.24.6 the rescan counts as finished only when the feed has genuinely <i>caught up to the clock</i>
+      (the last source bar opened within ~10 bar spans &mdash; a 15-minute floor for sub-minute sources &mdash; of real
+      time, tightened from a 5-day floor in v3.24.7), so even a platform that streams the backlog in after the attach
+      cannot leak historical events through as &ldquo;live&rdquo; ones.</li>
+</ul>
+
+<h2 id="s1-outputs">12. Outputs &amp; Programmatic Use</h2>
+
+<h3>12.1 The twelve output series</h3>
+<table class="compact">
+  <tr><th>#</th><th>Name</th><th>Type / default colour</th><th>Content</th></tr>
+  <tr><td>1</td><td><code>RSI (Main)</code></td><td>line, #4FA3FF, w3</td><td>the final adaptive RSI in display units</td></tr>
+  <tr><td>2</td><td><code>RSI Signal</code></td><td>line, #FFB74D, w2</td><td>SMA of the main line</td></tr>
+  <tr><td>3</td><td><code>Stoch RSI</code></td><td>line, #B39DDB, w1</td><td>0&ndash;100 position inside the RSI&rsquo;s own range</td></tr>
+  <tr><td>4</td><td><code>RSI Higher TF</code></td><td>dots, #FF7043</td><td>first confluence rung&rsquo;s RSI, strict-mapped, display units</td></tr>
+  <tr><td>5</td><td><code>Trend Bias</code></td><td>dots, #4DD0E1</td><td>trend slope mapped to 0&ndash;100</td></tr>
+  <tr><td>6</td><td><code>Overbought</code></td><td>dots, #FF1744</td><td>live OB band (dynamic or static)</td></tr>
+  <tr><td>7</td><td><code>Oversold</code></td><td>dots, #00E676</td><td>live OS band</td></tr>
+  <tr><td>8</td><td><code>Midline</code></td><td>dots, #3A4A5E</td><td>50 (raw) / 0 (centered)</td></tr>
+  <tr><td>9</td><td><code>Bull Trigger</code></td><td>points, #00E676</td><td>bullish cross trigger values (first-observer de-duplicated)</td></tr>
+  <tr><td>10</td><td><code>Bear Trigger</code></td><td>points, #FF1744</td><td>bearish cross trigger values</td></tr>
+  <tr><td>11</td><td><code>Bull Divergence</code></td><td>points, #B2FF59</td><td>registration point of each bullish divergence (display value at the confirm bar)</td></tr>
+  <tr><td>12</td><td><code>Bear Divergence</code></td><td>points, #FFAB40</td><td>registration point of each bearish divergence</td></tr>
+</table>
+
+<h3>12.2 Consuming the outputs from a cBot or another indicator</h3>
+<p>
+All twelve series are ordinary <code>IndicatorDataSeries</code> objects: read them by index on the <b>chart</b>
+timeframe (trigger and divergence points are placed on the chart bar that first observed the closed source bar).
+NaN means &ldquo;no event / not warmed&rdquo;. Because the trigger series are de-duplicated per closed chart bar, a
+cBot that reacts to &ldquo;non-NaN on the last closed bar&rdquo; cannot double-enter on a finer source. Remember the
+display-scale rule: with <code>Output Scale = Centered</code>, series 1&ndash;4 arrive shifted by &minus;50.
+</p>
+<div class="callout warn">
+  <strong>Do not read live-bar trigger points as confirmed signals</strong>
+  With <code>Mark Only Closed Bars</code> off (Scalping), the trigger outputs on the forming bar can still change
+  until the bar closes. A systematic consumer should either keep the closed-bar default or read index
+  <code>Count-2</code>.
+</div>
+
+<h2 id="s1-trade">13. Trade Management &mdash; the Projection Engine</h2>
+
+<h3>13.1 What a plan is</h3>
+<p>
+Every registered divergence (not only the drawn ones) receives a full trade plan at its confirmation bar: an
+<b>ENTRY</b> (the confirmation close), a <b>STOP</b>, and two targets <b>TP1 / TP2</b> expressed as R-multiples of the
+plan&rsquo;s own risk. The plan is drawn on the <b>price chart</b> as four labelled horizontal levels spanning
+<code>Projection Length (chart bars)</code>, echoed in the panel, included in alerts and written to the journal. It is
+a <i>projection</i> &mdash; a &ldquo;if you acted on this signal, here is the coherent ruler&rdquo; &mdash; never an
+order.
+</p>
+
+<h3>13.2 Stop placement: two sources, one sanity band</h3>
+<ul>
+  <li><b>PivotStructure</b> (default): the stop sits beyond the market structure that produced the signal &mdash; the
+      divergence&rsquo;s extreme pivot (the lower of the two pivots&rsquo; prices for a bull, the higher for a bear)
+      plus <code>Pivot Stop Buffer (x ATR)</code>. If the structure lies on the wrong side of the entry or closer than
+      0.25 ATR, the ATR ruler takes over.</li>
+  <li><b>AtrMultiple</b>: the stop is <code>Outcome Stop (x ATR)</code> &times; entry ATR &mdash; exactly the ruler the
+      learning engine grades outcomes with, so what you see is what the win rate describes.</li>
+</ul>
+<p>
+Whichever source wins, the final risk is clamped to <b>[0.5 .. 6] ATR</b> of the entry &mdash; stops can never be
+noise-tight on a violent instrument nor pattern-loose on a quiet one. Targets then follow:
+<code>TP1 = entry + Plan TP1 (R multiple) &times; risk</code>, <code>TP2 = entry + Plan TP2 (R multiple) &times; risk</code>
+(defaults 1R / 2R; the v3.2 geometry release made reward&ge;risk the default on purpose).
+</p>
+
+<h3>13.3 Drawing and the visible-plan budget</h3>
+<p>
+At most <code>Max Visible Trade Plans</code> plans are drawn at once (newest first; the registry itself keeps every
+plan for its lifecycle and for the statistics). Labels (<code>Show Projection Labels</code>) read
+<code>ENTRY</code>, <code>SL -1R</code>, <code>TP1 +1.0R</code>, <code>TP2 +2.0R</code>; colours come from
+<code>Entry Line Color</code> / <code>Stop Line Color</code> and the signal direction&rsquo;s colour for the targets.
+A plan whose confirmation bar scrolls out of the chart window is removed and <i>retried</i> every extension pass, so
+zooming back never loses it permanently.
+</p>
+
+<h3>13.4 The lifecycle state machine</h3>
+<div class="formula">RUNNING  &rarr;  TP1 HIT (still running)  &rarr;  TP2 HIT   (terminal)
+                          &searr;  STOPPED  (terminal)
+                          &searr;  STALE    (terminal: 4 &times; Outcome Horizon bars elapsed)</div>
+<ul>
+  <li>Evaluated on <b>closed source bars only</b>, strictly chronologically, from the bar after confirmation.</li>
+  <li><b>Same-bar conservatism:</b> if one bar can touch both the stop and a target, the stop is assumed to fill first
+      (a LOSS / STOPPED) &mdash; identical to the outcome engine&rsquo;s rule, so the two never disagree.</li>
+  <li>A bar touching TP2 while still RUNNING credits TP1 on the same bar (conservative: the half-position that would
+      have paid at TP1 is counted), then terminates as TP2 HIT.</li>
+  <li>Reached levels <b>turn dotted and carry suffixes</b>: <code>TP1 +1.0R HIT</code>, <code>TP2 +2.0R VOID</code>,
+      <code>SL -1R HIT</code>, <code>ENTRY ... STALE</code> &mdash; a finished plan never masquerades as a live one.</li>
+  <li>Expiry: a plan that neither paid nor stopped within <code>4 &times; Outcome Horizon</code> bars (clamped
+      50&ndash;4000) becomes STALE &mdash; the signal simply did not develop.</li>
+</ul>
+
+<h3>13.5 Management hints (break-even and chandelier trail)</h3>
+<p>
+With <code>Show Break-Even &amp; Trailing Hints</code> on, a running plan grows two advisory levels:
+</p>
+<ul>
+  <li><b>BE STOP</b> &mdash; a dotted line at entry, starting at the TP1-hit bar: &ldquo;once TP1 paid, the managed
+      stop of the remainder belongs at entry&rdquo;.</li>
+  <li><b>TRAIL</b> &mdash; a chandelier trail suggestion: the best <i>closed</i> source close since entry minus
+      <code>Trailing Stop (x ATR chandelier)</code> &times; ATR (mirrored above price for shorts), never worse than
+      the original stop. Refreshed on closed bars only (the drawing records its freshness watermark).</li>
+</ul>
+<p>The plan tooltip carries the standard management note: scale out at TP1, move the stop to break-even, trail the rest.</p>
+
+<figure>
+  <img src="images/20_plan_closeup.png" alt="Trade plan close-up">
+  <figcaption>Fig. 13.1 &mdash; Trade plans on the price chart: <code>ENTRY</code>, <code>SL -1R</code>,
+  <code>TP1 +1.0R</code> and <code>TP2 +2.0R</code> levels of a finished plan &mdash; reached levels dotted with
+  <code>HIT</code> / <code>VOID</code> suffixes (&sect;13.4) &mdash; plus the chandelier <code>TRAIL 3.0A</code>
+  management hint (&sect;13.5), an RSI trendline break marker and a divergence label.</figcaption>
+</figure>
+
+<h3>13.6 Path transparency</h3>
+<p>
+The panel&rsquo;s <code>Path</code> cell shows the plan&rsquo;s MFE / MAE in <b>plan-R units</b>
+(e.g. <code>+0.46R / -0.34R</code>), so every HIT / VOID label on the chart is verifiable at a glance against how far
+price actually travelled.
+</p>
+
+<h2 id="s1-trendlines">14. RSI Momentum Trendlines</h2>
+
+<h3>14.1 What they are</h3>
+<p>
+Two automatic lines in the <b>oscillator pane</b>, drawn through the RSI readings of the same prominence-filtered,
+confirmed pivots that feed the divergence engine:
+</p>
+<ul>
+  <li><b>Support</b> &mdash; through the last two qualifying RSI <i>low</i> pivots; a confirmed source close
+      <i>below</i> it (by more than <code>Trendline Break Threshold</code> RSI points) is a bearish momentum break.</li>
+  <li><b>Resistance</b> &mdash; through the last two qualifying RSI <i>high</i> pivots; a confirmed close <i>above</i>
+      it is a bullish break.</li>
+</ul>
+<p>
+Qualifying anchors respect <code>Trendline Min Pivot Gap</code> (minimum bars between the two pivots) and
+<code>Trendline Max Slope</code> (RSI points per bar &mdash; a vertical line is not a trend, it is a spike). The engine
+searches up to six candidate anchor pairs, re-anchors only when a strictly better pair confirms, extends the line to
+the live bar every update, and detects breaks on closed source bars only &mdash; a break marker, once printed, is
+final. Breaks produce: an on-pane marker (<code>Show Trendline Break Markers</code>), an alert family (&sect;11), two
+panel rows (<code>TL Sup</code> / <code>TL Res</code> with value and up/down/broken state) and
+<code>ARP-PLAN</code>-adjacent log lines when debugging.
+</p>
+<div class="callout tip">
+  <strong>Why momentum trendlines lead price</strong>
+  A price trendline breaks when the <i>market</i> gives up a level; an RSI trendline breaks when the
+  <i>momentum</i> behind the level gives up first. In practice the oscillator&rsquo;s support line breaks several bars
+  before the price chart&rsquo;s own trendline in fading trends &mdash; treat it as an early-warning layer under your
+  structure analysis, not as a standalone entry.
+</div>
+
+<h2 id="s1-sessions">15. Session Markers</h2>
+<p>
+Thin vertical lines on the <b>price chart</b> at configurable UTC times &mdash; London and New York opens by default
+(<code>07:00,13:30</code>). Pure context: they never interact with signals, gates or statistics.
+</p>
+<ul>
+  <li><code>Marker Times (UTC, HH:MM list)</code>: comma / semicolon / space separated; invalid tokens are ignored;
+      the parsed set is sorted so markers inside one wide bar emit chronologically.</li>
+  <li><b>Occurrence-complete:</b> inside a bar wider than the marker interval (a Daily bar containing both 07:00 and
+      13:30, a Weekly bar containing five of each) <i>every</i> occurrence is emitted, each with its own composite key
+      (bar, occurrence, minute) &mdash; no collision, no drop, up to the hard cap of 1500 objects.</li>
+  <li><code>Marker Window (chart bars)</code>: a rolling window of closed chart bars; older markers are trimmed.</li>
+  <li>Drawn on closed chart bars only; a transient draw failure heals on the next reload (no retry storm).</li>
+</ul>
+
+<figure>
+  <img src="images/21_price_divergences.png" alt="Divergences and session markers on the price chart">
+  <figcaption>Fig. 15.1 &mdash; The price chart as the engine&rsquo;s context layer: thin session-marker verticals at
+  their UTC instants (&sect;15), mirrored hidden-bearish divergence labels (&sect;6.7) and the trendline rows of the
+  panel. Session markers never touch signal logic &mdash; they only tell you <i>when</i> everything else happened.</figcaption>
+</figure>
+
+<h2 id="s1-journal">16. The CSV Signal Journal</h2>
+
+<h3>16.1 Three streams, one join key</h3>
+<p>
+With <code>Signal Journal (CSV lines to log)</code> on (default), the platform log receives three semicolon-separated
+streams. Every line is id-keyed, so a signal row joins to its plan events and its final outcome in Excel:
+</p>
+<pre>ARP-JOURNAL-HEADER;id;time;symbol;sourceTF;type;grade;quality;mtf;entry;sl;tp1;tp2;rr1;rr2;atrEntry;stopMode
+ARP-JOURNAL;17;2026-10-26 07:00;EURUSD;m30;REGULAR-BULL;A;65.2;-14;1.12080;1.11892;1.12276;1.12468;1.00;2.00;0.00052;structure
+ARP-PLAN;17;2026-10-26 07:00;EURUSD;TP1_HIT;2026-10-26 11:00;1.12276
+ARP-OUTCOME;17;2026-10-26 07:00;EURUSD;REGULAR-BULL;WIN;1.42;-0.34</pre>
+<figure>
+  <img src="images/31_log_excerpt.png" alt="Platform log excerpt">
+  <figcaption>Fig. 16.1 &mdash; A real platform log on a fresh EURUSD h1 attach (v3.24.7): the
+  <code>ARP-JOURNAL-HEADER</code>, the complete resolved-profile dump (&sect;18.1), then a single <i>live</i> signal
+  resolving into its id-keyed <code>ARP-JOURNAL</code> / <code>ARP-OUTCOME</code> rows with its alert twin &mdash; ready
+  to paste into Excel. Note the start-up rescan is silent: only today&rsquo;s live signal journals, never the backlog
+  (&sect;11.3). The <code>[Div]</code>/<code>[Skip]</code> trace lines appear only when <code>Debug Log</code> is on.</figcaption>
+</figure>
+<ul>
+  <li><b>ARP-JOURNAL</b> &mdash; one line per <i>live</i> registered divergence (history rescans stay silent &mdash;
+      and since v3.24.6/v3.24.7 the pass is only declared finished once the feed has caught up to the clock, so streamed
+      backlogs cannot flood the journal either): id,
+      confirmation time (UTC), symbol, resolved source TF, class, grade, quality, confluence snapshot, entry, the
+      plan&rsquo;s SL/TP1/TP2 (or <code>-</code>), both R-multiples, entry ATR and the stop source.</li>
+  <li><b>ARP-PLAN</b> &mdash; one line per lifecycle event: <code>TP1_HIT / TP2_HIT / STOP_HIT / EXPIRED</code> with the
+      event bar&rsquo;s time and the touched price.</li>
+  <li><b>ARP-OUTCOME</b> &mdash; one line per resolved outcome on the ATR ruler: <code>WIN / LOSS / EXPIRED</code> plus
+      MFE and MAE in ATR units (2 decimals).</li>
+</ul>
+<p>
+All numbers are culture-invariant (dot decimal, no thousands separators), timestamps are
+<code>yyyy-MM-dd HH:mm</code> UTC &mdash; paste the log lines into a <code>.csv</code> and Excel opens them cleanly.
+</p>
+
+<h3>16.2 What the journal is for</h3>
+<ol>
+  <li><b>Auditing the engine on your feed.</b> Pivot the OUTCOME stream by class / grade / hour: that is your real
+      edge measurement, independent of the panel.</li>
+  <li><b>Reconciling the panel.</b> Every <code>Win rate</code>, <code>PF</code> and <code>MFE/MAE</code> cell is
+      reproducible from the journal with two Excel formulas.</li>
+  <li><b>Building your own dataset.</b> The JOURNAL row carries every feature the quality score used &mdash; a
+      ready-made labelled dataset for external analysis.</li>
+</ol>
+
+<h2 id="s1-params">17. Complete Parameter Reference &mdash; 164 Parameters, 15 Groups</h2>
+<p class="toc-note">
+Defaults below are the factory defaults (<code>Universal</code> style). Fields marked <b>[ref]</b> are scaling
+references (&sect;3): in Automatic mode the engine uses the <i>resolved</i> value, in Manual mode the literal one.
+Fields marked <b>[preset]</b> are overwritten when you select Scalping / Swing / Position (&sect;4).
+Enum values are written as in the dialog.
+</p>
+
+<h3>17.1 Group 0 &mdash; Trading Style (1)</h3>
+<table class="compact">
+  <tr><th style="width:30%">Parameter</th><th style="width:22%">Default / range</th><th>What it does</th></tr>
+  <tr><td><code>Trading Style</code></td><td>Universal &middot; {Universal, Scalping, Swing, Position}</td><td>Selects the preset that pins 134 parameters (&sect;4). Universal = neutral, changes nothing. Applied at initialisation; switching styles overwrites the pinned fields immediately.</td></tr>
+</table>
+
+<h3>17.2 Group 1 &mdash; Timeframe &amp; Source (10)</h3>
+<table class="compact">
+  <tr><th style="width:30%">Parameter</th><th style="width:22%">Default / range</th><th>What it does</th></tr>
+  <tr><td><code>Source Timeframe</code> [preset]</td><td>CurrentChart &middot; {CurrentChart, M1&hellip;Monthly, Custom}</td><td>The timeframe the whole engine computes on. Anything but CurrentChart makes this an MTF indicator: the oscillator pane then shows the <i>source</i> timeframe&rsquo;s RSI mapped onto your chart bars.</td></tr>
+  <tr><td><code>Custom Timeframe Name</code></td><td>empty</td><td>Free-text timeframe when <code>Source Timeframe = Custom</code>: accepts <code>M5</code>, <code>H4</code>, <code>D1</code>, <code>W1</code>, <code>MN</code>, full words, Heikin names (<code>HeikinAshiH4</code>, <code>HH4</code>&hellip;), Renko/Range names, and <code>current</code>/<code>chart</code>. Unparseable input falls back to the chart timeframe with a start-up warning.</td></tr>
+  <tr><td><code>Strict Non-Repaint MTF Mapping</code> [preset]</td><td>Yes</td><td>Higher-timeframe reads use only <i>closed</i> rung bars (&sect;2.3, &sect;9). Off = the forming rung bar may contribute to live display values.</td></tr>
+  <tr><td><code>Enable MTF Confluence</code> [preset]</td><td>Yes</td><td>Master switch of the confluence ladder (&sect;9): rungs, score, higher-TF line, gates and the HTF divergence vote.</td></tr>
+  <tr><td><code>Confluence Levels (higher TFs)</code> [preset]</td><td>2 &middot; 1&ndash;3</td><td>How many higher rungs to stack above the primary source. Failed rungs consume no slot.</td></tr>
+  <tr><td><code>Confluence Timeframes (empty = auto)</code> [preset]</td><td>empty</td><td>Optional explicit rung list (e.g. <code>H4, D1</code>) overriding the 3.2&times; auto walk.</td></tr>
+  <tr><td><code>Confluence Gate</code> [preset]</td><td>SoftPenalty &middot; {Off, SoftPenalty, HardGate}</td><td>How the ladder score filters divergences (&sect;9.4): nothing / small quality term / hard rejection below the mapped threshold.</td></tr>
+  <tr><td><code>Min Confluence Score</code> [preset]</td><td>25 &middot; 0&ndash;100</td><td>The 0&ndash;100 dial behind the gate: in HardGate it maps to aligned score &ge; 2&middot;value&minus;100; in SoftPenalty it centres the quality term.</td></tr>
+  <tr><td><code>Auto Load History</code> [preset]</td><td>Yes</td><td>Requests deeper history at start-up so every resolved window (yours and each rung&rsquo;s) is warm before the first signal.</td></tr>
+  <tr><td><code>Min Source Bars</code> [preset]</td><td>800 &middot; 200&ndash;20000</td><td>Minimum source history the engine asks for; a warning is logged if the feed cannot supply the resolved warm-up (&sect;18).</td></tr>
+</table>
+
+<h3>17.3 Group 2 &mdash; RSI Core (17)</h3>
+<table class="compact">
+  <tr><th style="width:30%">Parameter</th><th style="width:22%">Default / range</th><th>What it does</th></tr>
+  <tr><td><code>RSI Price Input</code> [preset]</td><td>Close &middot; {Close, Typical, Weighted, Median, HeikinAshi, VolumePriceAdjusted}</td><td>The series the momentum is measured on (&sect;5.2, gallery &sect;23).</td></tr>
+  <tr><td><code>RSI Period</code> [ref][preset]</td><td>14 &middot; 2&ndash;200</td><td>Wilder period of the fast leg (and of the only leg with the filter bank off). Reference for the scaling law in Automatic mode.</td></tr>
+  <tr><td><code>Signal Period</code> [ref][preset]</td><td>9 &middot; 2&ndash;100</td><td>SMA length of the signal line.</td></tr>
+  <tr><td><code>Stoch RSI Period</code> [ref][preset]</td><td>14 &middot; 2&ndash;100</td><td>Lookback of the StochRSI normalisation window.</td></tr>
+  <tr><td><code>Use SuperSmoother</code> [preset]</td><td>Yes</td><td>Passes the (blended) RSI through Ehlers&rsquo; two-pole super smoother (&sect;5.4).</td></tr>
+  <tr><td><code>SuperSmoother Period</code> [ref][preset]</td><td>10 &middot; 2&ndash;100</td><td>The smoother&rsquo;s period &mdash; its cutoff wavelength in bars.</td></tr>
+  <tr><td><code>Overbought</code> [ref][preset]</td><td>70 &middot; 52&ndash;95</td><td>Static OB level: the centre of the dynamic band and the Manual-mode band itself.</td></tr>
+  <tr><td><code>Oversold</code> [ref][preset]</td><td>30 &middot; 5&ndash;48</td><td>Static OS level, same role.</td></tr>
+  <tr><td><code>Dynamic Levels (ATR)</code> [preset]</td><td>Yes</td><td>Lets the bands breathe with ATR% vs its baseline (&sect;5.6). Off = fixed bands.</td></tr>
+  <tr><td><code>Level Adjustment Factor</code> [preset]</td><td>2.5 &middot; 0&ndash;10, step 0.1</td><td>Gain of the breathing: 0 freezes the bands at their static values, higher values stretch them further in hot regimes.</td></tr>
+  <tr><td><code>Volatility Baseline (bars)</code> [ref][preset]</td><td>100 &middot; 20&ndash;1000</td><td>SMA length of the ATR% baseline &mdash; &ldquo;normal volatility for this instrument&rdquo;.</td></tr>
+  <tr><td><code>Output Scale</code> [preset]</td><td>Raw &middot; {Raw, Centered}</td><td>0&ndash;100 versus &minus;50..+50 display (&sect;5.8).</td></tr>
+  <tr><td><code>Show Signal Line</code> [preset]</td><td>Yes</td><td>Draws output series 2.</td></tr>
+  <tr><td><code>Show Stoch RSI Line</code> [preset]</td><td>Yes</td><td>Draws output series 3 (and enables its computation).</td></tr>
+  <tr><td><code>Show Higher-TF RSI Line</code> [preset]</td><td>Yes</td><td>Draws output series 4 (requires the confluence ladder).</td></tr>
+  <tr><td><code>Show Trend Bias Line</code> [preset]</td><td>Yes</td><td>Draws output series 5 &mdash; the visible trend gate.</td></tr>
+  <tr><td><code>Signal Sensitivity Lambda</code> [preset]</td><td>1.00 &middot; 0.80&ndash;1.00, step 0.01</td><td>OB/OS exit hysteresis (&sect;5.7): 1.00 = classic exact-level cross; lower = the zone state clears only after RSI moves (1&minus;&lambda;)&middot;(OB&minus;OS)&middot;0.1 points through the band, filtering border whipsaws.</td></tr>
+</table>
+
+<h3>17.4 Group 3 &mdash; Automatic Adaptation (9)</h3>
+<table class="compact">
+  <tr><th style="width:30%">Parameter</th><th style="width:22%">Default / range</th><th>What it does</th></tr>
+  <tr><td><code>Adaptation Mode</code></td><td>Automatic &middot; {Automatic, Manual}</td><td>Scaling law on / off (&sect;3). Every style preset forces Automatic.</td></tr>
+  <tr><td><code>Timeframe Scaling</code> [preset]</td><td>Balanced &middot; {BarCount, Balanced, TimeHorizon}</td><td>The exponent e of the scaling law: 0 (pure bars), 0.15 (compromise), 1 (pure clock time).</td></tr>
+  <tr><td><code>Global Sensitivity</code> [preset]</td><td>1.0 &middot; 0.5&ndash;2.0, step 0.05</td><td>gain = 1/sensitivity applied to the RSI-family windows: &gt;1 = shorter, more reactive windows; &lt;1 = longer, calmer ones.</td></tr>
+  <tr><td><code>Microstructure Noise Horizon (min)</code> [preset]</td><td>1.0 &middot; 0&ndash;30, step 0.5</td><td>&epsilon; of the scaling law (&sect;3.5): the fixed noise slice per bar that makes fine-timeframe windows grow.</td></tr>
+  <tr><td><code>Regime-Adaptive Filter Bank</code> [preset]</td><td>No</td><td>Enables the ER-blended fast/slow Wilder legs (&sect;5.3). Off = classic single RSI.</td></tr>
+  <tr><td><code>Filter Bank Spread</code> [preset]</td><td>0.35 &middot; 0&ndash;0.8, step 0.05</td><td>Leg separation of the bank: fast = P&middot;(1&minus;s), slow = P&middot;(1+s).</td></tr>
+  <tr><td><code>Efficiency Ratio Period</code> [ref][preset]</td><td>10 &middot; 3&ndash;60</td><td>Kaufman ER lookback that drives the blend weight (smoothing = 2&times;period).</td></tr>
+  <tr><td><code>Max Period Multiplier</code> [preset]</td><td>3.0 &middot; 1&ndash;8, step 0.25</td><td>Ceiling of the period scale: no resolved window may exceed reference&middot;multiplier.</td></tr>
+  <tr><td><code>High Timeframe Policy</code> [preset]</td><td>Canonical &middot; {Canonical, HorizonMatched}</td><td>Scale floor: Canonical never shrinks windows below the reference on coarse timeframes (floor 1.0); HorizonMatched allows down to 0.35 so coarse charts can track clock horizons.</td></tr>
+</table>
+
+<h3>17.5 Group 4 &mdash; Divergence Detection (16)</h3>
+<table class="compact">
+  <tr><th style="width:30%">Parameter</th><th style="width:22%">Default / range</th><th>What it does</th></tr>
+  <tr><td><code>Show Divergences</code></td><td>Yes</td><td>Master switch of the divergence engine (detection, drawing, plans, learning input).</td></tr>
+  <tr><td><code>Divergence Kinds</code> [preset]</td><td>RegularAndHidden &middot; {RegularOnly, HiddenOnly, RegularAndHidden}</td><td>Which classes the detector considers (&sect;6.1).</td></tr>
+  <tr><td><code>Pivot Lookback</code> [ref][preset]</td><td>5 &middot; 2&ndash;40</td><td>Fractal arm length: bars on each side of a pivot, and the confirmation delay. Bigger = fewer, stronger, later pivots.</td></tr>
+  <tr><td><code>Pivot Prominence (x ATR)</code> [preset]</td><td>0.35 &middot; 0&ndash;5, step 0.05</td><td>Minimum RSI prominence of a pivot in ATR-price units (&sect;6.2). 0 admits every fractal.</td></tr>
+  <tr><td><code>Max Pivot Candidates</code> [preset]</td><td>6 &middot; 1&ndash;20</td><td>How many older pivots are evaluated per new pivot (ranking keeps the best).</td></tr>
+  <tr><td><code>Min Pivot Distance</code> [ref][preset]</td><td>8 &middot; 3&ndash;120</td><td>Minimum bars between the two pivots of a pattern.</td></tr>
+  <tr><td><code>Max Pivot Distance</code> [ref][preset]</td><td>100 &middot; 10&ndash;1000</td><td>Maximum bars between them; beyond it the pair is a different story, not a pattern.</td></tr>
+  <tr><td><code>Min Price Leg (x ATR)</code> [preset]</td><td>0.75 &middot; 0&ndash;10, step 0.25</td><td>Minimum price distance between the pivots in ATR units (&sect;6.3).</td></tr>
+  <tr><td><code>Min RSI Leg (points)</code> [preset]</td><td>3.0 &middot; 0.5&ndash;30, step 0.5</td><td>Minimum RSI distance between the pivots in points.</td></tr>
+  <tr><td><code>Require Extreme Zone</code> [preset]</td><td>Yes</td><td>Zone discipline: regular patterns need a pivot beyond the live band (&plusmn;5 tolerance); hidden patterns must not sit wholly in the opposite extreme (&sect;6.3).</td></tr>
+  <tr><td><code>Confirm With HTF RSI</code> [preset]</td><td>Yes</td><td>Enables the higher-TF vote (&sect;6.5) in ranking and quality.</td></tr>
+  <tr><td><code>Confirm With Stoch RSI</code> [preset]</td><td>Yes</td><td>Enables the StochRSI vote.</td></tr>
+  <tr><td><code>Confirm With Volume</code> [preset]</td><td>Yes</td><td>Enables the tick-volume vote (ignored gracefully on volume-less feeds).</td></tr>
+  <tr><td><code>Hidden: MTF Alignment Gate</code> [preset]</td><td>Yes</td><td>Rejects hidden divergences when the aligned ladder score &le; &minus;33 (&sect;9.4).</td></tr>
+  <tr><td><code>Max Drawn Divergences</code> [preset]</td><td>25 &middot; 1&ndash;200</td><td>Draw cap (newest win). The registry keeps more for statistics and plans.</td></tr>
+  <tr><td><code>Draw Only Most Recent N Bars</code> [ref][preset]</td><td>1500 &middot; 50&ndash;100000</td><td>Source-bar window inside which records are drawn; enforced continuously as the market advances.</td></tr>
+</table>
+
+<h3>17.6 Group 5 &mdash; Signal Filters (18)</h3>
+<table class="compact">
+  <tr><th style="width:30%">Parameter</th><th style="width:22%">Default / range</th><th>What it does</th></tr>
+  <tr><td><code>Use Trend Filter</code> [preset]</td><td>Yes</td><td>Enables the slope gate and its quality/panel contributions (&sect;27.2).</td></tr>
+  <tr><td><code>Trend EMA Period</code> [ref][preset]</td><td>50 &middot; 5&ndash;500</td><td>EMA length whose slope defines the trend.</td></tr>
+  <tr><td><code>Trend Slope Bars</code> [ref][preset]</td><td>5 &middot; 1&ndash;60</td><td>Bars over which the EMA slope is measured (also sizes the falling-knife window = 2&times;this, clamped 4&ndash;60).</td></tr>
+  <tr><td><code>Max Counter-Trend Slope (ATR/bar)</code> [preset]</td><td>0.15 &middot; 0.01&ndash;2, step 0.01</td><td>The gate limit: hidden divergences are rejected when the trend runs against them faster than this; regular ones only at 3&times; this (&ldquo;too strong to fade&rdquo;).</td></tr>
+  <tr><td><code>ATR Gate</code> [preset]</td><td>Adaptive &middot; {Adaptive, Fixed, Off}</td><td>Volatility floor policy (&sect;27.1): adaptive percentile of the EWMA log-vol model, a fixed %, or none.</td></tr>
+  <tr><td><code>ATR Period</code> [ref][preset]</td><td>14 &middot; 2&ndash;100</td><td>Wilder ATR used everywhere the engine needs &ldquo;one unit of volatility&rdquo; (prominence, legs, plans, outcomes).</td></tr>
+  <tr><td><code>Adaptive ATR Percentile</code> [preset]</td><td>20 &middot; 1&ndash;49, step 1</td><td>Which percentile of the modelled ATR% distribution becomes the floor (lower = quieter markets still trade).</td></tr>
+  <tr><td><code>Fixed Min ATR % (reference at H1)</code> [ref][preset]</td><td>0.05 &middot; 0&ndash;5, step 0.005</td><td>The floor value when <code>ATR Gate = Fixed</code>; scaled by (d/60)^0.5 in Automatic mode.</td></tr>
+  <tr><td><code>Use Volatility Spike Filter</code> [preset]</td><td>Yes</td><td>Rejects confirmations printed inside a &gt;3&times; baseline ATR% shock (news bars).</td></tr>
+  <tr><td><code>Use Momentum (falling knife) Filter</code> [preset]</td><td>Yes</td><td>Rejects a bullish confirmation under a &gt;4 ATR drop (or bearish under a &gt;4 ATR surge) within the last 2&times;Trend Slope Bars.</td></tr>
+  <tr><td><code>Use Cluster / Repeat Filter</code> [preset]</td><td>Yes</td><td>Rejects a same-direction signal clustered within Min Pivot Distance bars <i>and</i> 1 ATR of price of a previous one &mdash; no triple-entry on one bottom.</td></tr>
+  <tr><td><code>Require Post-Pivot Follow-Through</code> [preset]</td><td>No</td><td>Optional gate: the confirmation close must sit at least <code>Min Follow-Through</code> of the way through the pivot-to-confirmation range in the signal&rsquo;s direction.</td></tr>
+  <tr><td><code>Min Follow-Through (0-1)</code> [preset]</td><td>0.5 &middot; 0&ndash;1, step 0.05</td><td>The ratio required when the gate above is on.</td></tr>
+  <tr><td><code>Session Filter</code> [preset]</td><td>Off &middot; {Off, Auto, ManualUtc}</td><td>Restricts signals to trading hours: Auto uses the symbol&rsquo;s market-hours calendar (falling back to the manual window), ManualUtc uses your UTC hour window.</td></tr>
+  <tr><td><code>Manual Session Start (UTC hour)</code> [preset]</td><td>7 &middot; 0&ndash;23</td><td>Inclusive start hour of the manual window.</td></tr>
+  <tr><td><code>Manual Session End (UTC hour, exclusive)</code> [preset]</td><td>20 &middot; 0&ndash;24</td><td>Exclusive end hour; start &gt; end wraps through midnight; start = end means &ldquo;all day&rdquo;.</td></tr>
+  <tr><td><code>Min Quality Score</code> [preset]</td><td>50 &middot; 0&ndash;100</td><td>Registration floor (&sect;6.6). Below it the candidate is skipped (reason in Debug Log).</td></tr>
+  <tr><td><code>Weak Signal Threshold</code> [preset]</td><td>65 &middot; 0&ndash;100</td><td>Below it (but above the floor) the divergence is drawn in the weak colour.</td></tr>
+</table>
+
+<h3>17.7 Group 6 &mdash; Quality &amp; Learning (7)</h3>
+<table class="compact">
+  <tr><th style="width:30%">Parameter</th><th style="width:22%">Default / range</th><th>What it does</th></tr>
+  <tr><td><code>Adaptive Learning</code> [preset]</td><td>Yes</td><td>Master switch of outcome measurement and the learning buckets (&sect;7).</td></tr>
+  <tr><td><code>Learning Memory (outcomes)</code> [preset]</td><td>120 &middot; 10&ndash;2000</td><td>Resolved samples kept per bucket (proportional decay beyond it); also bounds the Expired counter.</td></tr>
+  <tr><td><code>Min Learning Samples</code> [preset]</td><td>12 &middot; 1&ndash;500</td><td>Resolved outcomes a bucket needs before its win rate may influence quality.</td></tr>
+  <tr><td><code>Persist Learning (LocalStorage)</code> [preset]</td><td>Yes</td><td>Save/restore the buckets across restarts (throttled 5 s, scope = indicator type).</td></tr>
+  <tr><td><code>Outcome Horizon (reference)</code> [ref][preset]</td><td>60 &middot; 5&ndash;1000</td><td>Bars an outcome may take before EXPIRED; plan expiry uses 4&times; this.</td></tr>
+  <tr><td><code>Outcome Target (x ATR)</code> [preset]</td><td>1.0 &middot; 0.1&ndash;10, step 0.1</td><td>Favourable excursion that counts a WIN on the ATR ruler.</td></tr>
+  <tr><td><code>Outcome Stop (x ATR)</code> [preset]</td><td>1.5 &middot; 0.1&ndash;10, step 0.1</td><td>Adverse excursion that counts a LOSS; also the stop source when <code>Stop Source = AtrMultiple</code>.</td></tr>
+</table>
+
+<h3>17.8 Group 7 &mdash; Signal Markers (9)</h3>
+<table class="compact">
+  <tr><th style="width:30%">Parameter</th><th style="width:22%">Default / range</th><th>What it does</th></tr>
+  <tr><td><code>Show Cross Signals</code> [preset]</td><td>Yes</td><td>Master switch of the crossover markers (trigger outputs are independent, &sect;12).</td></tr>
+  <tr><td><code>Cross Mode</code> [preset]</td><td>ObOs &middot; {ObOs, Midline, SignalLine, ObOsAndMidline}</td><td>Which cross families markers and triggers follow (&sect;8.1).</td></tr>
+  <tr><td><code>Marker Style</code> [preset]</td><td>TextAndArrow &middot; {TextAndArrow, TextOnly, ArrowOnly, None}</td><td>Glyph composition of a cross marker.</td></tr>
+  <tr><td><code>Marker Wording</code></td><td>BuySell &middot; {BuySell, LongShort, TurnUpDown, BullishBearish}</td><td>The words on the text glyph (midline crosses keep ABOVE/BELOW 50).</td></tr>
+  <tr><td><code>Bullish Signal Color</code></td><td>#00E676</td><td>Colour of bullish cross markers.</td></tr>
+  <tr><td><code>Bearish Signal Color</code></td><td>#FF1744</td><td>Colour of bearish cross markers.</td></tr>
+  <tr><td><code>Marker Font Size</code></td><td>9 &middot; 6&ndash;22</td><td>Font of the text glyph.</td></tr>
+  <tr><td><code>Mark Only Closed Bars</code> [preset]</td><td>Yes</td><td>Non-repainting marker placement (&sect;8.2). Off = live-bar marking (Scalping).</td></tr>
+  <tr><td><code>Max Cross Markers</code> [preset]</td><td>200 &middot; 5&ndash;2000</td><td>Draw cap for cross markers.</td></tr>
+</table>
+
+<h3>17.9 Group 8 &mdash; Divergence Appearance (17)</h3>
+<table class="compact">
+  <tr><th style="width:30%">Parameter</th><th style="width:22%">Default / range</th><th>What it does</th></tr>
+  <tr><td><code>Draw Style</code> [preset]</td><td>LineAndMarkers &middot; {LineOnly, MarkersOnly, LineAndMarkers}</td><td>Connector line between the pivots, pivot icons, or both.</td></tr>
+  <tr><td><code>Mirror Divergences On Price Chart</code> [preset]</td><td>No</td><td>Duplicates the pattern on the price pane (price pivots instead of RSI readings).</td></tr>
+  <tr><td><code>Show Drop Lines</code> [preset]</td><td>Yes</td><td>Thin verticals from each pivot to the pane edge for exact pivot reading.</td></tr>
+  <tr><td><code>Show Labels</code> [preset]</td><td>Yes</td><td>The text label at the pattern (&ldquo;BULL DIV&rdquo; &plusmn; grade &plusmn; quality).</td></tr>
+  <tr><td><code>Label Wording</code> [preset]</td><td>Plain &middot; {Plain, Compact, Full}</td><td>Plain = <code>BULL DIV</code>; Compact = <code>B</code>/<code>HB</code>&hellip;; Full = <code>REGULAR BULLISH DIVERGENCE</code>&hellip;</td></tr>
+  <tr><td><code>Show Grade (A/B/C) In Label</code> [preset]</td><td>No</td><td>Appends the structure grade.</td></tr>
+  <tr><td><code>Show Quality % In Label</code> [preset]</td><td>Yes</td><td>Appends the quality score (e.g. <code>BULL DIV A 65%</code>).</td></tr>
+  <tr><td><code>Regular Bullish Color</code></td><td>#00E676</td><td>Line/marker/label colour of regular bulls.</td></tr>
+  <tr><td><code>Regular Bearish Color</code></td><td>#FF1744</td><td>Regular bears.</td></tr>
+  <tr><td><code>Hidden Bullish Color</code></td><td>#00BFA5</td><td>Hidden bulls.</td></tr>
+  <tr><td><code>Hidden Bearish Color</code></td><td>#FF6E40</td><td>Hidden bears.</td></tr>
+  <tr><td><code>Weak Signal Color</code></td><td>#FFD54F</td><td>Any registered divergence whose quality is below the weak threshold.</td></tr>
+  <tr><td><code>Line Thickness</code> [preset]</td><td>2 &middot; 1&ndash;6</td><td>Connector width.</td></tr>
+  <tr><td><code>Line Style</code></td><td>Solid &middot; {Solid, Dots, Dashes, &hellip;}</td><td>Connector dash pattern.</td></tr>
+  <tr><td><code>Bullish Marker Icon</code></td><td>UpTriangle</td><td>Pivot icon shape for bullish patterns.</td></tr>
+  <tr><td><code>Bearish Marker Icon</code></td><td>DownTriangle</td><td>Pivot icon shape for bearish patterns.</td></tr>
+  <tr><td><code>Object Z-Index</code></td><td>5 &middot; 0&ndash;100</td><td>Base stacking order of every drawn object (markers sit at base+1&hellip;+3).</td></tr>
+</table>
+
+<h3>17.10 Group 9 &mdash; Info Panel (19)</h3>
+<table class="compact">
+  <tr><th style="width:30%">Parameter</th><th style="width:22%">Default / range</th><th>What it does</th></tr>
+  <tr><td><code>Show Info Panel</code> [preset]</td><td>Yes</td><td>Master switch of the panel.</td></tr>
+  <tr><td><code>Panel Layout</code> [preset]</td><td>MergedCard &middot; {SplitTopBottom, MergedCard, StatusCardOnly, SignalsCardOnly}</td><td>Card composition (&sect;10.1).</td></tr>
+  <tr><td><code>Panel Side</code> [preset]</td><td>Left &middot; {Right, Left, Center}</td><td>Horizontal anchor.</td></tr>
+  <tr><td><code>Vertical Edge</code> [preset]</td><td>Bottom &middot; {Top, Bottom}</td><td>Vertical anchor.</td></tr>
+  <tr><td><code>Use Native Controls (else static text)</code> [preset]</td><td>Yes</td><td>Native chart controls (crisp, themeable) versus one static text block (lighter).</td></tr>
+  <tr><td><code>Panel Font Size</code> [preset]</td><td>11 &middot; 7&ndash;22, step 0.5</td><td>Type size.</td></tr>
+  <tr><td><code>Panel Opacity</code> [preset]</td><td>0.90 &middot; 0.10&ndash;1.0, step 0.05</td><td>Background alpha.</td></tr>
+  <tr><td><code>Panel Margin (px)</code> [preset]</td><td>8 &middot; 0&ndash;60</td><td>Inset from the pane edges.</td></tr>
+  <tr><td><code>Panel Background</code></td><td>#111823</td><td>Card fill.</td></tr>
+  <tr><td><code>Panel Border</code></td><td>#2C3A4D</td><td>Card border.</td></tr>
+  <tr><td><code>Panel Text</code></td><td>#E6EDF3</td><td>Value colour.</td></tr>
+  <tr><td><code>Panel Label Text</code></td><td>#8FA3B8</td><td>Label colour.</td></tr>
+  <tr><td><code>Show Configuration Section</code> [preset]</td><td>Yes</td><td>Config block of the card (&sect;10.2).</td></tr>
+  <tr><td><code>Show Market Section</code> [preset]</td><td>Yes</td><td>Market block.</td></tr>
+  <tr><td><code>Show MTF Confluence Section</code> [preset]</td><td>Yes</td><td>MTF block (score, rungs, trendlines).</td></tr>
+  <tr><td><code>Show Signals Section</code> [preset]</td><td>Yes</td><td>Signals block (bias, consensus, last divergence, plan).</td></tr>
+  <tr><td><code>Show Statistics Section</code> [preset]</td><td>Yes</td><td>Statistics block (counts, win rate, expectancy, buckets).</td></tr>
+  <tr><td><code>Stats Window (bars, reference / manual)</code> [ref][preset]</td><td>100 &middot; 25&ndash;2000</td><td>Source-bar window of the panel statistics (and the volume-price input&rsquo;s weighting window).</td></tr>
+  <tr><td><code>Panel Refresh (ms)</code> [preset]</td><td>250 &middot; 50&ndash;5000</td><td>Minimum interval between panel rebuilds when dirty.</td></tr>
+</table>
+
+<h3>17.11 Group 10 &mdash; Alerts (15)</h3>
+<table class="compact">
+  <tr><th style="width:30%">Parameter</th><th style="width:22%">Default / range</th><th>What it does</th></tr>
+  <tr><td><code>Enable Alerts</code> [preset]</td><td>Yes</td><td>Master switch.</td></tr>
+  <tr><td><code>Alert: OB/OS or Midline Cross</code> [preset]</td><td>Yes</td><td>Family 1 (&sect;11.2); owns both kinds regardless of Cross Mode.</td></tr>
+  <tr><td><code>Alert: Signal-Line Cross</code> [preset]</td><td>No</td><td>Family 2; exclusive owner of signal-line crosses.</td></tr>
+  <tr><td><code>Alert: Divergence</code> [preset]</td><td>Yes</td><td>Family 3, gated by Alert Min Quality.</td></tr>
+  <tr><td><code>Alert: MTF Confluence Flip</code> [preset]</td><td>No</td><td>Family 4, closed-bar evaluated.</td></tr>
+  <tr><td><code>Alert: RSI Trendline Break</code> [preset]</td><td>Yes</td><td>Family 5.</td></tr>
+  <tr><td><code>Alert: Plan Level Reached (TP/SL)</code> [preset]</td><td>Yes</td><td>Family 6 (TP1_HIT / TP2_HIT / STOP_HIT).</td></tr>
+  <tr><td><code>Alert Cooldown (source bars, 0 = off)</code> [preset]</td><td>0 &middot; 0&ndash;500</td><td>Per-direction minimum spacing between repeats of a family.</td></tr>
+  <tr><td><code>Alert Min Quality</code> [preset]</td><td>70 &middot; 0&ndash;100</td><td>Quality floor of the divergence alert family.</td></tr>
+  <tr><td><code>Only On Closed Source Bar</code> [preset]</td><td>Yes</td><td>Closed-bar evaluation of the cross families (&sect;11.3).</td></tr>
+  <tr><td><code>Play Sound</code> [preset]</td><td>Yes</td><td>Audible channel.</td></tr>
+  <tr><td><code>Bullish Sound</code></td><td>PositiveNotification</td><td>Sound for bullish events.</td></tr>
+  <tr><td><code>Bearish Sound</code></td><td>NegativeNotification</td><td>Sound for bearish events (including STOP_HIT).</td></tr>
+  <tr><td><code>Write Alerts To Log</code> [preset]</td><td>Yes</td><td>Log channel.</td></tr>
+  <tr><td><code>Show Alert Popup</code> [preset]</td><td>Yes</td><td>Popup channel.</td></tr>
+</table>
+
+<h3>17.12 Group 11 &mdash; Advanced (3)</h3>
+<table class="compact">
+  <tr><th style="width:30%">Parameter</th><th style="width:22%">Default / range</th><th>What it does</th></tr>
+  <tr><td><code>Signal Journal (CSV lines to log)</code> [preset]</td><td>Yes</td><td>Emits the three CSV streams (&sect;16).</td></tr>
+  <tr><td><code>Debug Log</code></td><td>No</td><td>Prints every skipped candidate with its gate reason, plus registration details &mdash; the fastest way to learn why a pattern did or did not appear.</td></tr>
+  <tr><td><code>Log Resolved Profile On Start</code></td><td>Yes</td><td>The start-up profile dump (&sect;18): every resolved window, gate and policy on one screen.</td></tr>
+</table>
+
+<h3>17.13 Group 12 &mdash; Trade Management (12)</h3>
+<table class="compact">
+  <tr><th style="width:30%">Parameter</th><th style="width:22%">Default / range</th><th>What it does</th></tr>
+  <tr><td><code>Show Trade Projection (Entry/SL/TP)</code> [preset]</td><td>Yes</td><td>Master switch of the projection engine.</td></tr>
+  <tr><td><code>Stop Source</code> [preset]</td><td>PivotStructure &middot; {AtrMultiple, PivotStructure}</td><td>Where the stop comes from (&sect;13.2).</td></tr>
+  <tr><td><code>Plan TP1 (R multiple)</code> [preset]</td><td>1.0 &middot; 0.5&ndash;10, step 0.1</td><td>First target in units of plan risk.</td></tr>
+  <tr><td><code>Plan TP2 (R multiple)</code> [preset]</td><td>2.0 &middot; 1.0&ndash;20, step 0.5</td><td>Second target; forced to &ge; 2&times;TP1 if set lower.</td></tr>
+  <tr><td><code>Pivot Stop Buffer (x ATR)</code> [preset]</td><td>0.5 &middot; 0&ndash;3, step 0.05</td><td>Air beyond the structure extreme for the PivotStructure stop.</td></tr>
+  <tr><td><code>Max Visible Trade Plans</code> [preset]</td><td>3 &middot; 1&ndash;10</td><td>Drawn-plan budget (&sect;13.3).</td></tr>
+  <tr><td><code>Projection Length (chart bars)</code> [preset]</td><td>120 &middot; 10&ndash;2000</td><td>Horizontal span of the plan levels; re-extended as the chart grows.</td></tr>
+  <tr><td><code>Show Projection Labels</code> [preset]</td><td>Yes</td><td>The ENTRY / SL / TP1 / TP2 text tags with R-multiples and HIT/VOID suffixes.</td></tr>
+  <tr><td><code>Entry Line Color</code></td><td>#90A4AE</td><td>Entry and BE-stop level colour.</td></tr>
+  <tr><td><code>Stop Line Color</code></td><td>#FF5252</td><td>SL and TRAIL level colour.</td></tr>
+  <tr><td><code>Show Break-Even &amp; Trailing Hints</code> [preset]</td><td>Yes</td><td>BE STOP and chandelier TRAIL advisory levels (&sect;13.5).</td></tr>
+  <tr><td><code>Trailing Stop (x ATR chandelier)</code> [preset]</td><td>3.0 &middot; 1&ndash;10, step 0.25</td><td>k of the chandelier suggestion (best closed close since entry &minus; k&middot;ATR).</td></tr>
+</table>
+
+<h3>17.14 Group 13 &mdash; RSI Trendlines (7)</h3>
+<table class="compact">
+  <tr><th style="width:30%">Parameter</th><th style="width:22%">Default / range</th><th>What it does</th></tr>
+  <tr><td><code>Enable RSI Trendlines</code> [preset]</td><td>Yes</td><td>Master switch of the trendline engine (&sect;14).</td></tr>
+  <tr><td><code>Trendline Min Pivot Gap (reference / manual)</code> [ref][preset]</td><td>5 &middot; 2&ndash;200</td><td>Minimum bars between the two anchor pivots of a line.</td></tr>
+  <tr><td><code>Trendline Max Slope (RSI pts/bar)</code> [preset]</td><td>0.60 &middot; 0.05&ndash;5, step 0.05</td><td>Slope cap for a qualifying line.</td></tr>
+  <tr><td><code>Trendline Break Threshold (RSI pts)</code> [preset]</td><td>0.5 &middot; 0&ndash;5, step 0.1</td><td>How far a confirmed close must penetrate the line to count as a break (0 = any touch).</td></tr>
+  <tr><td><code>Show Trendline Break Markers</code> [preset]</td><td>Yes</td><td>On-pane glyph at each confirmed break.</td></tr>
+  <tr><td><code>Support Trendline Color</code></td><td>#26C6DA</td><td>Support line colour.</td></tr>
+  <tr><td><code>Resistance Trendline Color</code></td><td>#FFA726</td><td>Resistance line colour.</td></tr>
+</table>
+
+<h3>17.15 Group 14 &mdash; Session Markers (4)</h3>
+<table class="compact">
+  <tr><th style="width:30%">Parameter</th><th style="width:22%">Default / range</th><th>What it does</th></tr>
+  <tr><td><code>Show Session Markers</code> [preset]</td><td>Yes</td><td>Master switch (&sect;15).</td></tr>
+  <tr><td><code>Marker Times (UTC, HH:MM list)</code> [preset]</td><td><code>07:00,13:30</code></td><td>The UTC instants to mark; invalid tokens ignored, list sorted.</td></tr>
+  <tr><td><code>Marker Window (chart bars)</code> [preset]</td><td>300 &middot; 50&ndash;2000</td><td>Rolling closed-bar window of drawn markers.</td></tr>
+  <tr><td><code>Marker Color</code></td><td>#546E7A</td><td>Vertical line colour.</td></tr>
+</table>
+
+<h2 id="s1-diagnostics">18. Diagnostics &amp; the Log</h2>
+
+<h3>18.1 The start-up profile dump</h3>
+<p>
+With <code>Log Resolved Profile On Start</code> on (default), the platform log receives a complete description of the
+running engine &mdash; the single most useful screen in the whole product. It prints, in order:
+</p>
+<pre>[Advanced RSI Pro] style=SWING | source=m30 (30.00 min/bar) | mode=Automatic | scale=1.379
+[Advanced RSI Pro] RSI 15 signal 10 stoch 15 supersmoother 11 input=Close
+[Advanced RSI Pro] OB/OS 69.6/30.4 zone tolerance +/-5.0
+[Advanced RSI Pro] blend=off (classic single-RSI)
+[Advanced RSI Pro] early entry: lambda=0.96
+[Advanced RSI Pro] pivots: lookback=5 prominence=0.40ATR distance=[9..110]
+[Advanced RSI Pro] aux: ATR=15 TrendEMA=55 slopeBars=5
+[Advanced RSI Pro] gates: ATR=adaptive p15 = 0.0431% | maxCounterSlope=0.164 | minQ=55.0 weakQ=68.0 spike=on (&gt;3x baseline ATR%) knife=on (&gt;4 ATR / 10 bars)
+[Advanced RSI Pro] session=symbol calendar (2 sessions) | follow-through&gt;=0.50 | volatility window=480 bars
+[Advanced RSI Pro] windows: atrBaseline=110 stats=110 drawRecent=1651 bars | warm-up ~176 bars
+[Advanced RSI Pro] outcome horizon=66 bars (target 1.5ATR / stop 1.5ATR)
+[Advanced RSI Pro] dynamic levels: ON (factor 2.0, baseline 110 bars, ATR 15)
+[Advanced RSI Pro] trade plans: on | stop source: pivot structure | TP1 1.0R / TP2 2.0R | risk band 0.5-6 ATR | max visible 3
+[Advanced RSI Pro] RSI trendlines: on | min gap 5 | max slope 0.60 pts/bar | break threshold 0.5 pts
+[Advanced RSI Pro] plan lifecycle: alerts on | mgmt hints on (trail 3.0 ATR)
+[Advanced RSI Pro] session markers: on (2 times, window 300 bars)
+[Advanced RSI Pro] signal journal: on (ARP-JOURNAL / ARP-OUTCOME / ARP-PLAN lines)
+[Advanced RSI Pro] MTF ladder: H2 H6</pre>
+<p class="toc-note">(illustrative values for a Swing M30 configuration &mdash; your dump prints your resolved numbers.)</p>
+
+<h3>18.2 Warnings you may meet at start-up</h3>
+<table class="compact">
+  <tr><th>Message</th><th>Meaning / remedy</th></tr>
+  <tr><td>&ldquo;Custom Timeframe is not recognised&rdquo;</td><td>The <code>Custom Timeframe Name</code> text did not parse; the chart timeframe is used. Fix the spelling (see &sect;17.2) or switch <code>Source Timeframe</code> off Custom.</td></tr>
+  <tr><td>&ldquo;history too short&rdquo; style warning</td><td>The available source bars are below the estimated warm-up (&asymp; RSI + smoother + ER + signal + stoch + ATR/baseline + VP window + gate sample + 8). Enable <code>Auto Load History</code>, raise <code>Min Source Bars</code>, or wait for more history.</td></tr>
+  <tr><td>&ldquo;learning state restored&rdquo; (Debug Log)</td><td>Informational: buckets were loaded from LocalStorage.</td></tr>
+</table>
+
+<h3>18.3 Debug Log: watching the gates work</h3>
+<p>
+<code>Debug Log</code> prints one line per <i>rejected</i> candidate &mdash; <code>[Skip BullRegular] volatility spike
+(3.42x baseline) q=61.3 @ 2026-10-26 07:00</code> &mdash; and one per registration with its full metric set. When a
+chart &ldquo;should have shown something and didn&rsquo;t&rdquo;, this is the answer key: the reason is always one of
+the named gates (&sect;27), never a silent drop.
+</p>
+
+<h1 id="s2-head">SECTION 2 &mdash; HOW TO USE</h1>
+
+<h2 id="s2-install">19. Installation &amp; First Launch</h2>
+<ol class="steps">
+  <li><b>Import.</b> In cTrader, open the <i>Automate</i> tab (or click the <code>.algo</code> / source file) and add
+      <code>AdvancedRSIPro.cs</code>; build. The indicator appears under Indicators &rarr; Custom as
+      <b>AdvancedRSIPro</b>. No permissions are requested (<code>AccessRights.None</code>).</li>
+  <li><b>Attach.</b> Double-click it on any chart. It opens in its own oscillator pane below price; the price chart
+      receives only the plan levels, mirrored divergences (if enabled) and session markers.</li>
+  <li><b>Pick a style first.</b> Before touching anything else, choose <code>Trading Style</code> (&sect;4). On a
+      first install, <b>Swing</b> is the most representative baseline; <b>Scalping</b> for M1&ndash;M5; <b>Position</b>
+      for D1+.</li>
+  <li><b>Read the log.</b> Open the log panel and read the profile dump (&sect;18.1). Confirm the resolved source,
+      bands and ladder look like the market you attached to.</li>
+  <li><b>Let it warm up.</b> The first pass replays history: pivots confirm, divergences register, plans draw, the
+      statistics window fills. Nothing alerts during this pass &mdash; by design.</li>
+  <li><b>Leave defaults for a week.</b> The statistics and the learning buckets need live outcomes to become
+      meaningful (&sect;29). Judge the tool only after it has measured itself on your feed.</li>
+</ol>
+<figure>
+  <img src="images/01_workspace_overview.png" alt="Workspace overview">
+  <figcaption>Fig. 19.1 &mdash; The complete workspace on EURUSD M30: price pane with two live trade plans
+  (ENTRY / SL / TP1 / TP2 labels right), RSI momentum trendlines, and the oscillator pane below with the main RSI
+  (blue), signal (orange), StochRSI (pale), dynamic bands, two labelled bullish divergences with pivot markers and the
+  merged info panel at bottom left.</figcaption>
+</figure>
+
+<h2 id="s2-glyphs">20. Reading the Pane: Every Glyph</h2>
+<table class="compact">
+  <tr><th style="width:24%">Glyph</th><th>Where</th><th>Meaning</th></tr>
+  <tr><td>Solid blue line</td><td>oscillator</td><td>The adaptive RSI (display scale).</td></tr>
+  <tr><td>Solid orange line</td><td>oscillator</td><td>Signal line (SMA of the RSI).</td></tr>
+  <tr><td>Pale violet line</td><td>oscillator</td><td>StochRSI (0&ndash;100 in Raw mode).</td></tr>
+  <tr><td>Dotted orange-red line</td><td>oscillator</td><td>Higher-TF RSI (first rung, closed bars only).</td></tr>
+  <tr><td>Dotted cyan line</td><td>oscillator</td><td>Trend bias (the visible trend gate).</td></tr>
+  <tr><td>Dotted red / green horizontals</td><td>oscillator</td><td>Live OB / OS bands (breathing when dynamic).</td></tr>
+  <tr><td>Dotted grey horizontal</td><td>oscillator</td><td>Midline (50 or 0).</td></tr>
+  <tr><td>Green / red dots on the line</td><td>oscillator</td><td>Bull / Bear trigger outputs (cross events).</td></tr>
+  <tr><td>&ldquo;BUY&rdquo; / &ldquo;SELL&rdquo; text + triangle</td><td>oscillator</td><td>Cross marker (wording and style configurable); tooltip carries kind, confluence, RSI/signal/stoch, UTC time.</td></tr>
+  <tr><td>Coloured diagonal between two pivot icons</td><td>oscillator (or price, mirrored)</td><td>A divergence; colour = class (or weak colour); label = class &plusmn; grade &plusmn; quality&nbsp;%.</td></tr>
+  <tr><td>Triangles at the pivots + thin drop lines</td><td>oscillator</td><td>The confirmed pivot pair and their exact bars.</td></tr>
+  <tr><td>Light-green / amber dots</td><td>oscillator</td><td>Bull / Bear divergence registration points (output series 11/12).</td></tr>
+  <tr><td>Cyan / orange diagonals</td><td>oscillator</td><td>RSI support / resistance trendline, extended to the live bar.</td></tr>
+  <tr><td>Break icon on a trendline</td><td>oscillator</td><td>Confirmed momentum break (closed bar), final.</td></tr>
+  <tr><td>ENTRY / SL / TP1 / TP2 horizontals with labels</td><td><b>price chart</b></td><td>A live trade plan; reached levels dotted with HIT/VOID suffixes; finished plans fully dotted.</td></tr>
+  <tr><td>BE STOP / TRAIL dotted lines</td><td><b>price chart</b></td><td>Management hints: break-even after TP1, chandelier trail for the remainder.</td></tr>
+  <tr><td>Thin grey verticals</td><td><b>price chart</b></td><td>Session markers at your UTC times.</td></tr>
+  <tr><td>The card</td><td>oscillator corner</td><td>The info panel (&sect;10, &sect;21).</td></tr>
+</table>
+
+<h2 id="s2-panel">21. The Info Panel, Line by Line</h2>
+<p>
+The merged card reads as a grid of <code>label value</code> cells flowing through five sections. Using the live
+example of Fig. 10.1:
+</p>
+<table class="compact">
+  <tr><th style="width:20%">Cell</th><th style="width:22%">Example</th><th>How to read it</th></tr>
+  <tr><td><code>TF</code></td><td>m30 auto</td><td>Resolved source timeframe and adaptation mode. &ldquo;manual&rdquo; means the scaling law is off.</td></tr>
+  <tr><td><code>RSI</code></td><td>14/9/14</td><td>Resolved RSI / signal / stoch periods &mdash; the numbers actually in use.</td></tr>
+  <tr><td><code>OB/OS</code></td><td>68.8/31.2 dyn</td><td>Live bands; <code>dyn</code> = dynamic. Compare with the dotted lines &mdash; they are the same buffers.</td></tr>
+  <tr><td><code>Input / Scale / Pivots / Q&ge; / Smooth / Ver</code></td><td>Close / &times;1.12 / lb5 10-106 / Q&ge;55 / SS 10 / 3.24.4 PREMIUM</td><td>Price input; period scale; pivot lookback and distance range; quality floor; SuperSmoother period; engine version.</td></tr>
+  <tr><td><code>State</code></td><td>BULLISH</td><td>Primary timeframe&rsquo;s state score verdict (&ge;+33 / &le;&minus;33 / else FLAT).</td></tr>
+  <tr><td><code>RSI</code> / <code>Signal</code> / <code>StochRSI</code></td><td>55.7 / 63.7 / 0</td><td>Live readings in display units.</td></tr>
+  <tr><td><code>Trend</code> / <code>vs Sig</code></td><td>FLAT 52 / BELOW</td><td>Trend-filter verdict + bias value; whether the RSI sits above or below its signal.</td></tr>
+  <tr><td><code>ATR</code></td><td>0.054% LOW</td><td>Current ATR% of price tagged against its baseline &mdash; the volatility regime the bands and the spike gate use.</td></tr>
+  <tr><td><code>ER (blend)</code></td><td>off</td><td>Regime weight when the filter bank is on.</td></tr>
+  <tr><td><code>Session</code> / <code>Price live</code> / <code>Bar</code> / <code>Close in</code></td><td>CLOSED 7-20 UTC / 1.12069 / 10-26 07:00 / 04:14</td><td>Session-filter state; live price; source bar open time; countdown to its close (when to expect the next confirmation).</td></tr>
+  <tr><td><code>MTF</code></td><td>&minus;14 NEUTRAL</td><td>Ladder score and verdict; per-rung cells (e.g. <code>h2 +51 BULL</code>) show each vote.</td></tr>
+  <tr><td><code>TL Sup</code> / <code>TL Res</code></td><td>52.9 up / 70.4 up</td><td>Momentum trendline values and direction; &ldquo;broken&rdquo; after a confirmed break.</td></tr>
+  <tr><td><code>Bias</code> / <code>Consensus</code></td><td>Bear (above 50) / BEAR 1/1</td><td>The trend gate&rsquo;s vote with its reason, and the momentum/trend/MTF tally &mdash; the card never reads as contradictory.</td></tr>
+  <tr><td><code>Last</code> / <code>Age</code> / <code>Legs</code> / <code>Out (ATR)</code></td><td>BULL DIV A 65% / 22 bars / 1.1A/13.4pts / won +1.2A</td><td>Newest divergence in the window: class+grade+quality; bars since confirmation; price leg in ATR / RSI leg in points; its measured outcome on the ATR ruler.</td></tr>
+  <tr><td><code>Plan</code> / <code>SL</code> / <code>TP1</code> / <code>TP2</code> / <code>R:R</code> / <code>PState</code> / <code>Path</code></td><td>LONG @1.1208 / 1.11892 &minus;1R / 1.12276 +1.0R / 1.12468 +2.0R / 1:1.0 / RUNNING / +0.46R/&minus;0.34R</td><td>The newest plan in full, with lifecycle state and the realised path in R units (&sect;13.6).</td></tr>
+  <tr><td><code>Regular</code> / <code>Hidden</code> / <code>Pending</code> / <code>Drawn</code></td><td>2 bull/1 bear / 0/0 / 0 / 25/1586b</td><td>Counts in the stats window; unresolved records; drawn records vs window length.</td></tr>
+  <tr><td><code>Win rate</code> / <code>Expect</code> / <code>PF</code> / <code>Avg qual</code> / <code>MFE/MAE</code></td><td>62% (37) / +0.04R / 1.10 / 60.2% / +1.4/&minus;0.5A</td><td>The measured edge: resolved win rate with sample size, expectancy in R, profit factor, mean quality, mean excursions (&sect;29).</td></tr>
+  <tr><td><code>Reg Bull</code> &hellip; <code>Hid Bear</code></td><td>69% (13) &hellip; 75% (12)</td><td>Per-family learned win rates &mdash; the buckets that feed the adaptive quality term.</td></tr>
+</table>
+
+<h2 id="s2-dialog">22. The Parameter Dialog &amp; Presets</h2>
+<figure class="tight">
+  <img src="images/02_parameter_dialog.png" alt="Parameter dialog">
+  <figcaption>Fig. 22.1 &mdash; The dialog&rsquo;s first screen: group 0 (style), group 1 (timeframe &amp; source) and the
+  start of group 2 (RSI core). The fifteen groups follow the order of &sect;17 exactly; the tooltip shows the full
+  parameter name when the label is truncated.</figcaption>
+</figure>
+<div class="grid2">
+  <figure><img src="images/04_dialog_adaptation.png" alt="Groups 2-3"><figcaption>Fig. 22.2 &mdash; group 2 tail (bands, dynamic levels) and group 3, Automatic Adaptation.</figcaption></figure>
+  <figure><img src="images/05_dialog_divergence.png" alt="Group 4"><figcaption>Fig. 22.3 &mdash; group 4, Divergence Detection.</figcaption></figure>
+  <figure><img src="images/06_dialog_filters.png" alt="Group 5"><figcaption>Fig. 22.4 &mdash; group 5, Signal Filters (ATR gate, spike / knife / cluster).</figcaption></figure>
+  <figure><img src="images/07_dialog_markers.png" alt="Groups 6-7"><figcaption>Fig. 22.5 &mdash; group 6, Quality &amp; Learning, and group 7, Signal Markers.</figcaption></figure>
+  <figure><img src="images/08_dialog_appearance.png" alt="Group 8"><figcaption>Fig. 22.6 &mdash; group 8, Divergence Appearance (colours, icons, z-index).</figcaption></figure>
+  <figure><img src="images/09_dialog_panel_alerts.png" alt="Groups 9-10"><figcaption>Fig. 22.7 &mdash; group 9 tail (sections, stats window) and group 10, Alerts.</figcaption></figure>
+  <figure><img src="images/10_dialog_advanced_trade.png" alt="Groups 11-12"><figcaption>Fig. 22.8 &mdash; group 11, Advanced (journal, debug), and group 12, Trade Management.</figcaption></figure>
+  <figure><img src="images/11_dialog_trade_sessions.png" alt="Groups 12-14"><figcaption>Fig. 22.9 &mdash; group 12 tail, group 13, RSI Trendlines, and group 14, Session Markers.</figcaption></figure>
+</div>
+
+<ol class="steps">
+  <li><b>Style first, cosmetics last.</b> Choose the style, verify the resolved profile in the log, then adjust only
+      user-owned fields (colours, sounds, diagnostics&hellip;). Anything the style pins will be overwritten next time you
+      select a style.</li>
+  <li><b>One change at a time.</b> The gates interact (a tighter quality floor changes what the cluster filter sees).
+      Change one knob, watch a week of journal lines, change the next.</li>
+  <li><b>Save templates per market.</b> cTrader templates store the full parameter set &mdash; keep one per instrument
+      class (FX majors, crypto, indices) rather than re-tuning live.</li>
+  <li><b>Use Reset deliberately.</b> <code>Reset</code> restores factory defaults including <code>Universal</code>
+      style &mdash; it does not restore your pre-preset values.</li>
+</ol>
+
+<h2 id="s2-inputs">23. Price-Input Gallery &mdash; the Same Chart, Six Inputs</h2>
+<p>
+The six screenshots below are the same EURUSD M30 session with only <code>RSI Price Input</code> changed (the dialog is
+left open in each shot so the selected input is visible). Watch three things across them: the <i>smoothness</i> of the
+main line, how often it <i>reaches the bands</i>, and where the divergence pivots land.
+</p>
+<figure>
+  <img src="images/01_workspace_overview.png" alt="Close input">
+  <figcaption>Fig. 23.1 &mdash; <b>Close</b> (default): the reference behaviour &mdash; every statistic, audit oracle and
+  textbook comparison in this manual assumes this input.</figcaption>
+</figure>
+<figure>
+  <img src="images/10_input_typical.png" alt="Typical input">
+  <figcaption>Fig. 23.2 &mdash; <b>Typical</b> (H+L+C)/3: intrabar range enters the reference; spike-and-reject bars lose
+  some of their sting, the line reads a touch smoother in the middle of the range.</figcaption>
+</figure>
+<figure>
+  <img src="images/11_input_weighted.png" alt="Weighted input">
+  <figcaption>Fig. 23.3 &mdash; <b>Weighted</b> (H+L+2C)/4: halfway between Close and Typical &mdash; a good default if you
+  like Typical&rsquo;s smoothness but want the close to keep the deciding vote.</figcaption>
+</figure>
+<figure>
+  <img src="images/12_input_median.png" alt="Median input">
+  <figcaption>Fig. 23.4 &mdash; <b>Median</b> (H+L)/2: the close is ignored entirely; the line reacts to intrabar extremes
+  and reaches the zones more readily &mdash; useful on instruments whose closes are auction artefacts.</figcaption>
+</figure>
+<figure>
+  <img src="images/13_input_heikinashi.png" alt="Heikin-Ashi input">
+  <figcaption>Fig. 23.5 &mdash; <b>Heikin-Ashi</b>: averaged candles; trends read cleaner and divergences form later but
+  on more deliberate swings. If the source series is itself Heikin-Ashi, its close is used as-is.</figcaption>
+</figure>
+<figure>
+  <img src="images/14_input_volumeprice.png" alt="Volume-price-adjusted input">
+  <figcaption>Fig. 23.6 &mdash; <b>Volume-Price-Adjusted</b>: closes weighted by volume &times; relative range over the
+  stats window &mdash; high-participation bars dominate the reference. Most different from the classic reading on
+  volume-rich sessions; on a thin feed (volume &le; 0 or missing) the weights degrade to 1.0 and the input approaches
+  a range-weighted mean.</figcaption>
+</figure>
+<div class="callout tip">
+  <strong>Choosing an input</strong>
+  Start on Close. Move to Typical/Weighted if your instrument prints noisy closes (gappy feeds, auction markets); to
+  Median if you trade intrabar extremes deliberately; to Heikin-Ashi if you already think in averaged candles; to
+  Volume-Price-Adjusted if volume is a first-class citizen on your market. Whatever you choose, the learning
+  statistics measure <i>that</i> choice &mdash; do not switch inputs and compare old win rates to new signals.
+</div>
+
+<h2 id="s2-divergences">24. Trading Divergences</h2>
+
+<h3>24.1 The anatomy of one signal</h3>
+<p>Read a divergence label left to right: <code>BULL DIV A 65%</code> = bullish, regular class, grade A, quality 65&nbsp;%. Then verify with four glances:</p>
+<ol class="steps">
+  <li><b>The legs.</b> Price made a lower low while the RSI made a higher low (regular bull). The panel&rsquo;s
+      <code>Legs</code> cell quantifies both (e.g. <code>1.1A/13.4pts</code>); legs barely above the minimums are
+      structurally thin no matter what the score says.</li>
+  <li><b>The grade.</b> A = the swing between the pivots crossed the midline (a complete impulse); C = both pivots sit
+      inside one excursion. Prefer A and B; treat C as context.</li>
+  <li><b>The quality vs <i>your</i> distribution.</b> Compare with the panel&rsquo;s <code>Avg qual</code> for the
+      window. A 65 in a feed whose average is 55 is a strong signal; a 65 in a feed whose average is 68 is ordinary.</li>
+  <li><b>The plan.</b> The drawn Entry/SL/TP1/TP2 is the coherent ruler for the idea. If the stop distance looks
+      absurd for your risk budget, the signal is not for your account &mdash; the engine measures, you size.</li>
+</ol>
+
+<h3>24.2 Regular vs hidden in practice</h3>
+<ul>
+  <li><b>Regular</b> divergences are reversal patterns: they shine at the end of extended legs and fail in strong
+      trends (the trend gate protects you from the worst of this &mdash; &sect;27.2).</li>
+  <li><b>Hidden</b> divergences are continuation patterns: they shine in established trends&rsquo; pullbacks. Their
+      extra protection is the hidden MTF gate: a hidden bear printed into a strongly bullish higher-timeframe flow
+      (&le; &minus;33 aligned) is rejected outright.</li>
+  <li>Both share the quality machinery; your per-family win rates (panel buckets) will tell you which family actually
+      works on your instrument &mdash; that is exactly what they are for.</li>
+</ul>
+
+<h3>24.3 Entry styles around a divergence</h3>
+<table class="compact">
+  <tr><th>Style</th><th>Entry</th><th>Trade-off</th></tr>
+  <tr><td>Confirmation entry</td><td>at the confirmation bar&rsquo;s close &mdash; the plan&rsquo;s ENTRY</td><td>Matches every statistic the engine reports; may pay a worse price.</td></tr>
+  <tr><td>Limit at structure</td><td>limit near the newer pivot&rsquo; level</td><td>Better price, risk of no fill; the plan&rsquo;s R-multiples still apply from your fill.</td></tr>
+  <tr><td>Cross confirmation</td><td>wait for the OB/OS-exit cross in the signal&rsquo;s direction (&sect;25)</td><td>Later, but two independent engines agree.</td></tr>
+</table>
+
+<h2 id="s2-crossovers">25. Trading Crossovers</h2>
+<p>
+Crosses are the engine&rsquo;s <i>timing</i> layer; divergences are its <i>structure</i> layer. The classic RSI playbook
+(&ldquo;buy when RSI turns up out of oversold&rdquo;) is exactly the OB/OS-exit family, made precise by the lambda
+hysteresis: with <code>Signal Sensitivity Lambda = 0.92</code> the zone state clears only after RSI has moved
+0.32 points (on 70/30 bands) back through the border &mdash; most one-tick whipsaws never print a marker.
+</p>
+<ul>
+  <li><b>OB/OS exit</b> &mdash; the reversal timing signal; strongest when a divergence is recent and the MTF ladder is
+      not opposed (the marker tooltip shows the bar&rsquo;s confluence score).</li>
+  <li><b>Midline</b> &mdash; the regime signal; useful as a filter (&ldquo;only longs above 50&rdquo;) more than as an
+      entry.</li>
+  <li><b>Signal line</b> &mdash; the momentum turn; the noisiest family, and the only one whose alert is off by
+      default.</li>
+</ul>
+<div class="callout warn">
+  <strong>Crosses without context are coin flips</strong>
+  In a strong trend, OB/OS exits fire repeatedly against the trend (that is what &ldquo;trending&rdquo; means for an
+  oscillator). The engine does not hide this; it gives you the trend bias line, the Consensus cell and the MTF score so
+  you can see the disagreement. Use crosses to <i>time</i> a direction you already have from structure or the ladder.
+</div>
+
+<h2 id="s2-mtf">26. Multi-Timeframe Workflow</h2>
+<ol class="steps">
+  <li><b>Decide your primary.</b> The chart timeframe is the decision timeframe; the source timeframe (if different)
+      is the measurement timeframe. Most users keep them equal.</li>
+  <li><b>Read the ladder top-down.</b> The per-rung cells show each vote (e.g. <code>h2 +51 BULL</code>,
+      <code>h6 &minus;66 BEAR</code>). A ladder in agreement (|score| &ge; 33 with all rungs signed the same way) is the
+      cleanest backdrop for any signal.</li>
+  <li><b>Use the gate you actually want.</b> SoftPenalty nudges quality; HardGate vetoes. If you cannot explain why a
+      veto should exist on your market, stay on SoftPenalty.</li>
+  <li><b>Trust the strict mapping.</b> With the default strict mapping the ladder never shows you a higher timeframe&rsquo;s
+      in-progress bar as if it were knowledge. When you need the extra tick of freshness, switch it off consciously and
+      accept that live display values can tick.</li>
+  <li><b>Watch the flip alert.</b> A BULL&rarr;BEAR ladder flip is a regime statement, not an entry: it tells you the
+      backdrop under your open positions changed.</li>
+</ol>
+
+<h3>26.1 Case study: a coarser source (H8) on a finer chart</h3>
+<p>
+A real field configuration worth understanding: EURUSD with a <b>custom H8 source</b> on a finer chart (the panel
+reads <code>TF h8 auto</code>, source bars opening at 05:00 UTC while the chart grid runs 01:00 / 05:00 / 09:00&hellip;).
+Two lessons live in this one screenshot:
+</p>
+<ul>
+  <li><b>Marker placement (fixed in v3.24.5).</b> Before 3.24.5 a closed-bar marker was drawn at the <i>first</i>
+      chart bar of its source bar &mdash; with an H8 source, up to 8 hours (several chart bars) <i>before</i> the
+      moment the cross could be known. Live, a BUY popped into the past at the start of the very bounce that
+      confirmed it, so the bounce was already spent when the marker appeared and any subsequent decline read as
+      &ldquo;price fell right after the BUY&rdquo;. Since v3.24.5 markers land on the <i>last chart bar overlapping
+      the confirmed source bar</i> &mdash; the bar that was live at the knowledge point, adjacent to the trigger
+      output. Identity charts never changed.</li>
+  <li><b>Context beats polarity.</b> The same screenshot shows the engine&rsquo;s own backdrop: <code>Bias
+      BEARISH</code>, <code>Consensus BEAR</code>, weekly rung <code>-73 BEAR</code>. Every OB/OS-exit BUY in that
+      regime is a counter-trend timing ping &mdash; crosses carry no trend filter by design (&sect;25). The tool was
+      not inverted; the backdrop said &ldquo;do not take these longs&rdquo;, in the panel, in colour.</li>
+</ul>
+<figure>
+  <img src="images/30_h8_coarse_source.png" alt="H8 source case study">
+  <figcaption>Fig. 26.1 &mdash; The H8-source chart: bearish ladder (W1 &minus;73 BEAR), a running SHORT plan from a
+  hidden bearish divergence (quality 70&nbsp;%), the finished LONG plan with <code>TP2 VOID</code>, trendline rows and
+  the measured statistics (61&nbsp;% win rate on 23 resolved outcomes). Read the backdrop cells before any cross
+  marker.</figcaption>
+</figure>
+
+<h2 id="s2-gates">27. Gates in Practice &mdash; Loosening and Tightening</h2>
+
+<h3>27.1 The volatility gate family</h3>
+<p>
+Three gates answer &ldquo;is this market tradable right now?&rdquo;:
+</p>
+<ul>
+  <li><b>ATR gate</b> (<code>Adaptive</code> by default): the engine models ATR% as a log-normal process (EWMA of
+      log-volatility with an exact West correction) and takes your percentile of that distribution as the floor.
+      <code>Adaptive ATR Percentile = 20</code> means &ldquo;reject signals in the quietest fifth of regimes&rdquo;.
+      <code>Fixed</code> uses your % directly (scaled by timeframe); <code>Off</code> removes the floor.</li>
+  <li><b>Volatility spike filter</b>: rejects confirmations inside a &gt;3&times; baseline ATR% shock &mdash; the news
+      bar itself.</li>
+  <li><b>Falling-knife filter</b>: rejects a bullish confirmation under a &gt;4 ATR vertical drop (and the mirror for
+      bears) within the last 2&times;Trend Slope Bars &mdash; no catching knives, no fading parachutes.</li>
+</ul>
+<p><b>Loosen</b> (lower percentile, disable spike/knife) only if Debug Log shows genuine signals dying in conditions you
+understand and accept. <b>Tighten</b> (higher percentile) if your journal shows losses concentrated in dead or
+shocked sessions.</p>
+
+<h3>27.2 The trend gate</h3>
+<p>
+The slope of the resolved trend EMA, in ATR per bar, decides how much counter-trend pain a signal may carry:
+hidden divergences are rejected when the trend runs against them beyond <code>Max Counter-Trend Slope</code>; regular
+divergences only at <b>3&times;</b> that limit (&ldquo;too strong to fade&rdquo;). Between the limits the gate does not
+reject &mdash; it <i>scores</i>: alignment feeds 10&nbsp;% of the quality score. The cyan bias line is this gate drawn,
+so you can watch it tighten and relax with the market.
+</p>
+
+<h3>27.3 The pattern gates</h3>
+<ul>
+  <li><b>Cluster filter</b>: no second same-direction signal within Min Pivot Distance bars <i>and</i> 1 ATR of price of
+      a previous one &mdash; prevents pyramiding into one bottom at three qualities.</li>
+  <li><b>Follow-through</b> (off by default): demands the confirmation close already inside the pivot&rarr;confirmation
+      range in the signal&rsquo;s direction. Turning it on makes the engine later and pickier &mdash; a legitimate
+      scalping filter, a bad idea on slow timeframes.</li>
+  <li><b>Session filter</b>: trades only inside market hours (symbol calendar in Auto, or your UTC window). The
+      panel&rsquo;s <code>Session</code> cell shows the current verdict.</li>
+</ul>
+
+<h2 id="s2-alerts">28. Alerts Workflow</h2>
+<ol class="steps">
+  <li><b>Start minimal.</b> Divergence + trendline break + plan levels (the defaults) cover structure, momentum shift
+      and lifecycle. Add cross alerts only if you actually act on crosses.</li>
+  <li><b>Set the cooldown from your bar rhythm.</b> On M5 with a 20-bar cooldown you get at most one bullish ring per
+      100 minutes; on D1 the same number is a month. Cooldown is per direction, so it never masks the opposite side.</li>
+  <li><b>Keep <code>Only On Closed Source Bar</code> on</b> unless your execution style is explicitly intra-bar
+      (Scalping preset). A ringing alert that can un-ring itself is worse than no alert.</li>
+  <li><b>Route the log lines.</b> With <code>Write Alerts To Log</code> on, every ring is also a text line &mdash; the
+      audit trail that lets you reconcile alerts against markers and journal rows afterwards.</li>
+</ol>
+
+<h2 id="s2-stats">29. Reading Your Own Statistics</h2>
+<p>
+The statistics section is the product&rsquo;s report card on <i>your</i> feed. Definitions, exactly as computed:
+</p>
+<table class="compact">
+  <tr><th style="width:18%">Cell</th><th>Definition</th></tr>
+  <tr><td><code>Win rate</code></td><td>resolved WINs / (WINs + LOSSes) over the stats window, sample in brackets. EXPIRED outcomes are excluded from the ratio but counted in the buckets&rsquo; Expired counter.</td></tr>
+  <tr><td><code>Expect</code></td><td>expectancy in R of the <i>plan ruler</i>: mean of (realised path, capped at TP2, floored at &minus;1R) over resolved plans &mdash; the number that answers &ldquo;what was one plan worth on average?&rdquo;.</td></tr>
+  <tr><td><code>PF</code></td><td>profit factor: gross favourable R / gross adverse R over the same set.</td></tr>
+  <tr><td><code>Avg qual</code></td><td>mean quality of all registered divergences in the window &mdash; your personal calibration reference (&sect;6.6).</td></tr>
+  <tr><td><code>MFE/MAE</code></td><td>mean best / worst excursion in ATR units on the ATR ruler &mdash; whether wins run further than losses.</td></tr>
+  <tr><td>bucket rows</td><td>per-family learned win rates with samples &mdash; the adaptive term&rsquo;s raw material.</td></tr>
+</table>
+<div class="callout tip">
+  <strong>The 100-outcome rule</strong>
+  Do not judge (or re-tune) anything on fewer than ~100 resolved outcomes. Below that, the confidence interval on a
+  win rate is wider than the difference between a good and a mediocre configuration. The journal gives you the rows;
+  patience gives you the answer.
+</div>
+
+<h2 id="s2-instruments">30. Timeframe &amp; Instrument Guide</h2>
+<table class="compact">
+  <tr><th>Context</th><th>Recommended starting point</th></tr>
+  <tr><td>M1&ndash;M5 FX / crypto scalping</td><td>Style Scalping; source = chart; lambda 0.92; keep the session filter (it exists exactly for the dead hours); expect live-bar markers.</td></tr>
+  <tr><td>M15&ndash;H1 intraday</td><td>Style Swing; defaults; SoftPenalty gate with 2 rungs; closed bars everywhere.</td></tr>
+  <tr><td>H4&ndash;D1 swing</td><td>Style Swing or Position; widen <code>Draw Only Most Recent N Bars</code> if you review months of history; Position&rsquo;s hard gate earns its keep here.</td></tr>
+  <tr><td>D1&ndash;W1 position</td><td>Style Position; regular divergences only; 3-rung ladder; expect few signals &mdash; the statistics window will be sparse by nature.</td></tr>
+  <tr><td>Volume-less feeds (some CFD / synthetic symbols)</td><td>Turn <code>Confirm With Volume</code> off explicitly: the vote degrades to unknown gracefully, but an explicit off documents your intent.</td></tr>
+  <tr><td>Tick / Renko / Range sources</td><td>Supported via the sampled-median bar span; verify the resolved span in the start-up log before trusting the profile, and prefer named timeframes for confluence rungs.</td></tr>
+</table>
+
+<h1 id="s3-head">SECTION 3 &mdash; TIPS</h1>
+
+<h2 id="s3-golden">31. The Golden Rules</h2>
+<ol>
+  <li><b>Pick the style before the parameters.</b> The preset is 134 decisions made coherently; hand-tuning from
+      Universal is rebuilding that coherence by hand.</li>
+  <li><b>Read the resolved profile, not the dialog.</b> The numbers that matter are in the start-up log and the
+      panel&rsquo;s config section &mdash; the dialog shows references.</li>
+  <li><b>One truth per pane.</b> The dotted bands, the zone gates, the MTF votes and the panel all read the same live
+      bands. If something looks contradictory, one of your toggles changed a layer&rsquo;s visibility, not its data
+      (&sect;37).</li>
+  <li><b>Quality is a distribution, not a threshold.</b> Calibrate against your own <code>Avg qual</code>; the factory
+      50/65/70 trio is a starting shape, not a law.</li>
+  <li><b>Let the engine measure itself.</b> Keep learning and the journal on until you have a reason to turn them off;
+      the statistics are the only opinion in this product that is backed by your own data.</li>
+  <li><b>Plans are rulers, not orders.</b> Size positions from your account risk; the plan only makes the risk
+      coherent and measurable.</li>
+  <li><b>Never judge a configuration on fewer than ~100 resolved outcomes</b> (&sect;29).</li>
+  <li><b>When in doubt, Debug Log.</b> Every skipped candidate has a named reason; the engine never silently ignores
+      anything.</li>
+</ol>
+
+<h2 id="s3-presets">32. Recommended Presets by Trading Style</h2>
+
+<h3>32.1 Scalping (M1&ndash;M5)</h3>
+<p>
+BarCount scaling with HorizonMatched policy and sensitivity 1.3 keeps windows short in bar terms; zones 68/32 with
+Level Factor 3.0 breathe aggressively; lambda 0.92 filters border noise; both cross families mark live
+(<code>Mark Only Closed Bars = No</code>) for speed; the session filter (Auto) keeps you out of dead hours; plans are
+short (0.8R / 1.5R, 80-bar projection) with 200-outcome memory so the buckets track the current regime. Alerts on
+closed bars off, cooldown 0 &mdash; speed over serenity; accept the churn consciously.
+</p>
+
+<h3>32.2 Swing (M15&ndash;H4)</h3>
+<p>
+The canonical reading: Balanced scaling, Canonical policy, 14/9/14 references and 70/30 zones as scaling anchors;
+closed-bar confirmation everywhere; SoftPenalty gate, Min Confluence 35; 1R/2R plans over pivot-structure stops;
+3-bar alert cooldown. This is the configuration the screenshots in this manual show unless stated otherwise.
+</p>
+
+<h3>32.3 Position (D1&ndash;W1)</h3>
+<p>
+TimeHorizon scaling with HorizonMatched policy and sensitivity 0.85; regular divergences only; HardGate at Min
+Confluence 45 with three rungs; wide zones 75/25; quality floor 65 / alert 82 &mdash; few signals, each heavily
+vetted; no cross markers and no session markers (on daily bars they are noise); 1.5R/3R plans with 240-bar
+projections and a 4 ATR chandelier trail; divergence labels in Full wording with grades shown, because at this
+frequency you read every one of them.
+</p>
+
+<h3>32.4 Universal</h3>
+<p>The neutral baseline: factory defaults, Balanced/Canonical, everything user-owned. The right choice while learning
+the engine on a demo chart &mdash; and the wrong choice for a live account that could run a preset instead.</p>
+
+<h3>32.5 Useful manual overlays on any style</h3>
+<ul>
+  <li><b>Quiet instrument:</b> lower <code>Adaptive ATR Percentile</code> (10&ndash;15) or switch the ATR gate to Off;
+      raise <code>Level Adjustment Factor</code> so the bands contract more in calm regimes.</li>
+  <li><b>Violent instrument (crypto weekends, event stocks):</b> raise <code>Pivot Prominence</code> (0.5&ndash;0.8),
+      keep the spike and knife filters on, and widen <code>Pivot Stop Buffer</code>.</li>
+  <li><b>Review-heavy workflow:</b> raise <code>Max Drawn Divergences</code> and the draw window; enable
+      <code>Mirror Divergences On Price Chart</code>; set label wording to Full with grades.</li>
+  <li><b>Minimal pane:</b> markers-only draw style, panel = SignalsCardOnly, session markers off.</li>
+</ul>
+
+<h3>32.6 What the styles pin &mdash; the full pinned surface</h3>
+<p class="toc-note">
+Adaptation &amp; scaling (mode, scaling, sensitivity, noise horizon, filter bank, spread, ER period, multiplier, HTF
+policy) &middot; timeframe &amp; source (strict mapping, confluence on/levels/list/gate/min score, auto-load, min bars)
+&middot; RSI core (input, all periods, bands, dynamic levels &amp; factor, lambda, output scale, four display toggles)
+&middot; divergence detection (kinds, prominence, candidates, legs, zone, three confirmations, hidden MTF gate, draw
+caps) &middot; signal filters (trend filter &amp; limit, ATR gate &amp; percentile, spike / knife / cluster,
+follow-through pair, session filter &amp; hours, quality floors) &middot; learning (on, memory, min samples, persist,
+outcome target/stop) &middot; markers (show, mode, style, wording, closed-bar, cap) &middot; trade management (show,
+stop source, TP1/TP2, buffer, max plans, length, labels, hints, trail) &middot; trendlines (on, break threshold,
+markers, alerts) &middot; session markers (show) &middot; journal (on) &middot; divergence appearance (draw style,
+mirror, drop lines, labels, grade/quality toggles, thickness) &middot; panel (show, layout, side, edge, controls, font,
+opacity, margin, five section toggles, refresh) &middot; alerts (enable, six families, closed-bar, sound on, log,
+popup) &middot; plus all scaling references (RSI/signal/stoch/smoother periods, bands, pivot lookback &amp; distances,
+ATR period, trend EMA &amp; slope bars, outcome horizon, level baseline, min ATR %, multiplier, draw &amp; stats
+windows, trendline gap &amp; slope, cooldown, stop buffer).
+</p>
+
+<h3>32.7 What stays yours in every style (the 29 user-owned parameters)</h3>
+<p class="toc-note">
+<b>Source:</b> Source Timeframe, Custom Timeframe Name &middot;
+<b>cross markers:</b> Bullish / Bearish Signal Color, Marker Font Size &middot;
+<b>divergence look:</b> Regular Bullish / Regular Bearish / Hidden Bullish / Hidden Bearish / Weak Signal Color,
+Line Style, Bullish / Bearish Marker Icon, Object Z-Index &middot;
+<b>panel:</b> Background, Border, Text, Label Text &middot;
+<b>alerts:</b> Bullish / Bearish Sound &middot;
+<b>diagnostics:</b> Debug Log, Log Resolved Profile On Start &middot;
+<b>plans:</b> Entry Line Color, Stop Line Color &middot;
+<b>trendlines:</b> Support / Resistance Color &middot;
+<b>session markers:</b> Marker Times, Marker Window, Marker Color &mdash; plus <code>Trading Style</code> itself.
+Everything behavioural is pinned by the preset; what remains is presentation, colours, wording, sounds, diagnostics
+and the choice of source timeframe.
+</p>
+
+<h2 id="s3-avoid">33. What NOT to Do</h2>
+<ul>
+  <li><b>Do not enable the regime-adaptive filter bank &ldquo;because it exists&rdquo;.</b> It redefines the main
+      line; every statistic you already collected describes a different oscillator.</li>
+  <li><b>Do not set Min Quality Score to 0 to &ldquo;see everything&rdquo;.</b> You will see everything, including the
+      candidates the engine proved worthless; your eyes will recalibrate to noise. Use Debug Log instead.</li>
+  <li><b>Do not mix rulers.</b> The ATR ruler grades outcomes; the R ruler draws plans. Comparing a panel win rate
+      against plan HIT counts is comparing two instruments.</li>
+  <li><b>Do not trade a STALE plan.</b> STALE means the idea did not develop within four horizons &mdash; it is
+      information, not an opportunity.</li>
+  <li><b>Do not stack two instances on the same chart with different styles</b> and average their opinions; run them
+      on separate charts and let the journals arbitrate.</li>
+  <li><b>Do not disable <code>Strict Non-Repaint MTF Mapping</code> to get earlier alerts</b> &mdash; you would be
+      buying freshness with look-ahead, the exact disease the engine is built to cure.</li>
+</ul>
+
+<h2 id="s3-perf">34. Performance &amp; Chart Hygiene</h2>
+<ul>
+  <li>The engine is incremental: every kernel updates only new or revised bars; the SMA carries a running-sum cache
+      with periodic exact rebaselining. Normal tick load is a handful of bar updates.</li>
+  <li>Heavy operations (full replays) happen on start-up, on history reloads and on timeframe changes &mdash; expect a
+      brief pause there, not during ticking.</li>
+  <li>Draw caps are real budgets: <code>Max Drawn Divergences</code>, <code>Max Cross Markers</code>,
+      <code>Max Visible Trade Plans</code>, the session-marker window and the 1500-object marker cap. Raising all of
+      them to maximum on a year of M1 history is the only way to make this product visibly slow &mdash; and it also
+      makes the pane unreadable.</li>
+  <li>Panel refresh below ~100&nbsp;ms with native controls buys nothing: the panel rebuilds only when dirty.</li>
+  <li>Keep <code>Persist Learning</code> on: restoring four buckets is cheaper than re-learning them, and the file is
+      a few dozen bytes.</li>
+</ul>
+
+<h2 id="s3-verify">35. Verifying the Non-Repaint Claim Yourself</h2>
+<ol class="steps">
+  <li><b>Freeze a moment.</b> On a demo chart, note the current bar time and take a screenshot of the oscillator pane
+      and the price pane.</li>
+  <li><b>Scroll away and back.</b> Switch to another symbol and return (or detach/reattach the indicator). The history
+      pass replays: every glyph that was on confirmed bars must reappear <i>identically</i> &mdash; same bars, same
+      labels, same qualities.</li>
+  <li><b>Bar-replay test.</b> If your platform offers bar replay / playback, step through the bar where a divergence
+      confirmed: the pattern must appear exactly at its confirmation bar, never earlier, and must not move
+      afterwards.</li>
+  <li><b>Journal cross-check.</b> Copy the <code>ARP-JOURNAL</code> lines into a spreadsheet; the confirmation
+      timestamps are the bars where glyphs appeared. A glyph whose bar is older than its journal line&rsquo;s
+      confirmation time would be a repaint &mdash; you will find none.</li>
+  <li><b>Live-bar discipline.</b> With <code>Mark Only Closed Bars</code> on, watch the forming bar: cross markers and
+      divergence labels may <i>preview</i> nothing at all until close &mdash; that absence is the guarantee working.
+      (Scalping&rsquo;s live mode is the documented exception.)</li>
+</ol>
+
+<h2 id="s3-faq">36. FAQ</h2>
+<table class="compact">
+  <tr><th style="width:40%">Question</th><th>Answer</th></tr>
+  <tr><td>Why did a divergence appear several bars after the pivot?</td><td>Because the pivot needed <code>Pivot Lookback</code> bars to confirm, and the pattern needed its second pivot confirmed too. The earliest legal moment is the confirmation bar &mdash; that is non-repainting, not lag.</td></tr>
+  <tr><td>Why do my OB/OS lines move slightly over time?</td><td>They are dynamic bands breathing with ATR% (&sect;5.6). The values already printed on confirmed bars do not move; only the live end updates. Switch <code>Dynamic Levels</code> off for fixed bands.</td></tr>
+  <tr><td>Why is the higher-TF line flat for a while?</td><td>Strict mapping holds each closed rung bar until the next one closes &mdash; a staircase is the honest shape.</td></tr>
+  <tr><td>Why no alerts after a restart?</td><td>The history rescan is silent by design; only live events alert. Your markers and journal history still refill.</td></tr>
+  <tr><td>Why does the panel show &ldquo;collecting&rdquo; for win rate?</td><td>The buckets have fewer resolved outcomes than <code>Min Learning Samples</code>, or learning is off.</td></tr>
+  <tr><td>Can I use this as a cBot signal source?</td><td>Yes &mdash; consume the trigger / divergence output series (&sect;12.2). Respect the closed-bar rule: read <code>Count-2</code> for confirmed values.</td></tr>
+  <tr><td>Does the indicator trade or access my account?</td><td>No. <code>AccessRights.None</code>; no orders, no account reads, no network.</td></tr>
+  <tr><td>Where is my learning data stored?</td><td>cTrader LocalStorage, scope = indicator type (shared across charts of the same symbol class by design, so statistics accumulate faster). Delete it via the platform&rsquo;s storage tools if you want a cold start.</td></tr>
+  <tr><td>Two charts, same style, different results?</td><td>Check the resolved source: different chart timeframes resolve different profiles unless the style pins otherwise &mdash; and the learning buckets are per indicator type, not per chart. The start-up log shows both.</td></tr>
+  <tr><td>What changed between 2.x and 3.x?</td><td>Corrected OB/OS polarity, real dynamic levels, the trade lifecycle, RSI trendlines, session markers, the CSV journal, professional statistics and four style presets &mdash; see the revision callout at the top of this manual.</td></tr>
+</table>
+
+<h2 id="s3-trouble">37. Troubleshooting</h2>
+<table class="compact">
+  <tr><th style="width:34%">Symptom</th><th>Cause / fix</th></tr>
+  <tr><td>Hundreds of alert / journal lines and sounds the moment I attach the indicator</td><td>Builds before v3.24.6 could leak the streamed history backlog through as &ldquo;live&rdquo; events on a deep-chart attach. Update to v3.24.7: the start-up pass completes only when the feed has caught up to the clock (within ~10 bar spans), and the rescan is silent by contract (&sect;11.3).</td></tr>
+  <tr><td>Build warning <code>CGEN001: Config file not found</code></td><td>The new cTrader Algo editor (5.9+) expects a <code>config.json</code> metadata file next to the <code>.csproj</code>; projects created before that format (or assembled by hand) do not have one. Harmless for C# algos &mdash; the metadata comes from the code attributes and the <code>.algo</code> builds fine. To silence it, create <code>config.json</code> in the project folder (the one holding <code>AdvancedRSIPro.csproj</code>) with: <code>{ "AccessRights": "None", "IsOverlay": false, "TimeZone": "UTC" }</code> &mdash; these values match the indicator&rsquo;s <code>[Indicator]</code> attribute &mdash; and rebuild.</td></tr>
+  <tr><td>Nothing drawn on a fresh chart</td><td>Warm-up: the resolved windows need history. Check the start-up log&rsquo;s warm-up estimate and the history warning; enable Auto Load History / raise Min Source Bars.</td></tr>
+  <tr><td>Divergences stopped appearing</td><td>Read Debug Log: a gate is rejecting (quiet regime &rarr; ATR gate; strong trend &rarr; trend gate; news &rarr; spike filter). Loosen deliberately (&sect;27) or accept the discipline.</td></tr>
+  <tr><td>&ldquo;Every BUY cross loses on my chart&rdquo;</td><td>Crosses are context-free timing pings: in a strong downtrend every oversold-exit BUY is counter-trend and will mostly fail &mdash; check <code>Bias</code> / <code>Consensus</code> / <code>MTF</code> before acting (&sect;25, case study &sect;26.1). On charts finer than the source, make sure you run v3.24.5+: older builds placed closed-bar markers at the source bar&rsquo;s open, hours before the signal could be known.</td></tr>
+  <tr><td>Markers but no alerts (or vice versa)</td><td>Markers follow <code>Cross Mode</code>; alerts follow their own toggles and the closed-bar / freshness / cooldown rules (&sect;11.3). Align the two consciously.</td></tr>
+  <tr><td>Panel missing sections</td><td>The five section toggles in group 9; a fully-empty selection hides the body. Also check <code>Show Info Panel</code>.</td></tr>
+  <tr><td>Plan disappeared when I scrolled left</td><td>Visible-plan budget and chart window: plans whose confirm bar leaves the window are un-drawn and retried on return (&sect;13.3). The registry and statistics keep them.</td></tr>
+  <tr><td>Session markers missing inside a wide bar</td><td>They are occurrence-complete by design; if none appear at all, check the parsed count in the start-up log (&ldquo;on but no valid times parsed&rdquo; means the list did not parse).</td></tr>
+  <tr><td>Statistics look wrong after a long disconnect</td><td>Outcomes resolve chronologically over the gap on the first sweep &mdash; that is correct behaviour; only <i>live</i> events alert and journal, so the log stays quiet while the statistics catch up.</td></tr>
+  <tr><td>Win rate frozen at an old value</td><td><code>Persist Learning</code> restored a saturated bucket; raise <code>Learning Memory</code> or clear storage for a cold start.</td></tr>
+</table>
+
+<h2 id="s3-glossary">38. Glossary</h2>
+<table class="compact">
+  <tr><th style="width:24%">Term</th><th>Meaning in this product</th></tr>
+  <tr><td>ATR ruler</td><td>The outcome-measuring ruler: target/stop as multiples of the entry bar&rsquo;s ATR.</td></tr>
+  <tr><td>Aligned score</td><td>The MTF confluence score signed by the signal direction (+ for bulls, &minus; for bears).</td></tr>
+  <tr><td>Confirmation bar</td><td>The first closed source bar at which a pivot / pattern / break can be known; the earliest legal action point.</td></tr>
+  <tr><td>Dynamic bands</td><td>The volatility-breathing OB/OS levels (&sect;5.6).</td></tr>
+  <tr><td>Grade (A/B/C)</td><td>Structural completeness of a divergence&rsquo;s intermediate swing (&sect;6.4).</td></tr>
+  <tr><td>Hybrid closure</td><td>The closed-bar rule for irregular calendars: closed iff min(nominal close, successor open) &le; asOf.</td></tr>
+  <tr><td>Lambda hysteresis</td><td>The exit band inside the OB/OS zones controlled by Signal Sensitivity Lambda.</td></tr>
+  <tr><td>MFE / MAE</td><td>Maximum favourable / adverse excursion after entry, in ATR (statistics) or R (plan path) units.</td></tr>
+  <tr><td>Plan R</td><td>The plan&rsquo;s own risk unit: |entry &minus; stop|.</td></tr>
+  <tr><td>Prominence</td><td>A pivot&rsquo;stand-out distance from its neighbours&rsquo; RSI extremes, in ATR-price units.</td></tr>
+  <tr><td>Quality score</td><td>The 12-component 0&ndash;100 weighted mean grading each divergence (&sect;6.6).</td></tr>
+  <tr><td>Resolved profile</td><td>The adaptive engine&rsquo;s output: every effective window/threshold for one timeframe.</td></tr>
+  <tr><td>Rung</td><td>One higher timeframe of the confluence ladder, with its own profile and pipeline.</td></tr>
+  <tr><td>State score</td><td>A timeframe&rsquo;s &plusmn;100 vote: position + momentum + signal + exhaustion (&sect;9.3).</td></tr>
+  <tr><td>Watermark</td><td>An engine&rsquo;s &ldquo;scanned up to here&rdquo; index, guaranteeing exactly-once evaluation.</td></tr>
+</table>
+
+<h1 id="appx-head">APPENDICES</h1>
+
+<h2 id="appx-images">Appendix A &mdash; Screenshot Index &amp; Naming</h2>
+<p>
+The offline archive keeps <code>manual.html</code> next to its <code>images/</code> folder. Naming convention:
+<code>0x_</code> = workspace &amp; dialogs, <code>1x_</code> = dialogs (cont.) &amp; price-input gallery,
+<code>2x_</code> = feature close-ups, <code>3x_</code> = case studies, plus the vector assets.
+</p>
+<table class="compact">
+  <tr><th style="width:34%">File</th><th>Content</th><th style="width:14%">Used in</th></tr>
+  <tr><td><code>images/banner.svg</code></td><td>Product banner (vector, gold edition)</td><td>cover</td></tr>
+  <tr><td><code>images/favicon.svg</code></td><td>Favicon / apple-touch icon</td><td>head</td></tr>
+  <tr><td><code>images/icon_text.svg</code></td><td>Product icon with wordmark (hub card)</td><td>hub</td></tr>
+  <tr><td><code>images/01_workspace_overview.png</code></td><td>Full workspace: price plans, trendlines, oscillator, divergences, panel</td><td>&sect;19, &sect;23.1</td></tr>
+  <tr><td><code>images/02_parameter_dialog.png</code></td><td>Parameter dialog, groups 0&ndash;2</td><td>&sect;22 (Fig. 22.1)</td></tr>
+  <tr><td><code>images/03_info_panel_closeup.png</code></td><td>Merged info card, live values</td><td>&sect;10.2</td></tr>
+  <tr><td><code>images/04_dialog_adaptation.png</code></td><td>Dialog: group 2 tail + group 3 (Automatic Adaptation)</td><td>&sect;22 (Fig. 22.2)</td></tr>
+  <tr><td><code>images/05_dialog_divergence.png</code></td><td>Dialog: group 4 (Divergence Detection)</td><td>&sect;22 (Fig. 22.3)</td></tr>
+  <tr><td><code>images/06_dialog_filters.png</code></td><td>Dialog: group 5 (Signal Filters)</td><td>&sect;22 (Fig. 22.4)</td></tr>
+  <tr><td><code>images/07_dialog_markers.png</code></td><td>Dialog: groups 6&ndash;7 (Quality &amp; Learning, Signal Markers)</td><td>&sect;22 (Fig. 22.5)</td></tr>
+  <tr><td><code>images/08_dialog_appearance.png</code></td><td>Dialog: group 8 (Divergence Appearance)</td><td>&sect;22 (Fig. 22.6)</td></tr>
+  <tr><td><code>images/09_dialog_panel_alerts.png</code></td><td>Dialog: groups 9&ndash;10 (Info Panel tail, Alerts)</td><td>&sect;22 (Fig. 22.7)</td></tr>
+  <tr><td><code>images/10_dialog_advanced_trade.png</code></td><td>Dialog: groups 11&ndash;12 (Advanced, Trade Management)</td><td>&sect;22 (Fig. 22.8)</td></tr>
+  <tr><td><code>images/11_dialog_trade_sessions.png</code></td><td>Dialog: group 12 tail + 13&ndash;14 (Trendlines, Session Markers)</td><td>&sect;22 (Fig. 22.9)</td></tr>
+  <tr><td><code>images/10_input_typical.png</code></td><td>Price input = Typical, with dialog</td><td>&sect;5.2, &sect;23.2</td></tr>
+  <tr><td><code>images/11_input_weighted.png</code></td><td>Price input = Weighted, with dialog</td><td>&sect;23.3</td></tr>
+  <tr><td><code>images/12_input_median.png</code></td><td>Price input = Median, with dialog</td><td>&sect;23.4</td></tr>
+  <tr><td><code>images/13_input_heikinashi.png</code></td><td>Price input = HeikinAshi, with dialog</td><td>&sect;23.5</td></tr>
+  <tr><td><code>images/14_input_volumeprice.png</code></td><td>Price input = VolumePriceAdjusted, with dialog</td><td>&sect;23.6</td></tr>
+  <tr><td><code>images/20_plan_closeup.png</code></td><td>Trade plan close-up: HIT/VOID lifecycle, TRAIL hint, TL break</td><td>&sect;13 (Fig. 13.1)</td></tr>
+  <tr><td><code>images/21_price_divergences.png</code></td><td>Price chart: session markers, mirrored divergences</td><td>&sect;15 (Fig. 15.1)</td></tr>
+  <tr><td><code>images/22_bands_closeup.png</code></td><td>Dynamic OB/OS bands close-up</td><td>&sect;5.6 (Fig. 5.2)</td></tr>
+  <tr><td><code>images/23_hidden_bear_closeup.png</code></td><td>Hidden bearish divergence in the oscillator</td><td>&sect;6 (Fig. 6.1)</td></tr>
+  <tr><td><code>images/30_h8_coarse_source.png</code></td><td>Case study: custom H8 source on a finer chart</td><td>&sect;26.1 (Fig. 26.1)</td></tr>
+  <tr><td><code>images/31_log_excerpt.png</code></td><td>Platform log: profile dump + ARP-* journal streams (rendered from a real session log)</td><td>&sect;16.1 (Fig. 16.1)</td></tr>
+</table>
+<div class="callout tip">
+  <strong>Screenshot set complete</strong>
+  Every figure this manual references is shipped in <code>images/</code>: workspace and panel, the full parameter
+  dialog (all fifteen groups), the six-input price gallery, plan / divergence / bands close-ups, the H8 case study and
+  the log excerpt. Nothing is pending for the current revision.
+</div>
+
+<h2 id="appx-audit">Appendix B &mdash; Source-Code Audit (v3.24.7, 2026-10)</h2>
+<p>
+Advanced RSI Pro has passed <b>fourteen independent audit rounds</b> (v3.3 &rarr; v3.24.4). Each round re-read the whole
+file and re-verified the engine against oracles written <i>from the documented semantics</i>, not from the code under
+test &mdash; including an independent numerical re-implementation of all six MA kernels and of the full RSI pipeline in
+a second language, differential replays of every state machine against brute-force chronological oracles, and a
+whole-file compile against a clean-room mock built strictly from the published <code>cAlgo.API</code> reference
+(zero errors, zero warnings at maximum warning level). Highlights a user can translate into trust:
+</p>
+<ul>
+  <li><b>Kernels:</b> all six MA types (Simple, Weighted, Exponential, Wilder, Triangular, SuperSmoother) and the SMA
+      running-sum cache proven incremental&nbsp;=&nbsp;one-shot under one-shot / bar-by-bar / chunked / revise-below-cache /
+      shrink-regrow schedules, NaN densities up to 20&nbsp;%, including both 1024-update rebaseline crossings.</li>
+  <li><b>Pipeline:</b> the complete chain (all six price inputs including the volume-price builder and its memo, Wilder
+      seed-and-smooth, ER blend, SuperSmoother clamp, signal SMA, StochRSI, TR/ATR%/baseline, dynamic bands, zone
+      hysteresis, both side-state machines) differenced against an independently written reference over randomised
+      configurations with custom and non-straddling bands &mdash; zero drift on every frozen bar.</li>
+  <li><b>Mapping:</b> all four timeframe-mapping families against the hybrid-closure oracle over regular, weekend,
+      Monthly and holiday-shortened calendars &times; three <code>GetIndexByTime</code> roundings &times; strict /
+      non-strict &mdash; tens of thousands of probes, exact.</li>
+  <li><b>Lifecycle:</b> outcome and plan engines vs chronological oracles over randomised paths including same-bar
+      double touches, degenerate TP1 = TP2, invalid entries and near-<code>int.MaxValue</code> indices (no fabricated
+      instant EXPIRED / STALE).</li>
+  <li><b>Learning:</b> decay vs ensemble Monte-Carlo (convergence to the resolved win rate within 4 SEM, no 50/50
+      absorbing state), persistence round-trip and corrupt-file rejection.</li>
+  <li><b>Contracts:</b> all 164 parameters verified inside their declared ranges and on their step grids; all three
+      presets verified to write the identical 135-assignment set; every division, cast and index+window addition
+      traced to a guarded operand; culture-invariant formatting on every numeric surface.</li>
+</ul>
+<p>
+The v3.24.4 round fixed one latent defect (a corrupt <i>infinite</i> endpoint quote could poison the Kaufman ER of the
+regime filter bank &mdash; a bank that ships OFF by default and OFF in every preset) and re-verified everything else
+clean. Behaviour on every finite quote is bit-identical to v3.24.3.
+</p>
+
+<p>
+<b>v3.24.7</b> tightens the v3.24.6 catch-up window. A field log (EURUSD h1 attach) showed v3.24.6 had stopped the
+journal / ARP flood but still leaked ~5 days of cross and trendline alerts: the grace of <code>span + max(5 days,
+2 spans)</code> let the flag flip while a streamed leading bar was up to five days behind the clock. The window is now
+<code>max(10 &times; span, 15 min)</code>, bounding any streaming leak to roughly the alert freshness window on every
+timeframe while a forming Monthly bar (age &le; 31 days) and a daily bar after a weekend or multi-day holiday
+(age &le; ~5 days) still read as caught up; an intraday source over a closed market defers until the reopen, which
+emits no events to miss. Re-verified by execution across fourteen attach scenarios (live intraday / Monthly / Weekly,
+daily after a 3-day weekend and a 5-day holiday, streamed backlogs at 12 h / 5 d / 20 d, an intraday weekend, and the
+10-span boundary), compiled with zero warnings.
+</p>
+<p>
+<b>v3.24.6</b> closes a field-reported start-up defect found through a real session log: when the platform streams
+the history in incrementally after the attach, the first-pass flag used to flip on the partially loaded series and
+the whole backlog then processed as &ldquo;live&rdquo; (399 log lines &mdash; alerts, journal rows and sounds &mdash;
+in 1.2 seconds on a fresh EURUSD m15 attach). The pass now completes only when the source series has caught up to
+the real clock (span + max(5 days, 2 spans) window); the deferral was verified harmless for drawing, learning
+seeding, panel and statistics, and correct across seven attach scenarios (live, streaming backlog, weekend,
+multi-day holiday, Monthly forming bar, Monthly backlog, clock skew), compiled with zero warnings.
+</p>
+<p>
+<b>v3.24.5</b> adds one field-driven placement fix and no engine changes: closed-bar
+cross markers and trendline-break markers move from the source bar&rsquo;s <i>open</i> edge to the <i>last chart bar
+overlapping the confirmed source bar</i> (the new <code>SignalPlacementChartIndex</code> helper, hybrid-closure
+capped). Identity and finer mappings are bit-identical by construction &mdash; the helper degenerates to
+<code>SourceToChartIndex</code> &mdash; and were re-verified by execution against a five-scenario differential
+(coarser phase-shifted source, identity, finer source, irregular short-bar calendar, unknown-span fallback) with a
+whole-file brace / paren / bracket balance sweep and all four version surfaces updated together. Signal detection,
+polarity, alerts, journal and outcome measurement are untouched.
+</p>
+
+<div class="callout warn" style="margin-top:48px">
+  <strong>Risk disclaimer</strong>
+  Trading foreign exchange, contracts for difference and cryptocurrencies carries a high level of risk and may not be
+  suitable for all investors. This manual describes a technical analysis tool; nothing in it is investment, legal or
+  tax advice. Past measurements &mdash; including the indicator&rsquo;s own statistics &mdash; do not guarantee future
+  results.
+</div>
+
+<p style="margin-top:32px;color:var(--text-soft);font-size:13px;">
+  Advanced RSI Pro 3.24.7 &ldquo;Premium&rdquo; &middot; AURUM QUANT &middot; manual revision 2026-10 &middot;
+  &copy; 2026. Documentation describes tooling, not investment advice.
+</p>
+
+</main>
+</div>
+</body>
+</html>

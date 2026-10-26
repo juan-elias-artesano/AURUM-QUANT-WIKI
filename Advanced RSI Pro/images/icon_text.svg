@@ -1,0 +1,58 @@
+<svg width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Фоновый градиент -->
+    <radialGradient id="bgGlow" cx="50%" cy="50%" r="75%">
+      <stop offset="0%" stop-color="#1c1c1e" />
+      <stop offset="100%" stop-color="#080809" />
+    </radialGradient>
+
+    <!-- Золотой градиент -->
+    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F9D976" />
+      <stop offset="35%" stop-color="#E2B63E" />
+      <stop offset="70%" stop-color="#D4AF37" />
+      <stop offset="100%" stop-color="#AA7700" />
+    </linearGradient>
+
+    <!-- Свечение -->
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="5" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Фон -->
+  <rect width="300" height="300" rx="60" fill="url(#bgGlow)" />
+  <rect x="10" y="10" width="280" height="280" rx="50" fill="none" stroke="url(#goldGradient)" stroke-width="1.5" opacity="0.5" />
+
+  <!-- ГРАФИЧЕСКАЯ ЧАСТЬ (Сдвинута вверх на 15px для текста) -->
+  <g transform="translate(0, -15)">
+    <!-- Границы канала RSI -->
+    <rect x="50" y="60" width="200" height="180" rx="10" fill="none" stroke="#FFFFFF" stroke-width="2" opacity="0.1" />
+
+    <!-- Уровень Overbought (70) -->
+    <line x1="50" y1="100" x2="250" y2="100" stroke="url(#goldGradient)" stroke-width="2" stroke-dasharray="6,4" opacity="0.8" />
+    <text x="255" y="104" fill="url(#goldGradient)" font-family="Arial" font-size="12" font-weight="bold">70</text>
+
+    <!-- Уровень Oversold (30) -->
+    <line x1="50" y1="200" x2="250" y2="200" stroke="url(#goldGradient)" stroke-width="2" stroke-dasharray="6,4" opacity="0.8" />
+    <text x="255" y="204" fill="url(#goldGradient)" font-family="Arial" font-size="12" font-weight="bold">30</text>
+
+    <!-- Линия RSI -->
+    <path d="M 60 180 L 90 120 L 120 220 L 150 90 L 180 210 L 210 110 L 230 140" 
+          fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" filter="url(#glow)" />
+
+    <!-- Текущая точка сигнала -->
+    <circle cx="230" cy="140" r="8" fill="url(#goldGradient)" filter="url(#glow)" />
+    <circle cx="230" cy="140" r="3" fill="#FFFFFF" />
+  </g>
+
+  <!-- ТЕКСТОВАЯ ЧАСТЬ -->
+  <g font-family="Arial, sans-serif" text-anchor="middle">
+    <!-- Слово ADVANCED (белое, чуть меньше) -->
+    <text x="150" y="250" fill="#FFFFFF" font-size="14" font-weight="bold" letter-spacing="4" opacity="0.8">ADVANCED</text>
+    
+    <!-- Слова RSI PRO (золотые, крупные) -->
+    <text x="150" y="278" fill="url(#goldGradient)" font-size="26" font-weight="bold" letter-spacing="2">RSI PRO</text>
+  </g>
+</svg>

@@ -1,0 +1,76 @@
+<svg width="1200" height="400" viewBox="0 0 1200 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="bgGlow" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#1c1c1e" />
+      <stop offset="100%" stop-color="#0a0a0b" />
+    </radialGradient>
+    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F9D976" />
+      <stop offset="30%" stop-color="#E2B63E" />
+      <stop offset="70%" stop-color="#D4AF37" />
+      <stop offset="100%" stop-color="#AA7700" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Фон -->
+  <rect width="1200" height="400" fill="url(#bgGlow)" />
+  <rect x="20" y="20" width="1160" height="360" rx="30" fill="none" stroke="url(#goldGradient)" stroke-width="1.5" opacity="0.4" />
+  <rect x="30" y="30" width="1140" height="340" rx="20" fill="none" stroke="url(#goldGradient)" stroke-width="1" opacity="0.6" />
+
+  <!-- ЛЕВАЯ ЧАСТЬ: ТЕКСТ -->
+  <g font-family="Arial, sans-serif">
+    <text x="70" y="100" fill="#FFFFFF" font-size="14" font-weight="bold" letter-spacing="4" opacity="0.8">PRO TRADING INDICATOR</text>
+    
+    <!-- Главный заголовок -->
+    <text x="70" y="180" fill="url(#goldGradient)" font-size="52" font-weight="bold" letter-spacing="2">ADVANCED RSI PRO</text>
+    
+    <!-- Подзаголовок -->
+    <text x="70" y="225" fill="#E0E0E0" font-size="18" letter-spacing="3" opacity="0.9">RELATIVE STRENGTH INDEX</text>
+    
+    <!-- Буллеты -->
+    <g fill="url(#goldGradient)" font-size="14" letter-spacing="2" font-weight="bold" opacity="0.9">
+      <text x="70" y="300">ZERO REPAINT</text>
+      <circle cx="215" cy="295" r="4" fill="url(#goldGradient)" />
+      <text x="240" y="300">BUILT IN ALERTS</text>
+      <circle cx="385" cy="295" r="4" fill="url(#goldGradient)" />
+      <text x="410" y="300">ALL TIMEFRAMES</text>
+    </g>
+
+    <!-- Нижний колонтитул -->
+    <text x="70" y="350" fill="#FFFFFF" font-size="12" letter-spacing="2" opacity="0.5">PREMIUM ALGO INDICATOR • v1.0</text>
+  </g>
+
+  <!-- ПРАВАЯ ЧАСТЬ: ГРАФИКА RSI -->
+  <g transform="translate(620, 50)">
+    <!-- Канал RSI -->
+    <rect x="0" y="0" width="480" height="280" rx="10" fill="none" stroke="#FFFFFF" stroke-width="2" opacity="0.1" />
+    
+    <!-- Уровень 70 -->
+    <line x1="0" y1="80" x2="480" y2="80" stroke="url(#goldGradient)" stroke-width="3" stroke-dasharray="8,6" opacity="0.8" />
+    <text x="490" y="85" fill="url(#goldGradient)" font-family="Arial" font-size="14" font-weight="bold">70</text>
+
+    <!-- Уровень 30 -->
+    <line x1="0" y1="200" x2="480" y2="200" stroke="url(#goldGradient)" stroke-width="3" stroke-dasharray="8,6" opacity="0.8" />
+    <text x="490" y="205" fill="url(#goldGradient)" font-family="Arial" font-size="14" font-weight="bold">30</text>
+
+    <!-- Линия RSI (Белая с золотым свечением) -->
+    <path d="M 20 180 L 70 100 L 120 240 L 170 60 L 220 220 L 280 90 L 340 230 L 400 110 L 460 150" 
+          fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linejoin="round" stroke-linecap="round" filter="url(#glow)" />
+
+    <!-- Точки сигналов -->
+    <circle cx="170" cy="60" r="8" fill="url(#goldGradient)" filter="url(#glow)" />
+    <circle cx="280" cy="90" r="8" fill="url(#goldGradient)" filter="url(#glow)" />
+    
+    <!-- Текущая сигнальная точка -->
+    <circle cx="460" cy="150" r="12" fill="url(#goldGradient)" filter="url(#glow)" />
+    <circle cx="460" cy="150" r="4" fill="#FFFFFF" />
+
+    <!-- Обозначение уровней -->
+    <text x="-10" y="45" fill="#FFFFFF" font-family="Arial" font-size="10" opacity="0.5" transform="rotate(-90, -10, 45)">OVERBOUGHT</text>
+    <text x="-10" y="240" fill="#FFFFFF" font-family="Arial" font-size="10" opacity="0.5" transform="rotate(-90, -10, 240)">OVERSOLD</text>
+  </g>
+</svg>
